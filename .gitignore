@@ -1,0 +1,14 @@
+plugin/packer_compiled.lua
+node_modules
+package-lock.json
+.temp
+lsp/luals/**/*.log
+lsp/luals/**/*/log/cache
+lsp/jdtls/config_win/org.*
+lsp/jdtls/config_linux/org.*
+lsp/jdtls/config_mac/org.*
+lsp/jdtls/config_macos/org.*
+
+# lsp/clangd/windows/
+# lsp/clangd/linux-x64/
+# lsp/clangd/macos-arm/
