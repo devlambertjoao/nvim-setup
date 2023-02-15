@@ -9,6 +9,6 @@ lsp/jdtls/config_linux/org.*
 lsp/jdtls/config_mac/org.*
 lsp/jdtls/config_macos/org.*
 
-# lsp/clangd/windows/
-# lsp/clangd/linux-x64/
-# lsp/clangd/macos-arm/
+lsp/clangd/windows/
+lsp/clangd/linux-x64/
+lsp/clangd/macos-arm/
