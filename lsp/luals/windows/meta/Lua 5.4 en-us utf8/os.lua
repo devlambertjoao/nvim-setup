@@ -147,12 +147,12 @@ function os.remove(filename) end
 function os.rename(oldname, newname) end
 
 ---@alias localecategory
----|>'"all"'
----| '"collate"'
----| '"ctype"'
----| '"monetary"'
----| '"numeric"'
----| '"time"'
+---|>"all"
+---| "collate"
+---| "ctype"
+---| "monetary"
+---| "numeric"
+---| "time"
 
 ---
 ---Sets the current locale of the program.

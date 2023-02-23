@@ -29,7 +29,10 @@ simpleSwitch = util.switch()
 
 ---@async
 local function searchInAllFiles(suri, searcher, notify)
+    await.delay()
+
     searcher(suri)
+    await.delay()
 
     local uris = {}
     for uri in files.eachFile(suri) do
@@ -285,7 +288,10 @@ local function searchByDef(source, pushResult)
     local defs = vm.getDefs(source)
     for _, def in ipairs(defs) do
         pushResult(def)
-        if not guide.isLiteral(def) then
+        if  not guide.isLiteral(def)
+        and def.type ~= 'doc.alias'
+        and def.type ~= 'doc.class'
+        and def.type ~= 'doc.enum' then
             defMap[def] = true
         end
     end

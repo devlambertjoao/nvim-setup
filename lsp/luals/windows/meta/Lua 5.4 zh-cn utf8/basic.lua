@@ -21,14 +21,14 @@ arg = {}
 function assert(v, message, ...) end
 
 ---@alias gcoptions
----|>'"collect"'      # 做一次完整的垃圾收集循环。
----| '"stop"'         # 停止垃圾收集器的运行。
----| '"restart"'      # 重启垃圾收集器的自动运行。
----| '"count"'        # 以 K 字节数为单位返回 Lua 使用的总内存数。
----| '"step"'         # 单步运行垃圾收集器。 步长“大小”由 `arg` 控制。
----| '"isrunning"'    # 返回表示收集器是否在工作的布尔值。
----| '"incremental"'  # 改变收集器模式为增量模式。
----| '"generational"' # 改变收集器模式为分代模式。
+---|>"collect"      # 做一次完整的垃圾收集循环。
+---| "stop"         # 停止垃圾收集器的运行。
+---| "restart"      # 重启垃圾收集器的自动运行。
+---| "count"        # 以 K 字节数为单位返回 Lua 使用的总内存数。
+---| "step"         # 单步运行垃圾收集器。 步长“大小”由 `arg` 控制。
+---| "isrunning"    # 返回表示收集器是否在工作的布尔值。
+---| "incremental"  # 改变收集器模式为增量模式。
+---| "generational" # 改变收集器模式为分代模式。
 
 ---
 ---这个函数是垃圾收集器的通用接口。 通过参数 opt 它提供了一组不同的功能。
@@ -107,9 +107,9 @@ function getmetatable(object) end
 function ipairs(t) end
 
 ---@alias loadmode
----| '"b"'  # 只能是二进制代码块。
----| '"t"'  # 只能是文本代码块。
----|>'"bt"' # 可以是二进制也可以是文本。
+---| "b"  # 只能是二进制代码块。
+---| "t"  # 只能是文本代码块。
+---|>"bt" # 可以是二进制也可以是文本。
 
 ---
 ---加载一个代码块。
@@ -276,7 +276,7 @@ function rawset(table, index, value) end
 ---
 ---[查看文档](command:extension.lua.doc?["en-us/54/manual.html/pdf-select"])
 ---
----@param index integer|'"#"'
+---@param index integer|"#"
 ---@return any
 ---@nodiscard
 function select(index, ...) end
@@ -330,14 +330,14 @@ function tonumber(e) end
 function tostring(v) end
 
 ---@alias type
----| '"nil"'
----| '"number"'
----| '"string"'
----| '"boolean"'
----| '"table"'
----| '"function"'
----| '"thread"'
----| '"userdata"'
+---| "nil"
+---| "number"
+---| "string"
+---| "boolean"
+---| "table"
+---| "function"
+---| "thread"
+---| "userdata"
 
 ---
 ---将参数的类型编码为一个字符串返回。 函数可能的返回值有 `"nil"` （一个字符串，而不是 `nil` 值）， `"number"`， `"string"`， `"boolean"`， `"table"`， `"function"`， `"thread"`， `"userdata"`。
@@ -355,7 +355,7 @@ function type(v) end
 ---
 ---[查看文档](command:extension.lua.doc?["en-us/54/manual.html/pdf-_VERSION"])
 ---
-_VERSION = 'Lua 5.4'
+_VERSION = "Lua 5.4"
 
 ---@version >5.4
 ---

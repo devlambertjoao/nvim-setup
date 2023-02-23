@@ -3,7 +3,7 @@
 ---
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug)
 ---
 ---@class debuglib
 debug = {}
@@ -22,14 +22,12 @@ debug = {}
 ---@field nparams         integer
 ---@field isvararg        boolean
 ---@field func            function
----@field ftransfer       integer
----@field ntransfer       integer
 ---@field activelines     table
 
 ---
 ---Enters an interactive mode with the user, running each string that the user enters.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.debug)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.debug)
 ---
 function debug.debug() end
 
@@ -37,7 +35,7 @@ function debug.debug() end
 ---
 ---Returns the environment of object `o` .
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.getfenv)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.getfenv)
 ---
 ---@param o any
 ---@return table
@@ -47,7 +45,7 @@ function debug.getfenv(o) end
 ---
 ---Returns the current hook settings of the thread.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.gethook)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.gethook)
 ---
 ---@param co? thread
 ---@return function hook
@@ -57,19 +55,18 @@ function debug.getfenv(o) end
 function debug.gethook(co) end
 
 ---@alias infowhat string
----|+'"n"'     # `name` and `namewhat`
----|+'"S"'     # `source`, `short_src`, `linedefined`, `lastlinedefined`, and `what`
----|+'"l"'     # `currentline`
----|+'"t"'     # `istailcall`
----|+'"u"' # `nups`, `nparams`, and `isvararg`
----|+'"f"'     # `func`
----|+'"r"'     # `ftransfer` and `ntransfer`
----|+'"L"'     # `activelines`
+---|+"n"     # `name` and `namewhat`
+---|+"S"     # `source`, `short_src`, `linedefined`, `lastlinedefined`, and `what`
+---|+"l"     # `currentline`
+---|+"t"     # `istailcall`
+---|+"u" # `nups`, `nparams`, and `isvararg`
+---|+"f"     # `func`
+---|+"L"     # `activelines`
 
 ---
 ---Returns a table with information about a function.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.getinfo)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.getinfo)
 ---
 ---@overload fun(f: integer|function, what?: infowhat):debuginfo
 ---@param thread thread
@@ -82,7 +79,7 @@ function debug.getinfo(thread, f, what) end
 ---
 ---Returns the name and the value of the local variable with index `local` of the function at level `f` of the stack.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.getlocal)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.getlocal)
 ---
 ---@overload fun(f: integer|async fun(...):..., index: integer):string, any
 ---@param thread  thread
@@ -96,7 +93,7 @@ function debug.getlocal(thread, f, index) end
 ---
 ---Returns the metatable of the given value.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.getmetatable)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.getmetatable)
 ---
 ---@param object any
 ---@return table metatable
@@ -106,7 +103,7 @@ function debug.getmetatable(object) end
 ---
 ---Returns the registry table.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.getregistry)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.getregistry)
 ---
 ---@return table
 ---@nodiscard
@@ -115,7 +112,7 @@ function debug.getregistry() end
 ---
 ---Returns the name and the value of the upvalue with index `up` of the function.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.getupvalue)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.getupvalue)
 ---
 ---@param f  async fun(...):...
 ---@param up integer
@@ -125,19 +122,14 @@ function debug.getregistry() end
 function debug.getupvalue(f, up) end
 
 ---
----Returns the `n`-th user value associated
----to the userdata `u` plus a boolean,
----`false` if the userdata does not have that value.
+---Returns the Lua value associated to u.
 ---
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.getuservalue)
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.getuservalue)
----
----@param u  userdata
----@param n? integer
+---@param u userdata
 ---@return any
----@return boolean
 ---@nodiscard
-function debug.getuservalue(u, n) end
+function debug.getuservalue(u) end
 
 ---
 ---### **Deprecated in `Lua 5.4.2`**
@@ -147,7 +139,7 @@ function debug.getuservalue(u, n) end
 ---In case of success, this function returns the old limit. In case of error, it returns `false`.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.setcstacklimit)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.setcstacklimit)
 ---
 ---@deprecated
 ---@param limit integer
@@ -157,7 +149,7 @@ function debug.setcstacklimit(limit) end
 ---
 ---Sets the environment of the given `object` to the given `table` .
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.setfenv)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.setfenv)
 ---
 ---@version 5.1
 ---@generic T
@@ -167,14 +159,14 @@ function debug.setcstacklimit(limit) end
 function debug.setfenv(object, env) end
 
 ---@alias hookmask string
----|+'"c"' # Calls hook when Lua calls a function.
----|+'"r"' # Calls hook when Lua returns from a function.
----|+'"l"' # Calls hook when Lua enters a new line of code.
+---|+"c" # Calls hook when Lua calls a function.
+---|+"r" # Calls hook when Lua returns from a function.
+---|+"l" # Calls hook when Lua enters a new line of code.
 
 ---
 ---Sets the given function as a hook.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.sethook)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.sethook)
 ---
 ---@overload fun(hook: (async fun(...):...), mask: hookmask, count?: integer)
 ---@overload fun(thread: thread):...
@@ -188,7 +180,7 @@ function debug.sethook(thread, hook, mask, count) end
 ---
 ---Assigns the `value` to the local variable with index `local` of the function at `level` of the stack.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.setlocal)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.setlocal)
 ---
 ---@overload fun(level: integer, index: integer, value: any):string
 ---@param thread thread
@@ -201,7 +193,7 @@ function debug.setlocal(thread, level, index, value) end
 ---
 ---Sets the metatable for the given value to the given table (which can be `nil`).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.setmetatable)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.setmetatable)
 ---
 ---@generic T
 ---@param value T
@@ -212,7 +204,7 @@ function debug.setmetatable(value, meta) end
 ---
 ---Assigns the `value` to the upvalue with index `up` of the function.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.setupvalue)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.setupvalue)
 ---
 ---@param f     async fun(...):...
 ---@param up    integer
@@ -221,23 +213,19 @@ function debug.setmetatable(value, meta) end
 function debug.setupvalue(f, up, value) end
 
 ---
----Sets the given `value` as
----the `n`-th user value associated to the given `udata`.
----`udata` must be a full userdata.
+---Sets the given value as the Lua value associated to the given udata.
 ---
----
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.setuservalue)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.setuservalue)
 ---
 ---@param udata userdata
 ---@param value any
----@param n?    integer
 ---@return userdata udata
-function debug.setuservalue(udata, value, n) end
+function debug.setuservalue(udata, value) end
 
 ---
 ---Returns a string with a traceback of the call stack. The optional message string is appended at the beginning of the traceback.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.traceback)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.traceback)
 ---
 ---@overload fun(message?: any, level?: integer): string
 ---@param thread   thread
@@ -251,7 +239,7 @@ function debug.traceback(thread, message, level) end
 ---
 ---Returns a unique identifier (as a light userdata) for the upvalue numbered `n` from the given function.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.upvalueid)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.upvalueid)
 ---
 ---@param f async fun(...):...
 ---@param n integer
@@ -263,7 +251,7 @@ function debug.upvalueid(f, n) end
 ---
 ---Make the `n1`-th upvalue of the Lua closure `f1` refer to the `n2`-th upvalue of the Lua closure `f2`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-debug.upvaluejoin)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-debug.upvaluejoin)
 ---
 ---@param f1 async fun(...):...
 ---@param n1 integer

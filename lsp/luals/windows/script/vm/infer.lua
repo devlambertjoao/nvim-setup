@@ -11,6 +11,7 @@ local vm       = require 'vm.vm'
 ---@field _lastView? string
 ---@field _lastViewUri? uri
 ---@field _lastViewDefault? any
+---@field _subViews? string[]
 local mt = {}
 mt.__index = mt
 mt._hasTable       = false
@@ -413,6 +414,7 @@ function mt:view(uri, default)
     end
 
     local array = {}
+    self._subViews = array
     for view in pairs(self.views) do
         if not self._drop[view] then
             array[#array+1] = view
@@ -449,7 +451,8 @@ function mt:view(uri, default)
         if #array == 0 then
             view = 'nil'
         else
-            if max > 1 then
+            if max > 1
+            or view:find(guide.notNamePattern .. guide.namePattern .. '$') then
                 view = '(' .. view .. ')?'
             else
                 view = view .. '?'
@@ -471,6 +474,13 @@ function mt:eachView(uri)
     return next, self.views
 end
 
+---@param uri uri
+---@return string[]
+function mt:getSubViews(uri)
+    self:view(uri)
+    return self._subViews
+end
+
 ---@return string?
 function mt:viewLiterals()
     if not self.node then
@@ -483,7 +493,12 @@ function mt:viewLiterals()
         or n.type == 'number'
         or n.type == 'integer'
         or n.type == 'boolean' then
-            local literal = util.viewLiteral(n[1])
+            local literal
+            if n.type == 'string' then
+                literal = util.viewString(n[1], n[2])
+            else
+                literal = util.viewLiteral(n[1])
+            end
             if literal and not mark[literal] then
                 literals[#literals+1] = literal
                 mark[literal] = true
@@ -550,19 +565,14 @@ function vm.viewKey(source, uri)
             return '[' .. key .. ']'
         end
     end
-    if source.type == 'tableindex' then
+    if source.type == 'tableindex'
+    or source.type == 'setindex' then
         local index = source.index
-        local name = vm.getKeyName(index)
+        local name = vm.getInfer(index):viewLiterals()
         if not name then
             return nil
         end
-        local key
-        if index.type == 'string' then
-            key = util.viewString(name, index[2])
-        else
-            key = util.viewLiteral(name)
-        end
-        return ('[%s]'):format(key), name
+        return ('[%s]'):format(name), name
     end
     if source.type == 'tableexp' then
         return ('[%d]'):format(source.tindex), source.tindex

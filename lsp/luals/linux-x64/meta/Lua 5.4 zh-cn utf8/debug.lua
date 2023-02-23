@@ -57,14 +57,14 @@ function debug.getfenv(o) end
 function debug.gethook(co) end
 
 ---@alias infowhat string
----|+'"n"'     # `name` 和 `namewhat`
----|+'"S"'     # `source`，`short_src`，`linedefined`，`lalinedefined`，和 `what`
----|+'"l"'     # `currentline`
----|+'"t"'     # `istailcall`
----|+'"u"' # `nups`、`nparams` 和 `isvararg`
----|+'"f"'     # `func`
----|+'"r"'     # `ftransfer` 和 `ntransfer`
----|+'"L"'     # `activelines`
+---|+"n"     # `name` 和 `namewhat`
+---|+"S"     # `source`，`short_src`，`linedefined`，`lalinedefined`，和 `what`
+---|+"l"     # `currentline`
+---|+"t"     # `istailcall`
+---|+"u" # `nups`、`nparams` 和 `isvararg`
+---|+"f"     # `func`
+---|+"r"     # `ftransfer` 和 `ntransfer`
+---|+"L"     # `activelines`
 
 ---
 ---返回关于一个函数信息的表。
@@ -164,9 +164,9 @@ function debug.setcstacklimit(limit) end
 function debug.setfenv(object, env) end
 
 ---@alias hookmask string
----|+'"c"' # 每当 Lua 调用一个函数时，调用钩子。
----|+'"r"' # 每当 Lua 从一个函数内返回时，调用钩子。
----|+'"l"' # 每当 Lua 进入新的一行时，调用钩子。
+---|+"c" # 每当 Lua 调用一个函数时，调用钩子。
+---|+"r" # 每当 Lua 从一个函数内返回时，调用钩子。
+---|+"l" # 每当 Lua 进入新的一行时，调用钩子。
 
 ---
 ---将一个函数作为钩子函数设入。

@@ -57,14 +57,14 @@ function debug.getfenv(o) end
 function debug.gethook(co) end
 
 ---@alias infowhat string
----|+'"n"'     # `name` and `namewhat`
----|+'"S"'     # `source`, `short_src`, `linedefined`, `lastlinedefined`, and `what`
----|+'"l"'     # `currentline`
----|+'"t"'     # `istailcall`
----|+'"u"' # `nups`, `nparams`, and `isvararg`
----|+'"f"'     # `func`
----|+'"r"'     # `ftransfer` and `ntransfer`
----|+'"L"'     # `activelines`
+---|+"n"     # `name` and `namewhat`
+---|+"S"     # `source`, `short_src`, `linedefined`, `lastlinedefined`, and `what`
+---|+"l"     # `currentline`
+---|+"t"     # `istailcall`
+---|+"u" # `nups`, `nparams`, and `isvararg`
+---|+"f"     # `func`
+---|+"r"     # `ftransfer` and `ntransfer`
+---|+"L"     # `activelines`
 
 ---
 ---Returns a table with information about a function.
@@ -167,9 +167,9 @@ function debug.setcstacklimit(limit) end
 function debug.setfenv(object, env) end
 
 ---@alias hookmask string
----|+'"c"' # Calls hook when Lua calls a function.
----|+'"r"' # Calls hook when Lua returns from a function.
----|+'"l"' # Calls hook when Lua enters a new line of code.
+---|+"c" # Calls hook when Lua calls a function.
+---|+"r" # Calls hook when Lua returns from a function.
+---|+"l" # Calls hook when Lua enters a new line of code.
 
 ---
 ---Sets the given function as a hook.

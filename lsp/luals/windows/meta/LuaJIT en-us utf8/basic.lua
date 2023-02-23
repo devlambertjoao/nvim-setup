@@ -3,7 +3,7 @@
 ---
 ---Command-line arguments of Lua Standalone.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-arg)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-arg)
 ---
 ---@type string[]
 arg = {}
@@ -11,7 +11,7 @@ arg = {}
 ---
 ---Raises an error if the value of its argument v is false (i.e., `nil` or `false`); otherwise, returns all its arguments. In case of error, `message` is the error object; when absent, it defaults to `"assertion failed!"`
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-assert)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-assert)
 ---
 ---@generic T
 ---@param v? T
@@ -21,28 +21,29 @@ arg = {}
 function assert(v, message, ...) end
 
 ---@alias gcoptions
----|>'"collect"'      # Performs a full garbage-collection cycle.
----| '"stop"'         # Stops automatic execution.
----| '"restart"'      # Restarts automatic execution.
----| '"count"'        # Returns the total memory in Kbytes.
----| '"step"'         # Performs a garbage-collection step.
----| '"isrunning"'    # Returns whether the collector is running.
----| '"incremental"'  # Change the collector mode to incremental.
----| '"generational"' # Change the collector mode to generational.
+---|>"collect"      # Performs a full garbage-collection cycle.
+---| "stop"         # Stops automatic execution.
+---| "restart"      # Restarts automatic execution.
+---| "count"        # Returns the total memory in Kbytes.
+---| "step"         # Performs a garbage-collection step.
+---| "isrunning"    # Returns whether the collector is running.
+---| "setpause"     # Set `pause`.
+---| "setstepmul"   # Set `step multiplier`.
 
 ---
 ---This function is a generic interface to the garbage collector. It performs different functions according to its first argument, `opt`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-collectgarbage)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage)
 ---
 ---@param opt? gcoptions
+---@param arg? integer
 ---@return any
-function collectgarbage(opt, ...) end
+function collectgarbage(opt, arg) end
 
 ---
 ---Opens the named file and executes its content as a Lua chunk. When called without arguments, `dofile` executes the content of the standard input (`stdin`). Returns all values returned by the chunk. In case of errors, `dofile` propagates the error to its caller. (That is, `dofile` does not run in protected mode.)
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-dofile)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-dofile)
 ---
 ---@param filename? string
 ---@return any ...
@@ -54,16 +55,16 @@ function dofile(filename) end
 ---Usually, `error` adds some information about the error position at the beginning of the message, if the message is a string.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-error)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-error)
 ---
 ---@param message any
 ---@param level?  integer
 function error(message, level) end
 
 ---
----A global variable (not a function) that holds the global environment (see [§2.2](http://www.lua.org/manual/5.4/manual.html#2.2)). Lua itself does not use this variable; changing its value does not affect any environment, nor vice versa.
+---A global variable (not a function) that holds the global environment (see [§2.2](http://www.lua.org/manual/5.1/manual.html#2.2)). Lua itself does not use this variable; changing its value does not affect any environment, nor vice versa.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-_G)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-_G)
 ---
 ---@class _G
 _G = {}
@@ -72,7 +73,7 @@ _G = {}
 ---
 ---Returns the current environment in use by the function. `f` can be a Lua function or a number that specifies the function at that stack level.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-getfenv)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-getfenv)
 ---
 ---@param f? integer|async fun(...):...
 ---@return table
@@ -82,7 +83,7 @@ function getfenv(f) end
 ---
 ---If object does not have a metatable, returns nil. Otherwise, if the object's metatable has a __metatable field, returns the associated value. Otherwise, returns the metatable of the given object.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-getmetatable)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-getmetatable)
 ---
 ---@param object any
 ---@return table metatable
@@ -97,7 +98,7 @@ function getmetatable(object) end
 ---will iterate over the key–value pairs `(1,t[1]), (2,t[2]), ...`, up to the first absent index.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-ipairs)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-ipairs)
 ---
 ---@generic T: table, V
 ---@param t T
@@ -107,9 +108,9 @@ function getmetatable(object) end
 function ipairs(t) end
 
 ---@alias loadmode
----| '"b"'  # Only binary chunks.
----| '"t"'  # Only text chunks.
----|>'"bt"' # Both binary and text.
+---| "b"  # Only binary chunks.
+---| "t"  # Only text chunks.
+---|>"bt" # Both binary and text.
 
 ---
 ---Loads a chunk.
@@ -117,7 +118,7 @@ function ipairs(t) end
 ---If `chunk` is a string, the chunk is this string. If `chunk` is a function, `load` calls it repeatedly to get the chunk pieces. Each call to `chunk` must return a string that concatenates with previous results. A return of an empty string, `nil`, or no value signals the end of the chunk.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-load)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-load)
 ---
 ---@param chunk      string|function
 ---@param chunkname? string
@@ -131,7 +132,7 @@ function load(chunk, chunkname, mode, env) end
 ---
 ---Loads a chunk from file `filename` or from the standard input, if no file name is given.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-loadfile)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-loadfile)
 ---
 ---@param filename? string
 ---@param mode?     loadmode
@@ -145,7 +146,7 @@ function loadfile(filename, mode, env) end
 ---
 ---Loads a chunk from the given string.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-loadstring)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-loadstring)
 ---
 ---@param text       string
 ---@param chunkname? string
@@ -164,7 +165,7 @@ function newproxy(proxy) end
 ---
 ---Creates a module.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-module)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-module)
 ---
 ---@param name string
 function module(name, ...) end
@@ -177,7 +178,7 @@ function module(name, ...) end
 ---The behavior of `next` is undefined if, during the traversal, you assign any value to a non-existent field in the table. You may however modify existing fields. In particular, you may set existing fields to nil.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-next)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-next)
 ---
 ---@generic K, V
 ---@param table table<K, V>
@@ -190,16 +191,16 @@ function next(table, index) end
 ---
 ---If `t` has a metamethod `__pairs`, calls it with t as argument and returns the first three results from the call.
 ---
----Otherwise, returns three values: the [next](http://www.lua.org/manual/5.4/manual.html#pdf-next) function, the table `t`, and `nil`, so that the construction
+---Otherwise, returns three values: the [next](http://www.lua.org/manual/5.1/manual.html#pdf-next) function, the table `t`, and `nil`, so that the construction
 ---```lua
 ---    for k,v in pairs(t) do body end
 ---```
 ---will iterate over all key–value pairs of table `t`.
 ---
----See function [next](http://www.lua.org/manual/5.4/manual.html#pdf-next) for the caveats of modifying the table during its traversal.
+---See function [next](http://www.lua.org/manual/5.1/manual.html#pdf-next) for the caveats of modifying the table during its traversal.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-pairs)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-pairs)
 ---
 ---@generic T: table, K, V
 ---@param t T
@@ -211,7 +212,7 @@ function pairs(t) end
 ---Calls the function `f` with the given arguments in *protected mode*. This means that any error inside `f` is not propagated; instead, `pcall` catches the error and returns a status code. Its first result is the status code (a boolean), which is true if the call succeeds without errors. In such case, `pcall` also returns all results from the call, after this first result. In case of any error, `pcall` returns `false` plus the error object.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-pcall)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-pcall)
 ---
 ---@param f     async fun(...):...
 ---@param arg1? any
@@ -221,18 +222,18 @@ function pairs(t) end
 function pcall(f, arg1, ...) end
 
 ---
----Receives any number of arguments and prints their values to `stdout`, converting each argument to a string following the same rules of [tostring](http://www.lua.org/manual/5.4/manual.html#pdf-tostring).
----The function print is not intended for formatted output, but only as a quick way to show a value, for instance for debugging. For complete control over the output, use [string.format](http://www.lua.org/manual/5.4/manual.html#pdf-string.format) and [io.write](http://www.lua.org/manual/5.4/manual.html#pdf-io.write).
+---Receives any number of arguments and prints their values to `stdout`, converting each argument to a string following the same rules of [tostring](http://www.lua.org/manual/5.1/manual.html#pdf-tostring).
+---The function print is not intended for formatted output, but only as a quick way to show a value, for instance for debugging. For complete control over the output, use [string.format](http://www.lua.org/manual/5.1/manual.html#pdf-string.format) and [io.write](http://www.lua.org/manual/5.1/manual.html#pdf-io.write).
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-print)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-print)
 ---
 function print(...) end
 
 ---
 ---Checks whether v1 is equal to v2, without invoking the `__eq` metamethod.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-rawequal)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-rawequal)
 ---
 ---@param v1 any
 ---@param v2 any
@@ -243,7 +244,7 @@ function rawequal(v1, v2) end
 ---
 ---Gets the real value of `table[index]`, without invoking the `__index` metamethod.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-rawget)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-rawget)
 ---
 ---@param table table
 ---@param index any
@@ -254,7 +255,7 @@ function rawget(table, index) end
 ---
 ---Returns the length of the object `v`, without invoking the `__len` metamethod.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-rawlen)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-rawlen)
 ---
 ---@param v table|string
 ---@return integer len
@@ -266,7 +267,7 @@ function rawlen(v) end
 ---This function returns `table`.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-rawset)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-rawset)
 ---
 ---@param table table
 ---@param index any
@@ -277,9 +278,9 @@ function rawset(table, index, value) end
 ---
 ---If `index` is a number, returns all arguments after argument number `index`; a negative number indexes from the end (`-1` is the last argument). Otherwise, `index` must be the string `"#"`, and `select` returns the total number of extra arguments it received.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-select)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-select)
 ---
----@param index integer|'"#"'
+---@param index integer|"#"
 ---@return any
 ---@nodiscard
 function select(index, ...) end
@@ -288,7 +289,7 @@ function select(index, ...) end
 ---
 ---Sets the environment to be used by the given function.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-setfenv)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-setfenv)
 ---
 ---@param f     async fun(...):...|integer
 ---@param table table
@@ -300,10 +301,10 @@ function setfenv(f, table) end
 ---
 ---This function returns `table`.
 ---
----To change the metatable of other types from Lua code, you must use the debug library ([§6.10](http://www.lua.org/manual/5.4/manual.html#6.10)).
+---To change the metatable of other types from Lua code, you must use the debug library ([§6.10](http://www.lua.org/manual/5.1/manual.html#6.10)).
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-setmetatable)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-setmetatable)
 ---
 ---@param table      table
 ---@param metatable? table
@@ -313,10 +314,10 @@ function setmetatable(table, metatable) end
 ---
 ---When called with no `base`, `tonumber` tries to convert its argument to a number. If the argument is already a number or a string convertible to a number, then `tonumber` returns this number; otherwise, it returns `fail`.
 ---
----The conversion of strings can result in integers or floats, according to the lexical conventions of Lua (see [§3.1](http://www.lua.org/manual/5.4/manual.html#3.1)). The string may have leading and trailing spaces and a sign.
+---The conversion of strings can result in integers or floats, according to the lexical conventions of Lua (see [§3.1](http://www.lua.org/manual/5.1/manual.html#3.1)). The string may have leading and trailing spaces and a sign.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-tonumber)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-tonumber)
 ---
 ---@overload fun(e: string, base: integer):integer
 ---@param e any
@@ -329,10 +330,10 @@ function tonumber(e) end
 ---
 ---If the metatable of `v` has a `__tostring` field, then `tostring` calls the corresponding value with `v` as argument, and uses the result of the call as its result. Otherwise, if the metatable of `v` has a `__name` field with a string value, `tostring` may use that string in its final result.
 ---
----For complete control of how numbers are converted, use [string.format](http://www.lua.org/manual/5.4/manual.html#pdf-string.format).
+---For complete control of how numbers are converted, use [string.format](http://www.lua.org/manual/5.1/manual.html#pdf-string.format).
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-tostring)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-tostring)
 ---
 ---@param v any
 ---@return string
@@ -340,20 +341,20 @@ function tonumber(e) end
 function tostring(v) end
 
 ---@alias type
----| '"nil"'
----| '"number"'
----| '"string"'
----| '"boolean"'
----| '"table"'
----| '"function"'
----| '"thread"'
----| '"userdata"'
+---| "nil"
+---| "number"
+---| "string"
+---| "boolean"
+---| "table"
+---| "function"
+---| "thread"
+---| "userdata"
 
 ---
 ---Returns the type of its only argument, coded as a string. The possible results of this function are `"nil"` (a string, not the value `nil`), `"number"`, `"string"`, `"boolean"`, `"table"`, `"function"`, `"thread"`, and `"userdata"`.
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-type)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-type)
 ---
 ---@param v any
 ---@return type type
@@ -363,15 +364,15 @@ function type(v) end
 ---
 ---A global variable (not a function) that holds a string containing the running Lua version.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-_VERSION)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-_VERSION)
 ---
-_VERSION = 'Lua 5.4'
+_VERSION = "Lua 5.1"
 
 ---@version >5.4
 ---
 ---Emits a warning with a message composed by the concatenation of all its arguments (which should be strings).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-warn)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-warn)
 ---
 ---@param message string
 function warn(message, ...) end
@@ -379,7 +380,7 @@ function warn(message, ...) end
 ---
 ---Calls function `f` with the given arguments in protected mode with a new message handler.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-xpcall)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-xpcall)
 ---
 ---@param f     async fun(...):...
 ---@param msgh  function
@@ -397,7 +398,7 @@ function xpcall(f, msgh, arg1, ...) end
 ---```
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-unpack)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-unpack)
 ---
 ---@generic T
 ---@param list T[]

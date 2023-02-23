@@ -236,11 +236,14 @@ then
   lua_language_server_path = lua_language_server_path .. "/macos-arm/bin/lua-language-server"
 end
 
-local sumneko_lua_options = {
+local lua_ls_options = {
   cmd = { lua_language_server_path },
   root_dir = default_root_dir,
   settings = {
     Lua = {
+      runtime = {
+        version = 'LuaJIT'
+      },
       diagnostics = {
         globals = { "vim" },
       },
@@ -249,7 +252,6 @@ local sumneko_lua_options = {
         ignoreDir = {
           "/lsp"
         },
-        checkThirdParty = false,
       },
     },
   },
@@ -274,18 +276,6 @@ if neovim_os_running == "MACOS"
 then
   java_lsp_config = java_lsp_config .. "/config_macos"
 end
-
-local java_root_files = { -- Single Module Projects
-  'settings.gradle', -- Gradle (multi-project)
-  'settings.gradle.kts', -- Gradle (multi-project)
-  'build.xml', -- Ant
-  'pom.xml', -- Maven
-}
-
-local java_fallback_root_files = { -- Multi Modules Projects
-  'build.gradle', -- Gradle
-  'build.gradle.kts', -- Gradle
-}
 
 local jdtls_options = {
   cmd = {
@@ -469,7 +459,7 @@ local lsp_server_list = {
   jdtls = jdtls_options, -- Java
   tsserver = tsserver_options, -- Typescript
   -- tailwindcss = {}, -- Tailwind
-  sumneko_lua = sumneko_lua_options, -- Lua
+  lua_ls = lua_ls_options, -- Lua
   -- pyright = {}, -- Python
   solargraph = solargraph_options, -- Ruby
   rust_analyzer = rust_analyzer_options, -- Rust

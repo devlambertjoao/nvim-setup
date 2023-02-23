@@ -21,14 +21,14 @@ arg = {}
 function assert(v, message, ...) end
 
 ---@alias gcoptions
----|>'"collect"'      # Performs a full garbage-collection cycle.
----| '"stop"'         # Stops automatic execution.
----| '"restart"'      # Restarts automatic execution.
----| '"count"'        # Returns the total memory in Kbytes.
----| '"step"'         # Performs a garbage-collection step.
----| '"isrunning"'    # Returns whether the collector is running.
----| '"incremental"'  # Change the collector mode to incremental.
----| '"generational"' # Change the collector mode to generational.
+---|>"collect"      # Performs a full garbage-collection cycle.
+---| "stop"         # Stops automatic execution.
+---| "restart"      # Restarts automatic execution.
+---| "count"        # Returns the total memory in Kbytes.
+---| "step"         # Performs a garbage-collection step.
+---| "isrunning"    # Returns whether the collector is running.
+---| "incremental"  # Change the collector mode to incremental.
+---| "generational" # Change the collector mode to generational.
 
 ---
 ---This function is a generic interface to the garbage collector. It performs different functions according to its first argument, `opt`.
@@ -107,9 +107,9 @@ function getmetatable(object) end
 function ipairs(t) end
 
 ---@alias loadmode
----| '"b"'  # Only binary chunks.
----| '"t"'  # Only text chunks.
----|>'"bt"' # Both binary and text.
+---| "b"  # Only binary chunks.
+---| "t"  # Only text chunks.
+---|>"bt" # Both binary and text.
 
 ---
 ---Loads a chunk.
@@ -279,7 +279,7 @@ function rawset(table, index, value) end
 ---
 ---[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-select)
 ---
----@param index integer|'"#"'
+---@param index integer|"#"
 ---@return any
 ---@nodiscard
 function select(index, ...) end
@@ -340,14 +340,14 @@ function tonumber(e) end
 function tostring(v) end
 
 ---@alias type
----| '"nil"'
----| '"number"'
----| '"string"'
----| '"boolean"'
----| '"table"'
----| '"function"'
----| '"thread"'
----| '"userdata"'
+---| "nil"
+---| "number"
+---| "string"
+---| "boolean"
+---| "table"
+---| "function"
+---| "thread"
+---| "userdata"
 
 ---
 ---Returns the type of its only argument, coded as a string. The possible results of this function are `"nil"` (a string, not the value `nil`), `"number"`, `"string"`, `"boolean"`, `"table"`, `"function"`, `"thread"`, and `"userdata"`.
@@ -365,7 +365,7 @@ function type(v) end
 ---
 ---[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-_VERSION)
 ---
-_VERSION = 'Lua 5.4'
+_VERSION = "Lua 5.4"
 
 ---@version >5.4
 ---

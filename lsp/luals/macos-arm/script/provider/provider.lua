@@ -266,11 +266,6 @@ m.register 'textDocument/didOpen' {
     function (params)
         local doc      = params.textDocument
         local uri      = files.getRealUri(doc.uri)
-        local scheme   = furi.split(uri)
-        local supports = config.get(uri, 'Lua.workspace.supportScheme')
-        if not util.arrayHas(supports, scheme) then
-            return
-        end
         log.debug('didOpen', uri)
         local text  = doc.text
         files.setText(uri, text, true, function (file)
@@ -298,11 +293,6 @@ m.register 'textDocument/didChange' {
     ---@async
     function (params)
         local doc      = params.textDocument
-        local scheme   = furi.split(doc.uri)
-        local supports = config.get(doc.uri, 'Lua.workspace.supportScheme')
-        if not util.arrayHas(supports, scheme) then
-            return
-        end
         local changes = params.contentChanges
         local uri     = files.getRealUri(doc.uri)
         workspace.awaitReady(uri)
@@ -607,19 +597,7 @@ m.register 'textDocument/completion' {
     function (params)
         local uri  = files.getRealUri(params.textDocument.uri)
         if not workspace.isReady(uri) then
-            local count, max = workspace.getLoadingProcess(uri)
-            return {
-                {
-                    label = lang.script('HOVER_WS_LOADING', count, max),
-                    textEdit    = {
-                        range   = {
-                            start   = params.position,
-                            ['end'] = params.position,
-                        },
-                        newText = '',
-                    },
-                }
-            }
+            return nil
         end
         local _ <close> = progress.create(uri, lang.script.WINDOW_PROCESSING_COMPLETION, 0.5)
         --log.info(util.dump(params))
@@ -975,6 +953,7 @@ m.register 'workspace/executeCommand' {
                 'lua.solve',
                 'lua.jsonToLua',
                 'lua.setConfig',
+                'lua.getConfig',
                 'lua.autoRequire',
             },
         },
@@ -994,9 +973,15 @@ m.register 'workspace/executeCommand' {
         elseif command == 'lua.setConfig' then
             local core = require 'core.command.setConfig'
             return core(params.arguments)
+        elseif command == 'lua.getConfig' then
+            local core = require 'core.command.getConfig'
+            return core(params.arguments)
         elseif command == 'lua.autoRequire' then
             local core = require 'core.command.autoRequire'
             return core(params.arguments[1])
+        elseif command == 'lua.exportDocument' then
+            local core = require 'core.command.exportDocument'
+            core(params.arguments)
         end
     end
 }

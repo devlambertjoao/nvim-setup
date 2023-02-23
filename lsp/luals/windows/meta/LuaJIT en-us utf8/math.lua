@@ -3,31 +3,19 @@
 ---
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math)
 ---
 ---@class mathlib
 ---
 ---A value larger than any other numeric value.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.huge)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.huge)
 ---
 ---@field huge       number
 ---
----An integer with the maximum value for an integer.
----
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.maxinteger)
----
----@field maxinteger integer
----
----An integer with the minimum value for an integer.
----
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.mininteger)
----
----@field mininteger integer
----
 ---The value of *π*.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.pi)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.pi)
 ---
 ---@field pi         number
 math = {}
@@ -35,7 +23,7 @@ math = {}
 ---
 ---Returns the absolute value of `x`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.abs)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.abs)
 ---
 ---@param x number
 ---@return number
@@ -45,7 +33,7 @@ function math.abs(x) end
 ---
 ---Returns the arc cosine of `x` (in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.acos)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.acos)
 ---
 ---@param x number
 ---@return number
@@ -55,7 +43,7 @@ function math.acos(x) end
 ---
 ---Returns the arc sine of `x` (in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.asin)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.asin)
 ---
 ---@param x number
 ---@return number
@@ -63,21 +51,20 @@ function math.acos(x) end
 function math.asin(x) end
 
 ---
----Returns the arc tangent of `y/x` (in radians).
+---Returns the arc tangent of `x` (in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.atan)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.atan)
 ---
----@param y  number
----@param x? number
+---@param y number
 ---@return number
 ---@nodiscard
-function math.atan(y, x) end
+function math.atan(y) end
 
 ---@version <5.2
 ---
 ---Returns the arc tangent of `y/x` (in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.atan2)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.atan2)
 ---
 ---@param y number
 ---@param x number
@@ -88,7 +75,7 @@ function math.atan2(y, x) end
 ---
 ---Returns the smallest integral value larger than or equal to `x`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.ceil)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.ceil)
 ---
 ---@param x number
 ---@return integer
@@ -98,7 +85,7 @@ function math.ceil(x) end
 ---
 ---Returns the cosine of `x` (assumed to be in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.cos)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.cos)
 ---
 ---@param x number
 ---@return number
@@ -109,7 +96,7 @@ function math.cos(x) end
 ---
 ---Returns the hyperbolic cosine of `x` (assumed to be in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.cosh)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.cosh)
 ---
 ---@param x number
 ---@return number
@@ -119,7 +106,7 @@ function math.cosh(x) end
 ---
 ---Converts the angle `x` from radians to degrees.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.deg)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.deg)
 ---
 ---@param x number
 ---@return number
@@ -129,7 +116,7 @@ function math.deg(x) end
 ---
 ---Returns the value `e^x` (where `e` is the base of natural logarithms).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.exp)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.exp)
 ---
 ---@param x number
 ---@return number
@@ -139,7 +126,7 @@ function math.exp(x) end
 ---
 ---Returns the largest integral value smaller than or equal to `x`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.floor)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.floor)
 ---
 ---@param x number
 ---@return integer
@@ -149,7 +136,7 @@ function math.floor(x) end
 ---
 ---Returns the remainder of the division of `x` by `y` that rounds the quotient towards zero.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.fmod)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.fmod)
 ---
 ---@param x number
 ---@param y number
@@ -161,7 +148,7 @@ function math.fmod(x, y) end
 ---
 ---Decompose `x` into tails and exponents. Returns `m` and `e` such that `x = m * (2 ^ e)`, `e` is an integer and the absolute value of `m` is in the range [0.5, 1) (or zero when `x` is zero).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.frexp)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.frexp)
 ---
 ---@param x number
 ---@return number m
@@ -173,7 +160,7 @@ function math.frexp(x) end
 ---
 ---Returns `m * (2 ^ e)` .
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.ldexp)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.ldexp)
 ---
 ---@param m number
 ---@param e number
@@ -184,7 +171,7 @@ function math.ldexp(m, e) end
 ---
 ---Returns the logarithm of `x` in the given base.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.log)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.log)
 ---
 ---@param x     number
 ---@param base? integer
@@ -196,7 +183,7 @@ function math.log(x, base) end
 ---
 ---Returns the base-10 logarithm of x.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.log10)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.log10)
 ---
 ---@param x number
 ---@return number
@@ -206,7 +193,7 @@ function math.log10(x) end
 ---
 ---Returns the argument with the maximum value, according to the Lua operator `<`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.max)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.max)
 ---
 ---@generic Number: number
 ---@param x Number
@@ -218,7 +205,7 @@ function math.max(x, ...) end
 ---
 ---Returns the argument with the minimum value, according to the Lua operator `<`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.min)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.min)
 ---
 ---@generic Number: number
 ---@param x Number
@@ -230,7 +217,7 @@ function math.min(x, ...) end
 ---
 ---Returns the integral part of `x` and the fractional part of `x`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.modf)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.modf)
 ---
 ---@param x number
 ---@return integer
@@ -242,7 +229,7 @@ function math.modf(x) end
 ---
 ---Returns `x ^ y` .
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.pow)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.pow)
 ---
 ---@param x number
 ---@param y number
@@ -253,7 +240,7 @@ function math.pow(x, y) end
 ---
 ---Converts the angle `x` from degrees to radians.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.rad)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.rad)
 ---
 ---@param x number
 ---@return number
@@ -266,7 +253,7 @@ function math.rad(x) end
 ---* `math.random(m, n)`: Returns a integer in the range [m, n].
 ---
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.random)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.random)
 ---
 ---@overload fun():number
 ---@overload fun(m: integer):integer
@@ -277,21 +264,17 @@ function math.rad(x) end
 function math.random(m, n) end
 
 ---
----* `math.randomseed(x, y)`: Concatenate `x` and `y` into a 128-bit `seed` to reinitialize the pseudo-random generator.
----* `math.randomseed(x)`: Equate to `math.randomseed(x, 0)` .
----* `math.randomseed()`: Generates a seed with a weak attempt for randomness.
+---Sets `x` as the "seed" for the pseudo-random generator.
 ---
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.randomseed)
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.randomseed)
----
----@param x? integer
----@param y? integer
-function math.randomseed(x, y) end
+---@param x integer
+function math.randomseed(x) end
 
 ---
 ---Returns the sine of `x` (assumed to be in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.sin)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.sin)
 ---
 ---@param x number
 ---@return number
@@ -302,7 +285,7 @@ function math.sin(x) end
 ---
 ---Returns the hyperbolic sine of `x` (assumed to be in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.sinh)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.sinh)
 ---
 ---@param x number
 ---@return number
@@ -312,7 +295,7 @@ function math.sinh(x) end
 ---
 ---Returns the square root of `x`.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.sqrt)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.sqrt)
 ---
 ---@param x number
 ---@return number
@@ -322,7 +305,7 @@ function math.sqrt(x) end
 ---
 ---Returns the tangent of `x` (assumed to be in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.tan)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.tan)
 ---
 ---@param x number
 ---@return number
@@ -333,7 +316,7 @@ function math.tan(x) end
 ---
 ---Returns the hyperbolic tangent of `x` (assumed to be in radians).
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.tanh)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.tanh)
 ---
 ---@param x number
 ---@return number
@@ -344,7 +327,7 @@ function math.tanh(x) end
 ---
 ---If the value `x` is convertible to an integer, returns that integer.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.tointeger)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.tointeger)
 ---
 ---@param x any
 ---@return integer?
@@ -354,7 +337,7 @@ function math.tointeger(x) end
 ---
 ---Returns `"integer"` if `x` is an integer, `"float"` if it is a float, or `nil` if `x` is not a number.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.type)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.type)
 ---
 ---@param x any
 ---@return
@@ -367,7 +350,7 @@ function math.type(x) end
 ---
 ---Returns `true` if and only if `m` is below `n` when they are compared as unsigned integers.
 ---
----[View documents](http://www.lua.org/manual/5.4/manual.html#pdf-math.ult)
+---[View documents](http://www.lua.org/manual/5.1/manual.html#pdf-math.ult)
 ---
 ---@param m integer
 ---@param n integer
