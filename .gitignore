@@ -2,8 +2,10 @@ plugin/packer_compiled.lua
 node_modules
 package-lock.json
 .temp
-lsp/luals/**/*.log
-lsp/luals/**/*/log/cache
+lsp/luals/windows/log/**/*
+lsp/luals/linux-x64/log/**/*
+lsp/luals/macos-arm/log/**/*
+
 lsp/jdtls/config_win/org.*
 lsp/jdtls/config_linux/org.*
 lsp/jdtls/config_mac/org.*
