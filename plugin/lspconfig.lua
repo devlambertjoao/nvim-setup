@@ -14,7 +14,6 @@ local neovim_home = os.getenv("NEOVIM_HOME")
 local neovim_os_running = os.getenv("NEOVIM_OS_RUNNING")
 
 local on_attach = function(client, bufnr)
-
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
@@ -26,7 +25,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_exec(
       [[
 	      autocmd CursorHold,CursorHoldI * silent! lua vim.lsp.diagnostic.get_line_diagnostics()
-	      ]],
+	    ]],
       false
     )
   end

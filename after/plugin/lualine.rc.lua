@@ -6,7 +6,7 @@ lualine.setup({
   options = {
     icons_enabled = false,
     component_separators = { left = '>', right = '<' },
-    section_separators = { left = ']', right = '[' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = { 'packer', 'NvimTree' },
     always_divide_middle = true,
     globalstatus = false,

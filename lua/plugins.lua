@@ -100,6 +100,9 @@ return require('packer').startup(function(use)
 
   -- Ident Line
   use 'lukas-reineke/indent-blankline.nvim'
+
+  -- Transparent
+  use 'xiyaowong/nvim-transparent'
   ------------ NEOVIM UI ------------------------
 
 
