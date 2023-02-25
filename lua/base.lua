@@ -18,7 +18,7 @@ vim.opt.wildignore:append { '*/node_modules/*' }
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 vim.opt.swapfile = false;
-vim.opt.updatetime = 500
+vim.opt.updatetime = 100
 vim.opt.list = true
 
 -- Enable mouse suport
