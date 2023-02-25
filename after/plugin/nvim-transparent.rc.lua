@@ -14,6 +14,7 @@ nvim_transparent.setup({
     "PmenuSel",
     "PmenuSbar",
     "PmenuThumb",
+    "WildMenu",
     "FloatBorder",
     "Search",
     "IncSearch",
