@@ -35,7 +35,17 @@ cmp.setup({
     { name = 'vsnip' },
   }, {
     { name = 'buffer' },
-  })
+  }),
+  window = {
+    completion = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      padding = 2,
+    },
+    documentation = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      padding = 2,
+    }
+  }
 })
 
 cmp.setup.cmdline('/', {

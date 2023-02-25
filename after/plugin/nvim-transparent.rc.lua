@@ -12,6 +12,8 @@ nvim_transparent.setup({
     "CursorLine",
     "Pmenu",
     "PmenuSel",
+    "PmenuSbar",
+    "PmenuThumb",
     "FloatBorder",
     "Search",
     "IncSearch",
