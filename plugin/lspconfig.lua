@@ -363,7 +363,7 @@ local rust_analyzer_options = {
 }
 
 -- Ruby
-local ruby_language_server_path = neovim_home .. "/lsp/ruby/solargraph"
+local ruby_language_server_path = neovim_home .. "/lsp/solargraph"
 
 local solargraph_options = {
   cmd = { ruby_language_server_path .. "/bin/solargraph", "stdio" },
