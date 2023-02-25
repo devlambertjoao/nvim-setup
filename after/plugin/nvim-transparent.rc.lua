@@ -15,6 +15,8 @@ nvim_transparent.setup({
     "FloatBorder",
     "Search",
     "IncSearch",
+    "CurSearch",
+    "Substitute",
     "lualine_a_normal",
     "lualine_a_insert",
     "lualine_a_visual",
