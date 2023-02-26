@@ -2,6 +2,7 @@
 npm install --prefix lsp/angularls
 npm install --prefix lsp/vscode
 npm install --prefix lsp/typescript
+npm install --prefix lsp/emmet-ls
 
 rm -r lsp/clangd/linux-x64
 rm -r lsp/clangd/macos-arm
