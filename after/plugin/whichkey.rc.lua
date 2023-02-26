@@ -88,16 +88,6 @@ whichkey.setup({
   }
 })
 
-local terminal_mapping = {
-  T = {
-    name = "Terminal",
-    j = { "<cmd>split<CR><cmd>resize 16<CR><cmd>terminal<CR>i", "Terminal on Top" },
-    k = { "<cmd>split<CR><C-w>j<cmd>resize 16<CR><cmd>terminal<CR>i", "Terminal on Bottom" },
-    h = { "<cmd>vsplit<CR><C-w>h<cmd>vertical resize 60<CR><cmd>terminal<CR>i", "Terminal on Left" },
-    l = { "<cmd>vsplit<CR><C-w>l<cmd>vertical resize 60<CR><cmd>terminal<CR>i", "Terminal on Right" },
-    w = { "<cmd>terminal<CR>i", "Terminal on new Window" },
-  }
-}
 -- Normal Mode
 whichkey.register({
   d = {
@@ -154,7 +144,6 @@ whichkey.register({
     c = { "<cmd>Telescope git_commits<CR>", "Git Commits" },
     b = { "<cmd>Telescope git_branches<CR>", "Git Branches" },
   },
-  w = { "<cmd>WhichKey <C-w><CR>", "+Windows" },
   t = {
     name = "Tabs",
     t = { "<cmd>tabnew<CR>", "New Tab" },
@@ -165,21 +154,9 @@ whichkey.register({
   },
   l = {
     name = "LSP",
-    r = {
-      name = "Ruby/Ruby on Rails",
-      t = {
-        name = "Tests",
-        t = { "<cmd>call RunCurrentSpecFile()<CR>", "Run Tests on Current File" },
-        n = { "<cmd>call RunNearestSpec()<CR>", "Run Nearest Spec" },
-        l = { "<cmd>call RunLastSpec()<CR>", "Run Last Spec" },
-        a = { "<cmd>call RunAllSpecs()<CR>", "Run All Specs" },
-      },
-      s = { "<cmd>tabnew rails_server<CR><cmd>!bin/rails server<CR>", "Server" }
-    },
   },
-  terminal_mapping
 }, { prefix = "<leader>" })
 
 -- Windows
-whichkey.register(terminal_mapping, { prefix = "<C-w>" })
+whichkey.register({ prefix = "<C-w>" })
 

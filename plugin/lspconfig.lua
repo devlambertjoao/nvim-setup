@@ -73,6 +73,16 @@ local angularls_options = {
   end,
 }
 
+-- Emmet
+local emmetls_language_server_path = neovim_home .. "/lsp/emmet-ls"
+
+local emmetls_options = {
+  cmd = { emmetls_language_server_path .. '/node_modules/emmet-ls/out/server.js', '--stdio' },
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'eruby' },
+  single_file_support = true,
+  root_dir = default_root_dir
+}
+
 -- HTML
 local html_language_server_path = neovim_home .. "/lsp/vscode/node_modules/.bin/vscode-html-language-server"
 
@@ -453,6 +463,7 @@ local lsp_server_list = {
   cssls = cssls_options, -- CSS, SCSS, LESS
   -- dartls = {},
   eslint = eslint_options, -- Eslint
+  emmet_ls = emmetls_options, -- Emmet
   html = html_options, -- Html
   jsonls = jsonls_options, -- JSON
   jdtls = jdtls_options, -- Java

@@ -41,11 +41,6 @@ return require('packer').startup(function(use)
 
   -- Auto close tags
   use 'windwp/nvim-autopairs'
-
-  ---- Language Specific Plugins
-  -- Rails
-  use 'tpope/vim-rails'
-  use 'thoughtbot/vim-rspec'
   ------------ LSP ------------------------------
 
   ------------ THEME ----------------------------
