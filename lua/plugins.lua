@@ -69,9 +69,6 @@ return require('packer').startup(function(use)
 
   -- Find files
   use 'nvim-telescope/telescope.nvim'
-
-  -- Git UI
-  use 'kdheepak/lazygit.nvim'
   ------------ FILE NAVIGATION ------------------
 
   ------------ NEOVIM UI ------------------------
@@ -98,6 +95,9 @@ return require('packer').startup(function(use)
 
   -- Transparent
   use 'xiyaowong/nvim-transparent'
+
+  -- Terminal
+  use 'akinsho/toggleterm.nvim'
   ------------ NEOVIM UI ------------------------
 
 

@@ -1,3 +1,8 @@
+if os.getenv("NEOVIM_OS_RUNNING") == "WINDOWS"
+then
+  return
+end
+
 local status, nvim_transparent = pcall(require, "transparent")
 if (not status) then return end
 

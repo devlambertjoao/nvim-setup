@@ -138,13 +138,20 @@ whichkey.register({
   },
   G = {
     name = "Git",
-    l = { "<cmd>LazyGit<CR>", "Lazy Git" },
+    l = { "<cmd>lua Lazygit_toggle()<CR>", "Lazy Git" },
     d = { "<cmd>Gitsigns diffthis<CR>", "File Diff" },
     s = { "<cmd>Telescope git_status<CR>", "Git Status" },
     c = { "<cmd>Telescope git_commits<CR>", "Git Commits" },
     b = { "<cmd>Telescope git_branches<CR>", "Git Branches" },
   },
   t = {
+    name = "Terminal",
+    v = { "<cmd>ToggleTerm direction=vertical<CR>", "Vertical" },
+    s = { "<cmd>ToggleTerm direction=horizontal<CR>", "Horizontal" },
+    f = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
+    t = { "<cmd>ToggleTerm direction=tab<CR>", "New Tab" },
+  },
+  T = {
     name = "Tabs",
     t = { "<cmd>tabnew<CR>", "New Tab" },
     c = { "<cmd>tabclose<CR>", "Close Tab" },
