@@ -150,6 +150,7 @@ whichkey.register({
     s = { "<cmd>ToggleTerm direction=horizontal<CR>", "Horizontal" },
     f = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
     t = { "<cmd>ToggleTerm direction=tab<CR>", "New Tab" },
+    a = { "<cmd>ToggleTerm<CR>", "Toggle All" },
   },
   T = {
     name = "Tabs",
