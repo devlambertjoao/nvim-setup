@@ -1,8 +1,8 @@
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -14,13 +14,12 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-
-  ------------ UTILS ----------------------------  
+  ------------ UTILS ----------------------------
   use 'nvim-lua/plenary.nvim'
   use 'tpope/vim-dispatch'
   ------------ UTILS ----------------------------
 
-  ------------ LSP ------------------------------  
+  ------------ LSP ------------------------------
   -- Base LSP
   use 'neovim/nvim-lsp'
 
@@ -41,6 +40,10 @@ return require('packer').startup(function(use)
 
   -- Auto close tags
   use 'windwp/nvim-autopairs'
+
+  -- Better LSP Experience
+  use 'RishabhRD/popfix'
+  use 'RishabhRD/nvim-lsputils'
   ------------ LSP ------------------------------
 
   ------------ THEME ----------------------------
@@ -81,7 +84,7 @@ return require('packer').startup(function(use)
   -- Buffers per tab
   use "tiagovla/scope.nvim"
 
-  -- Git integration with signs 
+  -- Git integration with signs
   use 'lewis6991/gitsigns.nvim'
 
   -- Which Key
@@ -90,7 +93,7 @@ return require('packer').startup(function(use)
   -- Highlight words under cursor
   use 'tzachar/local-highlight.nvim'
 
-  -- Ident Line
+  -- Indent Line
   use 'lukas-reineke/indent-blankline.nvim'
 
   -- Transparent

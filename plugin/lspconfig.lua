@@ -29,6 +29,15 @@ local on_attach = function(client, bufnr)
       false
     )
   end
+
+  vim.lsp.handlers['textDocument/codeAction'] = require 'lsputil.codeAction'.code_action_handler
+  vim.lsp.handlers['textDocument/references'] = require 'lsputil.locations'.references_handler
+  vim.lsp.handlers['textDocument/definition'] = require 'lsputil.locations'.definition_handler
+  vim.lsp.handlers['textDocument/declaration'] = require 'lsputil.locations'.declaration_handler
+  vim.lsp.handlers['textDocument/typeDefinition'] = require 'lsputil.locations'.typeDefinition_handler
+  vim.lsp.handlers['textDocument/implementation'] = require 'lsputil.locations'.implementation_handler
+  vim.lsp.handlers['textDocument/documentSymbol'] = require 'lsputil.symbols'.document_handler
+  vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
 end
 
 -- Diagnostic Setup
@@ -71,16 +80,6 @@ local angularls_options = {
   on_new_config = function(new_config)
     new_config.cmd = cmd
   end,
-}
-
--- Emmet
-local emmetls_language_server_path = neovim_home .. "/lsp/emmet-ls"
-
-local emmetls_options = {
-  cmd = { emmetls_language_server_path .. '/node_modules/emmet-ls/out/server.js', '--stdio' },
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'eruby' },
-  single_file_support = true,
-  root_dir = default_root_dir
 }
 
 -- HTML
@@ -463,7 +462,6 @@ local lsp_server_list = {
   cssls = cssls_options, -- CSS, SCSS, LESS
   -- dartls = {},
   eslint = eslint_options, -- Eslint
-  emmet_ls = emmetls_options, -- Emmet
   html = html_options, -- Html
   jsonls = jsonls_options, -- JSON
   jdtls = jdtls_options, -- Java
