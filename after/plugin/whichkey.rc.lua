@@ -92,6 +92,7 @@ whichkey.setup({
 whichkey.register({
   d = {
     name = "Diagnostics",
+    t = { "<cmd>Telescope diagnostics<CR>", "All Workspace Diagnostics" },
     a = { "<cmd>Telescope diagnostics<CR>", "All Workspace Diagnostics" },
     d = { vim.diagnostic.open_float, "Line Diagnostics" },
     p = { vim.diagnostic.goto_prev, "Previous Occurence" },
@@ -118,7 +119,6 @@ whichkey.register({
     f = { "<cmd>Telescope live_grep<CR>", "Grep Files" },
     c = { "<cmd>Telescope oldfiles<CR>", "Recently Closed" },
     b = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
-    s = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
   },
   b = {
     name = "Buffers",

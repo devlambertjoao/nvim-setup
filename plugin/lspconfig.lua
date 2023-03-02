@@ -20,16 +20,6 @@ local on_attach = function(client, bufnr)
 
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-	      autocmd CursorHold,CursorHoldI * silent! lua vim.lsp.diagnostic.get_line_diagnostics()
-	    ]],
-      false
-    )
-  end
-
   vim.lsp.handlers['textDocument/codeAction'] = require 'lsputil.codeAction'.code_action_handler
   vim.lsp.handlers['textDocument/references'] = require 'lsputil.locations'.references_handler
   vim.lsp.handlers['textDocument/definition'] = require 'lsputil.locations'.definition_handler

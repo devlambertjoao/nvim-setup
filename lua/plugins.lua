@@ -44,6 +44,8 @@ return require('packer').startup(function(use)
   -- Better LSP Experience
   use 'RishabhRD/popfix'
   use 'RishabhRD/nvim-lsputils'
+
+  use "folke/trouble.nvim"
   ------------ LSP ------------------------------
 
   ------------ THEME ----------------------------

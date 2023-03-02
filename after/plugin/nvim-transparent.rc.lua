@@ -14,6 +14,7 @@ nvim_transparent.setup({
     "Visual",
     "VisualNOS",
     "VisualModes",
+    "Cursor",
     "CursorLine",
     "Pmenu",
     "PmenuSel",
@@ -39,6 +40,8 @@ nvim_transparent.setup({
     "lualine_b_replace",
     "lualine_b_inactive",
     "lualine_b_terminal",
+    "NoiseCursor",
+    "NoiseHiddenCursor"
   },
   ignore_linked_group = true
 })
