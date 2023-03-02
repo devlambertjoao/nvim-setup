@@ -20,6 +20,7 @@ vim.opt.background = 'dark'
 vim.opt.swapfile = false;
 vim.opt.updatetime = 100
 vim.opt.list = true
+vim.opt.cmdheight = 0
 
 -- Enable mouse suport
 vim.cmd [[set mouse=a]]

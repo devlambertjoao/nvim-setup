@@ -101,6 +101,16 @@ return require('packer').startup(function(use)
 
   -- Terminal
   use 'akinsho/toggleterm.nvim'
+
+  -- Messages, cmdline and popupmenu
+  use {
+    "folke/noice.nvim",
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify"
+    }
+  }
+
   ------------ NEOVIM UI ------------------------
 
 
