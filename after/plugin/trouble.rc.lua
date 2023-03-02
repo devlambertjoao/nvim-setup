@@ -6,7 +6,7 @@ trouble.setup({
   fold_open = "v",
   fold_closed = ">",
   indent_lines = false,
-  auto_open = true,
+  auto_open = false,
   auto_close = true,
   auto_preview = true,
   signs = {
