@@ -92,8 +92,8 @@ whichkey.setup({
 whichkey.register({
   d = {
     name = "Diagnostics",
-    t = { "<cmd>Telescope diagnostics<CR>", "All Workspace Diagnostics" },
-    a = { "<cmd>Telescope diagnostics<CR>", "All Workspace Diagnostics" },
+    t = { "<cmd>TroubleToggle<CR>", "All Workspace Diagnostics (Trouble)" },
+    a = { "<cmd>Telescope diagnostics<CR>", "All Workspace Diagnostics (Telescope)" },
     d = { vim.diagnostic.open_float, "Line Diagnostics" },
     p = { vim.diagnostic.goto_prev, "Previous Occurence" },
     n = { vim.diagnostic.goto_next, "Next Occurence" },
