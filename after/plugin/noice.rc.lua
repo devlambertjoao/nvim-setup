@@ -8,8 +8,8 @@ noice.setup({
       search_down = { icon = "S⌄" },
       search_up = { icon = "S⌃" },
       filter = { icon = "$" },
-      lua = { icon = "" },
-      help = { icon = "?" },
+      lua = { icon = "Lua: " },
+      help = { icon = "Help: " },
     },
   },
   notify = {
