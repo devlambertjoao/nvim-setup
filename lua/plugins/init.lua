@@ -11,11 +11,12 @@ return {
   'neovim/nvim-lspconfig',
 
   -- Completition Engine
-  'hrsh7th/nvim-cmp', -- Completition
   'hrsh7th/cmp-nvim-lsp', -- Source for native lsp completition
   'hrsh7th/cmp-buffer', -- Buffer completition
   'hrsh7th/cmp-path', -- Path completition
   'hrsh7th/cmp-cmdline', -- Cmdline completition
+  'hrsh7th/cmp-vsnip', -- Snippets
+  'hrsh7th/vim-vsnip', -- Snippets 
 
   -- Auto close tags
   'windwp/nvim-autopairs',
@@ -25,12 +26,6 @@ return {
   -- Better LSP Experience
   'RishabhRD/popfix',
   'RishabhRD/nvim-lsputils',
-
-  -- Diagnostics
-  "folke/trouble.nvim",
-
-  -- Tree Sitter
-  'nvim-treesitter/nvim-treesitter',
   ------------ LSP ------------------------------
 
   ------------ THEME ----------------------------
@@ -44,21 +39,4 @@ return {
     end,
   },
   ------------ THEME ----------------------------
-
-  ------------ FILE NAVIGATION ------------------
-  -- Find files
-  'nvim-telescope/telescope.nvim',
-  ------------ FILE NAVIGATION ------------------
-
-  ------------ NEOVIM UI ------------------------
-  -- Which Key
-  'folke/which-key.nvim',
-
-  -- Highlight words under cursor
-  'tzachar/local-highlight.nvim',
-
-  -- Indent Line
-  'lukas-reineke/indent-blankline.nvim',
-
-  ------------ NEOVIM UI ------------------------
 }

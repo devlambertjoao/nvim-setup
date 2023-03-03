@@ -2,6 +2,7 @@ return {
   'folke/which-key.nvim',
   config = function()
     local whichkey = require('which-key')
+
     -- Configure timeout
     vim.o.timeout = true
     vim.o.timeoutlen = 150
@@ -37,7 +38,7 @@ return {
         scroll_up = '<c-u>', -- binding to scroll up inside the popup
       },
       window = {
-        border = "single", -- none, single, double, shadow
+        border = "none", -- none, single, double, shadow
         position = "top", -- bottom, top
         margin = { 16, 12, 2, 12 }, -- extra window margin [top, right, bottom, left]
         padding = { 4, 4, 4, 4 }, -- extra window padding [top, right, bottom, left]
