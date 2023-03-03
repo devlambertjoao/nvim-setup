@@ -1,123 +1,116 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-
+require("lazy").setup({
   ------------ UTILS ----------------------------
-  use 'nvim-lua/plenary.nvim'
-  use 'tpope/vim-dispatch'
+  'nvim-lua/plenary.nvim',
+  'tpope/vim-dispatch',
   ------------ UTILS ----------------------------
 
   ------------ LSP ------------------------------
   -- Base LSP
-  use 'neovim/nvim-lsp'
+  'neovim/nvim-lsp',
 
   -- Base LSP Config
-  use 'neovim/nvim-lspconfig'
+  'neovim/nvim-lspconfig',
 
   -- Completition Engine
-  use 'hrsh7th/nvim-cmp' -- Completition
-  use 'hrsh7th/cmp-nvim-lsp' -- Source for native lsp completition
-  use 'hrsh7th/cmp-buffer' -- Buffer completition
-  use 'hrsh7th/cmp-path' -- Path completition
-  use 'hrsh7th/cmp-cmdline' -- Cmdline completition
-  use 'hrsh7th/cmp-vsnip' -- Snipets
-  use 'hrsh7th/vim-vsnip' -- Snipets
+  'hrsh7th/nvim-cmp', -- Completition
+  'hrsh7th/cmp-nvim-lsp', -- Source for native lsp completition
+  'hrsh7th/cmp-buffer', -- Buffer completition
+  'hrsh7th/cmp-path', -- Path completition
+  'hrsh7th/cmp-cmdline', -- Cmdline completition
+  'hrsh7th/cmp-vsnip', -- Snipets
+  'hrsh7th/vim-vsnip', -- Snipets
 
   -- Better Visualization on pum
-  use 'onsails/lspkind.nvim'
+  'onsails/lspkind.nvim',
 
   -- Auto close tags
-  use 'windwp/nvim-autopairs'
-  use 'windwp/nvim-ts-autotag'
-  use 'RRethy/nvim-treesitter-endwise'
+  'windwp/nvim-autopairs',
+  'windwp/nvim-ts-autotag',
+  'RRethy/nvim-treesitter-endwise',
 
   -- Better LSP Experience
-  use 'RishabhRD/popfix'
-  use 'RishabhRD/nvim-lsputils'
+  'RishabhRD/popfix',
+  'RishabhRD/nvim-lsputils',
 
   -- Diagnostics
-  use "folke/trouble.nvim"
+  "folke/trouble.nvim",
 
   -- Tree Sitter
-  use 'nvim-treesitter/nvim-treesitter'
+  'nvim-treesitter/nvim-treesitter',
   ------------ LSP ------------------------------
 
   ------------ THEME ----------------------------
-  -- Noctis
-  use {
-    'kartikp10/noctis.nvim',
-    requires = { 'rktjmp/lush.nvim' },
-    config = function()
-      -- vim.cmd('syntax on')
-      -- vim.cmd('colorscheme noctis')
-    end
-  }
+  ---- Noctis
+  --{ 'kartikp10/noctis.nvim',
+  --  cmd = 'colorscheme noctis',
+  --  dependencies = 'rktjmp/lush.nvim'
+  --},
 
   -- Nightfox
-  use {
+  {
     'EdenEast/nightfox.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      vim.cmd('colorscheme nightfox')
-    end
-  }
+      vim.cmd([[colorscheme nightfox]])
+    end,
+  },
   ------------ THEME ----------------------------
 
   ------------ FILE NAVIGATION ------------------
   -- Sidebar File Navigation
-  use 'kyazdani42/nvim-tree.lua'
+  'kyazdani42/nvim-tree.lua',
 
   -- Find files
-  use 'nvim-telescope/telescope.nvim'
+  'nvim-telescope/telescope.nvim',
   ------------ FILE NAVIGATION ------------------
 
   ------------ NEOVIM UI ------------------------
   -- Lualine
-  use 'nvim-lualine/lualine.nvim'
+  'nvim-lualine/lualine.nvim',
 
   -- Bufferline
-  use 'akinsho/bufferline.nvim'
+  'akinsho/bufferline.nvim',
 
   -- Buffers per tab
-  use "tiagovla/scope.nvim"
+  "tiagovla/scope.nvim",
 
   -- Git integration with signs
-  use 'lewis6991/gitsigns.nvim'
+  'lewis6991/gitsigns.nvim',
 
   -- Which Key
-  use 'folke/which-key.nvim'
+  'folke/which-key.nvim',
 
   -- Highlight words under cursor
-  use 'tzachar/local-highlight.nvim'
+  'tzachar/local-highlight.nvim',
 
   -- Indent Line
-  use 'lukas-reineke/indent-blankline.nvim'
+  'lukas-reineke/indent-blankline.nvim',
 
   -- Terminal
-  use 'akinsho/toggleterm.nvim'
+  'akinsho/toggleterm.nvim',
 
   -- Messages, cmdline and popupmenu
-  use {
+  {
     "folke/noice.nvim",
-    requires = {
+    dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify"
     }
   }
   ------------ NEOVIM UI ------------------------
-
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+}, {})

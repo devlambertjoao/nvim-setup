@@ -3,6 +3,7 @@ if (not status) then return end
 
 treesitter.setup({
   ensure_installed = {
+    'bash',
     'c',
     'lua',
     'c_sharp',
@@ -21,7 +22,7 @@ treesitter.setup({
     'yaml'
   },
   sync_install = false,
-  auto_install = true,
+  auto_install = false,
   ignore_install = {},
   autotag = {
     enable = true,
