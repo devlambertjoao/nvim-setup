@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
 
   -- Auto close tags
   use 'windwp/nvim-autopairs'
+  use 'tpope/vim-endwise'
 
   -- Better LSP Experience
   use 'RishabhRD/popfix'
