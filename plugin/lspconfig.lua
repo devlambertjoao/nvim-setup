@@ -216,6 +216,32 @@ local tsserver_options = {
   root_dir = default_root_dir
 }
 
+-- Tailwind Css
+local tailwindcss_language_server_path = neovim_home .. "/lsp/tailwindcss/node_modules/.bin/tailwindcss-language-server"
+
+local tailwindcss_options = {
+  cmd = { tailwindcss_language_server_path, "--stdio" },
+  init_options = {
+    provideFormatter = true
+  },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "eruby",
+    "erb",
+    "html",
+    "css",
+    "scss",
+    "less",
+    "sass",
+  },
+  single_file_support = true,
+  root_dir = default_root_dir
+}
+
 -- Lua
 local lua_language_server_path = neovim_home .. "/lsp/luals"
 
@@ -456,7 +482,7 @@ local lsp_server_list = {
   jsonls = jsonls_options, -- JSON
   jdtls = jdtls_options, -- Java
   tsserver = tsserver_options, -- Typescript
-  -- tailwindcss = {}, -- Tailwind
+  tailwindcss = tailwindcss_options, -- Tailwind
   lua_ls = lua_ls_options, -- Lua
   -- pyright = {}, -- Python
   solargraph = solargraph_options, -- Ruby
