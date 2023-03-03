@@ -22,7 +22,3 @@ telescope.setup({
   }
 })
 
-vim.api.nvim_command([[
-  hi TelescopeNormal ctermbg=none guibg=none
-  hi TelescopePromptNormal ctermbg=none guibg=none
-]])
