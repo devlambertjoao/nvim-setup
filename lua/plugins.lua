@@ -46,7 +46,11 @@ return require('packer').startup(function(use)
   use 'RishabhRD/popfix'
   use 'RishabhRD/nvim-lsputils'
 
+  -- Diagnostics
   use "folke/trouble.nvim"
+
+  -- Tree Sitter
+  use 'nvim-treesitter/nvim-treesitter'
   ------------ LSP ------------------------------
 
   ------------ THEME ----------------------------
@@ -99,9 +103,6 @@ return require('packer').startup(function(use)
   -- Indent Line
   use 'lukas-reineke/indent-blankline.nvim'
 
-  -- Transparent
-  use 'xiyaowong/nvim-transparent'
-
   -- Terminal
   use 'akinsho/toggleterm.nvim'
 
@@ -113,9 +114,7 @@ return require('packer').startup(function(use)
       "rcarriga/nvim-notify"
     }
   }
-
   ------------ NEOVIM UI ------------------------
-
 
   if packer_bootstrap then
     require('packer').sync()
