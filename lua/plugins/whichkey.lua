@@ -3,6 +3,7 @@ return {
   config = function()
     local whichkey = require('which-key')
 
+    -- Configure timeout
     vim.o.timeout = true
     vim.o.timeoutlen = 150
 
@@ -94,7 +95,6 @@ return {
         p = { "<cmd>Telescope find_files<CR>", "Find Files" },
         f = { "<cmd>Telescope live_grep<CR>", "Grep Files" },
         c = { "<cmd>Telescope oldfiles<CR>", "Recently Closed" },
-        b = { "<cmd>NvimTreeFindFileToggle<CR>", "NvimTree" },
       },
       G = {
         name = "Git",
@@ -106,6 +106,5 @@ return {
 
     -- Windows
     whichkey.register({ prefix = "<C-w>" })
-  end,
-  keys = { '<leader>', '<C-w>' }
+  end
 }

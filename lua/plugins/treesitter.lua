@@ -1,10 +1,5 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  dependencies = {
-    'windwp/nvim-autopairs',
-    'windwp/nvim-ts-autotag',
-    'RRethy/nvim-treesitter-endwise',
-  },
   config = function()
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
@@ -59,6 +54,5 @@ return {
         additional_vim_regex_highlighting = false,
       },
     })
-  end,
-  lazy = true
+  end
 }

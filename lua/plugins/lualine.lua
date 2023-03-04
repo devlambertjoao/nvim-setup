@@ -1,6 +1,5 @@
 return {
   'nvim-lualine/lualine.nvim',
-  event = 'VeryLazy',
   config = function()
     require('lualine').setup {
       options = {
@@ -9,5 +8,5 @@ return {
         section_separators = ''
       }
     }
-  end,
+  end
 }

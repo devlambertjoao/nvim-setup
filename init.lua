@@ -1,1 +1,4 @@
-require('config.lazy')
+require('base')
+require('highlights')
+require('maps')
+require('plugins')
