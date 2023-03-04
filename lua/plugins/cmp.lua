@@ -1,5 +1,18 @@
 return {
   'hrsh7th/nvim-cmp', -- Completition
+  dependencies = {
+    'neovim/nvim-lsp',
+    'neovim/nvim-lspconfig',
+    'hrsh7th/cmp-nvim-lsp', -- Source for native lsp completition
+    'hrsh7th/cmp-buffer', -- Buffer completition
+    'hrsh7th/cmp-path', -- Path completition
+    'hrsh7th/cmp-cmdline', -- Cmdline completition
+    'hrsh7th/cmp-vsnip', -- Snippets
+    'hrsh7th/vim-vsnip', -- Snippets
+    'RishabhRD/popfix', -- Better LSP Experience
+    'RishabhRD/nvim-lsputils',
+  },
+  event = { 'InsertEnter', 'CmdlineEnter' },
   config = function()
     local cmp = require('cmp')
     cmp.setup({

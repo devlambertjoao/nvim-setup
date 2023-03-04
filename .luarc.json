@@ -1,3 +1,27 @@
 {
-    "workspace.checkThirdParty": false
+    "workspace.library": [
+        "/home/lambert/.config/nvim",
+        "/home/lambert/.local/share/nvim/lazy/lazy.nvim",
+        "/home/lambert/.local/share/nvim/lazy/cmp-nvim-lsp",
+        "/home/lambert/.local/share/nvim/lazy/nvim-lsputils",
+        "/home/lambert/.local/share/nvim/lazy/popfix",
+        "/home/lambert/.local/share/nvim/lazy/nvim-lspconfig",
+        "/home/lambert/.local/share/nvim/lazy/nvim-lsp",
+        "/home/lambert/.local/share/nvim/lazy/nvim-cmp",
+        "/home/lambert/.local/share/nvim/lazy/nvim-treesitter-endwise",
+        "/home/lambert/.local/share/nvim/lazy/nvim-ts-autotag",
+        "/home/lambert/.local/share/nvim/lazy/nvim-autopairs",
+        "/home/lambert/.local/share/nvim/lazy/nvim-treesitter",
+        "/home/lambert/.local/share/nvim/lazy/plenary.nvim",
+        "/home/lambert/.local/share/nvim/lazy/telescope.nvim",
+        "/home/lambert/.local/share/nvim/lazy/which-key.nvim",
+        "/home/lambert/.local/share/nvim/lazy/lualine.nvim",
+        "/home/lambert/.local/share/nvim/lazy/nightfox.nvim",
+        "/usr/share/nvim/runtime",
+        "/usr/share/nvim/runtime/pack/dist/opt/matchit",
+        "/usr/lib/nvim",
+        "/home/lambert/.local/state/nvim/lazy/readme",
+        "/home/lambert/.local/share/nvim/lazy/cmp-nvim-lsp/after",
+        "${3rd}/luassert/library"
+    ]
 }
