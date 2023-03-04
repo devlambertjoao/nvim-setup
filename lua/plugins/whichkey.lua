@@ -1,5 +1,6 @@
 return {
   'folke/which-key.nvim',
+  keys = { '<leader>', '<C-w>' },
   config = function()
     local whichkey = require('which-key')
 
@@ -95,6 +96,7 @@ return {
         p = { "<cmd>Telescope find_files<CR>", "Find Files" },
         f = { "<cmd>Telescope live_grep<CR>", "Grep Files" },
         c = { "<cmd>Telescope oldfiles<CR>", "Recently Closed" },
+        b = { "<cmd>NvimTreeFindFileToggle<CR>", "NvimTree" },
       },
       G = {
         name = "Git",
