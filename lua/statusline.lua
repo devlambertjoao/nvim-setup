@@ -105,10 +105,10 @@ end
 
 local function lsp()
   local palette = require('nightfox.palette').load("nightfox")
-  vim.api.nvim_set_hl(0, 'StatusLineLspError', { ctermbg = 0, fg = palette.red.bright })
-  vim.api.nvim_set_hl(0, 'StatusLineLspWarning', { ctermbg = 0, fg = palette.orange.bright })
-  vim.api.nvim_set_hl(0, 'StatusLineLspHint', { ctermbg = 0, fg = palette.green.bright })
-  vim.api.nvim_set_hl(0, 'StatusLineLspInfo', { ctermbg = 0, fg = palette.blue.bright })
+  vim.api.nvim_set_hl(0, 'StatusLineLspError', { ctermbg = 0, fg = palette.red.bright, bg = palette.bg0 })
+  vim.api.nvim_set_hl(0, 'StatusLineLspWarning', { ctermbg = 0, fg = palette.orange.bright, bg = palette.bg0 })
+  vim.api.nvim_set_hl(0, 'StatusLineLspHint', { ctermbg = 0, fg = palette.green.bright, bg = palette.bg0 })
+  vim.api.nvim_set_hl(0, 'StatusLineLspInfo', { ctermbg = 0, fg = palette.blue.bright, bg = palette.bg0 })
 
   local count = {}
   local levels = {
@@ -141,13 +141,7 @@ local function lsp()
     info = "%#StatusLineLspInfo# i" .. count["info"]
   end
 
-  local diagnostics = errors .. warnings .. hints .. info
-
-  if string.len(diagnostics) ~= 0 then
-    diagnostics = "|" .. diagnostics
-  end
-
-  return diagnostics
+  return errors .. warnings .. hints .. info
 end
 
 local function filetype()
