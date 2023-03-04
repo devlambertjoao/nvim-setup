@@ -1,5 +1,9 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'windwp/nvim-ts-autotag',
+    'RRethy/nvim-treesitter-endwise',
+  },
   config = function()
     require('nvim-treesitter.configs').setup({
       ensure_installed = {

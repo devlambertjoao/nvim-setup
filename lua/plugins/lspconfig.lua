@@ -5,7 +5,7 @@ return {
     'RishabhRD/popfix',
     'RishabhRD/nvim-lsputils',
   },
-  event = { 'InsertEnter', 'CmdlineEnter' },
+  event = 'InsertEnter',
   config = function()
     local nvim_lsp = require("lspconfig")
 

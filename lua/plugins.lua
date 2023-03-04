@@ -14,8 +14,50 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup('plugins', {
+  defaults = {
+    lazy = true,
+  },
   change_detection = {
     enabled = true,
     notify = false,
+  },
+  ui = {
+    icons = {
+      cmd = ">_",
+      config = "",
+      event = "",
+      ft = "",
+      init = "",
+      import = "",
+      keys = "",
+      lazy = "",
+      loaded = "●",
+      not_loaded = "○",
+      plugin = "",
+      runtime = "",
+      source = "",
+      start = "",
+      task = "",
+      list = {
+        "",
+        "",
+        "",
+        "",
+      },
+    }
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
   },
 })
