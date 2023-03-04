@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  event = 'InsertEnter',
+  event = 'LazyVimStarted',
   config = function()
     require('lualine').setup {
       options = {

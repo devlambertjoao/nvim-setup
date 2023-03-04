@@ -1,6 +1,6 @@
 return {
   'tzachar/local-highlight.nvim',
-  event = { 'InsertEnter' },
+  event = 'InsertEnter',
   config = function()
     local local_highlight = require('local-highlight')
 

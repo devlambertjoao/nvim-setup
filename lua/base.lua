@@ -74,3 +74,10 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   command = "set nopaste"
 })
 
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.winblend = 0
+vim.opt.wildoptions = 'pum'
+vim.opt.pumblend = 5
+vim.opt.background = 'dark'
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
