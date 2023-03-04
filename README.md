@@ -22,7 +22,3 @@ Variable Value = C:\Users\jodt\AppData\Local\nvim
 Variable Name = NEOVIM_OS_RUNNING
 Variable Value = WINDOWS || MACOS || LINUX
 
-#Run "npm install" inside:
-/lsp/angularls
-/lsp/vscode
-/lsp/typescript
