@@ -70,8 +70,7 @@ return {
     whichkey.register({
       d = {
         name = "Diagnostics",
-        t = { "<cmd>TroubleToggle<CR>", "All Workspace Diagnostics (Trouble)" },
-        a = { "<cmd>Telescope diagnostics<CR>", "All Workspace Diagnostics (Telescope)" },
+        a = { "<cmd>Telescope diagnostics<CR>", "All Workspace Diagnostics" },
         d = { vim.diagnostic.open_float, "Line Diagnostics" },
         p = { vim.diagnostic.goto_prev, "Previous Occurence" },
         n = { vim.diagnostic.goto_next, "Next Occurence" },
@@ -96,24 +95,12 @@ return {
         p = { "<cmd>Telescope find_files<CR>", "Find Files" },
         f = { "<cmd>Telescope live_grep<CR>", "Grep Files" },
         c = { "<cmd>Telescope oldfiles<CR>", "Recently Closed" },
-        b = { "<cmd>Lexplore<CR> :vertical resize 30<CR><CR>", "File Explorer" },
       },
       G = {
         name = "Git",
         s = { "<cmd>Telescope git_status<CR>", "Git Status" },
         c = { "<cmd>Telescope git_commits<CR>", "Git Commits" },
         b = { "<cmd>Telescope git_branches<CR>", "Git Branches" },
-      },
-      t = {
-        name = "Tabs",
-        t = { "<cmd>tabnew<CR>", "New Tab" },
-        c = { "<cmd>tabclose<CR>", "Close Tab" },
-        p = { "<cmd>tabprevious<CR>", "Previous Tab" },
-        n = { "<cmd>tabnext<CR>", "Next Tab" },
-        l = { "<cmd>tabs<CR>", "List All Tabs" },
-      },
-      l = {
-        name = "LSP",
       },
     }, { prefix = "<leader>" })
 
