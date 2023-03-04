@@ -95,7 +95,7 @@ return {
         name = "File Navigation",
         p = { "<cmd>Telescope find_files<CR>", "Find Files" },
         f = { "<cmd>Telescope live_grep<CR>", "Grep Files" },
-        c = { "<cmd>Telescope oldfiles<CR>", "Recently Closed" },
+        r = { "<cmd>Telescope oldfiles<CR>", "Recently Closed" },
         b = { "<cmd>NvimTreeFindFileToggle<CR>", "NvimTree" },
       },
       G = {

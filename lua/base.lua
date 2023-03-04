@@ -1,5 +1,7 @@
 vim.cmd("autocmd!")
 
+vim.g.mapleader = ";"
+
 vim.opt.title = true
 vim.opt.hlsearch = true
 vim.opt.backup = false
@@ -27,11 +29,6 @@ vim.cmd [[set mouse=a]]
 ---- Bottom Bar
 -- No Show Mode Below Lualine
 vim.opt.showmode = false
-
--- Clean up past command message
-vim.api.nvim_command([[
-  autocmd CursorHold * echon ''
-]])
 
 -- No show keystrokes
 vim.opt.showcmd = true
