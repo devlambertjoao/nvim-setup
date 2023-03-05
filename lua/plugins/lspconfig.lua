@@ -99,6 +99,14 @@ return {
       root_dir = default_root_dir
     }
 
+    -- VUELS
+    local vuels_language_server_path = neovim_home .. "/lsp/vuels/node_modules/.bin/vls"
+
+    local vuels_options = {
+      cmd = { vuels_language_server_path, "--stdio" },
+      root_dir = default_root_dir
+    }
+
     -- CSS
     local css_language_server_path = neovim_home .. "/lsp/vscode/node_modules/.bin/vscode-css-language-server"
 
@@ -495,7 +503,7 @@ return {
       solargraph = solargraph_options, -- Ruby
       rust_analyzer = rust_analyzer_options, -- Rust
       -- sqlls = {}, -- SQL
-      -- vuels = {}, -- VueJs
+      vuels = vuels_options, -- VueJs
     }
 
     for server_name, server_options in pairs(lsp_server_list) do

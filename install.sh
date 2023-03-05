@@ -3,6 +3,7 @@ npm install --prefix lsp/angularls
 npm install --prefix lsp/vscode
 npm install --prefix lsp/typescript
 npm install --prefix lsp/tailwindcss
+npm install --prefix lsp/vuels
 
 rm -r lsp/clangd/linux-x64
 rm -r lsp/clangd/macos-arm

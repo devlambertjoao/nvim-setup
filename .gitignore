@@ -1,6 +1,7 @@
 lazy-lock.json
 node_modules
 package-lock.json
+yarn.lock
 .temp
 lsp/luals/windows/log/**/*
 lsp/luals/linux-x64/log/**/*
