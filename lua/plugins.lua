@@ -20,6 +20,9 @@ require("lazy").setup('plugins', {
     enabled = true,
     notify = false,
   },
+  checker = {
+    enabled = false,
+  },
   ui = {
     icons = {
       cmd = ">_",
@@ -46,6 +49,10 @@ require("lazy").setup('plugins', {
     }
   },
   performance = {
+    cache = {
+      enabled = true
+    },
+    reset_packpath = true, 
     rtp = {
       disabled_plugins = {
         "gzip",

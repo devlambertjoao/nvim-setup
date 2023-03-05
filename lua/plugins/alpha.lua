@@ -1,5 +1,4 @@
-return {
-  'goolord/alpha-nvim',
+return { 'goolord/alpha-nvim',
   lazy = false,
   config = function()
     local alpha = require('alpha')
@@ -17,7 +16,7 @@ return {
       dashboard.button('p', 'Find file', ':Telescope find_files<CR>'),
       dashboard.button('r', 'Recent files', ':Telescope oldfiles <CR>'),
       dashboard.button('f', 'Find text', ':Telescope live_grep <CR>'),
-      dashboard.button('s', 'Settings', ':cd ~/.config/nvim/<CR> :e .<CR>'),
+      dashboard.button('b', 'NvimTree', ':NvimTreeOpen<CR>'),
       dashboard.button('l', 'Lazy', ':Lazy<CR>'),
       dashboard.button('q', 'Quit', ':qa<CR>'),
     }
