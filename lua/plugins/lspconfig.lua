@@ -1,3 +1,42 @@
+local nvim_lsp = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+NEOVIM_HOME = os.getenv("NEOVIM_HOME")
+NEOVIM_OS_RUNNING = os.getenv("NEOVIM_OS_RUNNING")
+
+local on_attach = function(_, bufnr)
+  local function buf_set_option(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
+
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  vim.lsp.handlers['textDocument/codeAction'] = require 'lsputil.codeAction'.code_action_handler
+  vim.lsp.handlers['textDocument/references'] = require 'lsputil.locations'.references_handler
+  vim.lsp.handlers['textDocument/definition'] = require 'lsputil.locations'.definition_handler
+  vim.lsp.handlers['textDocument/declaration'] = require 'lsputil.locations'.declaration_handler
+  vim.lsp.handlers['textDocument/typeDefinition'] = require 'lsputil.locations'.typeDefinition_handler
+  vim.lsp.handlers['textDocument/implementation'] = require 'lsputil.locations'.implementation_handler
+  vim.lsp.handlers['textDocument/documentSymbol'] = require 'lsputil.symbols'.document_handler
+  vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
+end
+
+function Get_root_dir(...)
+  return nvim_lsp.util.root_pattern(...)
+end
+
+function Add_lsp_server(server_name, server_options)
+  local default_server_options = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
+
+  default_server_options = vim.tbl_deep_extend("force", server_options, default_server_options)
+
+  nvim_lsp[server_name].setup(default_server_options)
+end
+
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -7,32 +46,8 @@ return {
   },
   event = { 'InsertEnter' },
   config = function()
-    local nvim_lsp = require("lspconfig")
-
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
     local default_root_dir = function(_)
       return vim.loop.cwd()
-    end
-
-    local neovim_home = os.getenv("NEOVIM_HOME")
-    local neovim_os_running = os.getenv("NEOVIM_OS_RUNNING")
-
-    local on_attach = function(client, bufnr)
-      local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-      end
-
-      buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-      vim.lsp.handlers['textDocument/codeAction'] = require 'lsputil.codeAction'.code_action_handler
-      vim.lsp.handlers['textDocument/references'] = require 'lsputil.locations'.references_handler
-      vim.lsp.handlers['textDocument/definition'] = require 'lsputil.locations'.definition_handler
-      vim.lsp.handlers['textDocument/declaration'] = require 'lsputil.locations'.declaration_handler
-      vim.lsp.handlers['textDocument/typeDefinition'] = require 'lsputil.locations'.typeDefinition_handler
-      vim.lsp.handlers['textDocument/implementation'] = require 'lsputil.locations'.implementation_handler
-      vim.lsp.handlers['textDocument/documentSymbol'] = require 'lsputil.symbols'.document_handler
-      vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
     end
 
     -- Diagnostic Setup
@@ -53,10 +68,14 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
 
+
+
+
+
     ------ LSP Servers
     ---- Custom Servers
     -- Angular
-    local angular_language_server_path = neovim_home .. "/lsp/angularls"
+    local angular_language_server_path = NEOVIM_HOME .. "/lsp/angularls"
 
     local cmd = {
       "node",
@@ -78,9 +97,9 @@ return {
     }
 
     -- HTML
-    local html_language_server_path = neovim_home .. "/lsp/vscode/node_modules/.bin/vscode-html-language-server"
+    local html_language_server_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-html-language-server"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       html_language_server_path = html_language_server_path .. ".cmd"
     end
@@ -100,7 +119,7 @@ return {
     }
 
     -- VUELS
-    local vuels_language_server_path = neovim_home .. "/lsp/vuels/node_modules/.bin/vls"
+    local vuels_language_server_path = NEOVIM_HOME .. "/lsp/vuels/node_modules/.bin/vls"
 
     local vuels_options = {
       cmd = { vuels_language_server_path, "--stdio" },
@@ -108,9 +127,9 @@ return {
     }
 
     -- CSS
-    local css_language_server_path = neovim_home .. "/lsp/vscode/node_modules/.bin/vscode-css-language-server"
+    local css_language_server_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-css-language-server"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       css_language_server_path = css_language_server_path .. ".cmd"
     end
@@ -126,9 +145,9 @@ return {
     }
 
     -- Eslint
-    local eslint_language_server_path = neovim_home .. "/lsp/vscode/node_modules/.bin/vscode-eslint-language-server"
+    local eslint_language_server_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-eslint-language-server"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       eslint_language_server_path = eslint_language_server_path .. ".cmd"
     end
@@ -187,9 +206,9 @@ return {
     }
 
     -- JSON
-    local json_language_server_path = neovim_home .. "/lsp/vscode/node_modules/.bin/vscode-json-language-server"
+    local json_language_server_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-json-language-server"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       json_language_server_path = json_language_server_path .. ".cmd"
     end
@@ -205,9 +224,9 @@ return {
     }
 
     -- Typescript
-    local ts_language_server_path = neovim_home .. "/lsp/typescript/node_modules/.bin/typescript-language-server"
+    local ts_language_server_path = NEOVIM_HOME .. "/lsp/typescript/node_modules/.bin/typescript-language-server"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       ts_language_server_path = ts_language_server_path .. ".cmd"
     end
@@ -230,7 +249,7 @@ return {
     }
 
     -- Tailwind Css
-    local tailwindcss_language_server_path = neovim_home ..
+    local tailwindcss_language_server_path = NEOVIM_HOME ..
         "/lsp/tailwindcss/node_modules/.bin/tailwindcss-language-server"
 
     local tailwindcss_options = {
@@ -257,19 +276,19 @@ return {
     }
 
     -- Lua
-    local lua_language_server_path = neovim_home .. "/lsp/luals"
+    local lua_language_server_path = NEOVIM_HOME .. "/lsp/luals"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       lua_language_server_path = lua_language_server_path .. "/windows/bin/lua-language-server.exe"
     end
 
-    if neovim_os_running == "LINUX"
+    if NEOVIM_OS_RUNNING == "LINUX"
     then
       lua_language_server_path = lua_language_server_path .. "/linux-x64/bin/lua-language-server"
     end
 
-    if neovim_os_running == "MACOS"
+    if NEOVIM_OS_RUNNING == "MACOS"
     then
       lua_language_server_path = lua_language_server_path .. "/macos-arm/bin/lua-language-server"
     end
@@ -287,7 +306,7 @@ return {
           },
           workspace = {
             library = vim.api.nvim_get_runtime_file("", true),
-	          checkThirdParty = false,
+            checkThirdParty = false,
             ignoreDir = {
               "/lsp"
             },
@@ -297,21 +316,21 @@ return {
     }
 
     -- Java
-    local java_language_server_path = neovim_home .. "/lsp/jdtls"
+    local java_language_server_path = NEOVIM_HOME .. "/lsp/jdtls"
 
-    local java_lsp_config = neovim_home .. "/lsp/jdtls"
+    local java_lsp_config = NEOVIM_HOME .. "/lsp/jdtls"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       java_lsp_config = java_lsp_config .. "/config_win"
     end
 
-    if neovim_os_running == "LINUX"
+    if NEOVIM_OS_RUNNING == "LINUX"
     then
       java_lsp_config = java_lsp_config .. "/config_linux"
     end
 
-    if neovim_os_running == "MACOS"
+    if NEOVIM_OS_RUNNING == "MACOS"
     then
       java_lsp_config = java_lsp_config .. "/config_macos"
     end
@@ -336,7 +355,7 @@ return {
         "-configuration",
         java_lsp_config,
         "-data",
-        neovim_home .. "/.temp/java_workspace",
+        NEOVIM_HOME .. "/.temp/java_workspace",
       },
       settings = {
         java = {
@@ -374,19 +393,19 @@ return {
     }
 
     -- Rust
-    local rust_language_server_path = neovim_home .. "/lsp/rust-analyzer"
+    local rust_language_server_path = NEOVIM_HOME .. "/lsp/rust-analyzer"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       rust_language_server_path = rust_language_server_path .. "/windows"
     end
 
-    if neovim_os_running == "LINUX"
+    if NEOVIM_OS_RUNNING == "LINUX"
     then
       rust_language_server_path = rust_language_server_path .. "/linux-x64"
     end
 
-    if neovim_os_running == "MACOS"
+    if NEOVIM_OS_RUNNING == "MACOS"
     then
       rust_language_server_path = rust_language_server_path .. "/macos-arm"
     end
@@ -402,41 +421,20 @@ return {
       },
     }
 
-    -- Ruby
-    local ruby_language_server_path = neovim_home .. "/lsp/solargraph"
-
-    local solargraph_options = {
-      cmd = { ruby_language_server_path .. "/bin/solargraph", "stdio" },
-      root_dir = default_root_dir,
-      filetypes = {
-        "ruby"
-      },
-      init_options = {
-        formatting = true
-      },
-      settings = {
-        solargraph = {
-          diagnostics = true,
-        }
-      },
-    }
-
-    vim.g.rspec_command = "!" .. ruby_language_server_path .. "/rspec --drb {spec}"
-
     -- .NET
-    local dotnet_language_server_path = neovim_home .. "/lsp/omnisharp"
+    local dotnet_language_server_path = NEOVIM_HOME .. "/lsp/omnisharp"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       dotnet_language_server_path = dotnet_language_server_path .. "/windows-net6/OmniSharp.dll"
     end
 
-    if neovim_os_running == "LINUX"
+    if NEOVIM_OS_RUNNING == "LINUX"
     then
       dotnet_language_server_path = dotnet_language_server_path .. "/linux-x64-net6/OmniSharp.dll"
     end
 
-    if neovim_os_running == "MACOS"
+    if NEOVIM_OS_RUNNING == "MACOS"
     then
       dotnet_language_server_path = dotnet_language_server_path .. "/macos-arm-net6/OmniSharp.dll"
     end
@@ -461,19 +459,19 @@ return {
     }
 
     -- C and C++
-    local c_language_server_path = neovim_home .. "/lsp/clangd"
+    local c_language_server_path = NEOVIM_HOME .. "/lsp/clangd"
 
-    if neovim_os_running == "WINDOWS"
+    if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       c_language_server_path = c_language_server_path .. "/windows/bin/clangd.exe"
     end
 
-    if neovim_os_running == "LINUX"
+    if NEOVIM_OS_RUNNING == "LINUX"
     then
       c_language_server_path = c_language_server_path .. "/linux-x64/bin/clangd"
     end
 
-    if neovim_os_running == "MACOS"
+    if NEOVIM_OS_RUNNING == "MACOS"
     then
       c_language_server_path = c_language_server_path .. "/macos-arm/clangd"
     end
@@ -500,7 +498,6 @@ return {
       tailwindcss = tailwindcss_options, -- Tailwind
       lua_ls = lua_ls_options, -- Lua
       -- pyright = {}, -- Python
-      solargraph = solargraph_options, -- Ruby
       rust_analyzer = rust_analyzer_options, -- Rust
       -- sqlls = {}, -- SQL
       vuels = vuels_options, -- VueJs
