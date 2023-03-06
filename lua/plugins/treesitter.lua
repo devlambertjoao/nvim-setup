@@ -22,6 +22,7 @@ return {
         'rust',
         'scss',
         'tsx',
+        'vim',
         'vue',
         'yaml'
       },
@@ -48,7 +49,7 @@ return {
       },
       highlight = {
         enable = true,
-        disable = function(lang, buf)
+        disable = function(_, buf)
           local max_filesize = 75 * 1024 -- 75 KB
           local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
           if ok and stats and stats.size > max_filesize then

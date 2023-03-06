@@ -1,21 +1,6 @@
 local nvim_lsp = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-NEOVIM_HOME = os.getenv("NEOVIM_HOME")
-NEOVIM_OS_RUNNING = os.getenv("NEOVIM_OS_RUNNING")
-
-function Get_root_dir(...)
-  return nvim_lsp.util.root_pattern(...)
-end
-
-function Get_default_root_dir(_)
-  return vim.loop.cwd()
-end
-
-function Start_lsp()
-  vim.cmd [[LspStart]]
-end
-
 local on_attach = function(_, bufnr)
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
@@ -31,6 +16,21 @@ local on_attach = function(_, bufnr)
   vim.lsp.handlers['textDocument/implementation'] = require 'lsputil.locations'.implementation_handler
   vim.lsp.handlers['textDocument/documentSymbol'] = require 'lsputil.symbols'.document_handler
   vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
+end
+
+NEOVIM_HOME = os.getenv("NEOVIM_HOME")
+NEOVIM_OS_RUNNING = os.getenv("NEOVIM_OS_RUNNING")
+
+function Get_root_dir(...)
+  return nvim_lsp.util.root_pattern(...)
+end
+
+function Get_default_root_dir(_)
+  return vim.loop.cwd()
+end
+
+function Start_lsp()
+  vim.cmd [[LspStart]]
 end
 
 function Add_lsp_server(server_name, server_options)
@@ -51,7 +51,7 @@ return {
     'RishabhRD/popfix',
     'RishabhRD/nvim-lsputils',
   },
-  event = { 'InsertEnter' },
+  event = { 'BufRead', 'InsertEnter' },
   config = function()
     local default_root_dir = function(_)
       return vim.loop.cwd()
@@ -78,22 +78,22 @@ return {
 
     -- Lua
     local lua_language_server_path = NEOVIM_HOME .. "/lsp/luals"
-    
+
     if NEOVIM_OS_RUNNING == "WINDOWS"
     then
       lua_language_server_path = lua_language_server_path .. "/windows/bin/lua-language-server.exe"
     end
-    
+
     if NEOVIM_OS_RUNNING == "LINUX"
     then
       lua_language_server_path = lua_language_server_path .. "/linux-x64/bin/lua-language-server"
     end
-    
+
     if NEOVIM_OS_RUNNING == "MACOS"
     then
       lua_language_server_path = lua_language_server_path .. "/macos-arm/bin/lua-language-server"
     end
-    
+
     Add_lsp_server('lua_ls', {
       cmd = { lua_language_server_path },
       root_dir = default_root_dir,
@@ -115,7 +115,6 @@ return {
         },
       },
     })
-
 
     ------ LSP Servers
     ---- Custom Servers
@@ -302,35 +301,8 @@ return {
       root_dir = default_root_dir
     }
 
-    -- C and C++
-    local c_language_server_path = NEOVIM_HOME .. "/lsp/clangd"
-
-    if NEOVIM_OS_RUNNING == "WINDOWS"
-    then
-      c_language_server_path = c_language_server_path .. "/windows/bin/clangd.exe"
-    end
-
-    if NEOVIM_OS_RUNNING == "LINUX"
-    then
-      c_language_server_path = c_language_server_path .. "/linux-x64/bin/clangd"
-    end
-
-    if NEOVIM_OS_RUNNING == "MACOS"
-    then
-      c_language_server_path = c_language_server_path .. "/macos-arm/clangd"
-    end
-
-    local clangd_options = {
-      cmd = {
-        c_language_server_path,
-      },
-      filetypes = { "c", "cpp", "h", "hpp", "objc", "objcpp", "cuda", "proto" },
-      root_dir = default_root_dir
-    }
-
     local lsp_server_list = {
       angularls = angularls_options, -- Angular
-      clangd = clangd_options, -- C and C++
       cssls = cssls_options, -- CSS, SCSS, LESS
       -- dartls = {},
       eslint = eslint_options, -- Eslint
