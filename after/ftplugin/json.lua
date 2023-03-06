@@ -14,5 +14,3 @@ Add_lsp_server('jsonls', {
   single_file_support = true,
   root_dir = Get_default_root_dir()
 })
-
-Start_lsp()

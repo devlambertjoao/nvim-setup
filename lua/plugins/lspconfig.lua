@@ -29,19 +29,23 @@ function Get_default_root_dir(_)
   return vim.loop.cwd()
 end
 
-function Start_lsp()
-  vim.cmd [[LspStart]]
-end
+local servers_started = {}
 
 function Add_lsp_server(server_name, server_options)
-  local default_server_options = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  }
+  if servers_started[server_name] == nil then
+    local default_server_options = {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      name = server_name,
+    }
 
-  default_server_options = vim.tbl_deep_extend("force", server_options, default_server_options)
+    default_server_options = vim.tbl_deep_extend("force", server_options, default_server_options)
 
-  nvim_lsp[server_name].setup(default_server_options)
+    nvim_lsp[server_name].setup(default_server_options)
+
+    vim.cmd [[LspStart]]
+    servers_started[server_name] = true
+  end
 end
 
 return {

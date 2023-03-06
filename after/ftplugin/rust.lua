@@ -25,5 +25,3 @@ Add_lsp_server('rust_analyzer', {
     ["rust-analyzer"] = {}
   },
 })
-
-Start_lsp()

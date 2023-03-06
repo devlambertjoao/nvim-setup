@@ -73,5 +73,3 @@ Add_lsp_server('jdtls', {
   single_file_support = true,
   root_dir = Get_root_dir('pom.xml')
 })
-
-Start_lsp()

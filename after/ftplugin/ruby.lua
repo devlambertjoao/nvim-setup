@@ -15,5 +15,3 @@ Add_lsp_server('solargraph', {
     }
   },
 })
-
-Start_lsp()

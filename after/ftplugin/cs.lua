@@ -34,5 +34,3 @@ Add_lsp_server('omnisharp', {
   enable_import_completion = false,
   sdk_include_prereleases = true,
 })
-
-Start_lsp()

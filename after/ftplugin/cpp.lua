@@ -22,5 +22,3 @@ Add_lsp_server('clangd', {
   filetypes = { "c", "cpp", "h", "hpp", "objc", "objcpp", "cuda", "proto" },
   root_dir = Get_root_dir()
 })
-
-Start_lsp()
