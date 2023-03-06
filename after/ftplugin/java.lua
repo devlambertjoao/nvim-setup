@@ -74,4 +74,4 @@ Add_lsp_server('jdtls', {
   root_dir = Get_root_dir('pom.xml')
 })
 
-vim.cmd [[LspStart]]
+Start_lsp()

@@ -4,6 +4,18 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 NEOVIM_HOME = os.getenv("NEOVIM_HOME")
 NEOVIM_OS_RUNNING = os.getenv("NEOVIM_OS_RUNNING")
 
+function Get_root_dir(...)
+  return nvim_lsp.util.root_pattern(...)
+end
+
+function Get_default_root_dir(_)
+  return vim.loop.cwd()
+end
+
+function Start_lsp()
+  vim.cmd [[LspStart]]
+end
+
 local on_attach = function(_, bufnr)
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
@@ -21,10 +33,6 @@ local on_attach = function(_, bufnr)
   vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
 end
 
-function Get_root_dir(...)
-  return nvim_lsp.util.root_pattern(...)
-end
-
 function Add_lsp_server(server_name, server_options)
   local default_server_options = {
     capabilities = capabilities,
@@ -35,7 +43,6 @@ function Add_lsp_server(server_name, server_options)
 
   nvim_lsp[server_name].setup(default_server_options)
 end
-
 
 return {
   'neovim/nvim-lspconfig',
@@ -69,7 +76,45 @@ return {
     end
 
 
-
+    -- Lua
+    local lua_language_server_path = NEOVIM_HOME .. "/lsp/luals"
+    
+    if NEOVIM_OS_RUNNING == "WINDOWS"
+    then
+      lua_language_server_path = lua_language_server_path .. "/windows/bin/lua-language-server.exe"
+    end
+    
+    if NEOVIM_OS_RUNNING == "LINUX"
+    then
+      lua_language_server_path = lua_language_server_path .. "/linux-x64/bin/lua-language-server"
+    end
+    
+    if NEOVIM_OS_RUNNING == "MACOS"
+    then
+      lua_language_server_path = lua_language_server_path .. "/macos-arm/bin/lua-language-server"
+    end
+    
+    Add_lsp_server('lua_ls', {
+      cmd = { lua_language_server_path },
+      root_dir = default_root_dir,
+      settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT'
+          },
+          diagnostics = {
+            globals = { "vim" },
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+            checkThirdParty = false,
+            ignoreDir = {
+              "/lsp"
+            },
+          },
+        },
+      },
+    })
 
 
     ------ LSP Servers
@@ -205,24 +250,6 @@ return {
       root_dir = default_root_dir
     }
 
-    -- JSON
-    local json_language_server_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-json-language-server"
-
-    if NEOVIM_OS_RUNNING == "WINDOWS"
-    then
-      json_language_server_path = json_language_server_path .. ".cmd"
-    end
-
-    local jsonls_options = {
-      cmd = { json_language_server_path, "--stdio" },
-      init_options = {
-        provideFormatter = true
-      },
-      filetypes = { "json", "jsonc" },
-      single_file_support = true,
-      root_dir = default_root_dir
-    }
-
     -- Typescript
     local ts_language_server_path = NEOVIM_HOME .. "/lsp/typescript/node_modules/.bin/typescript-language-server"
 
@@ -276,73 +303,10 @@ return {
     }
 
     -- Lua
-    local lua_language_server_path = NEOVIM_HOME .. "/lsp/luals"
-
-    if NEOVIM_OS_RUNNING == "WINDOWS"
-    then
-      lua_language_server_path = lua_language_server_path .. "/windows/bin/lua-language-server.exe"
-    end
-
-    if NEOVIM_OS_RUNNING == "LINUX"
-    then
-      lua_language_server_path = lua_language_server_path .. "/linux-x64/bin/lua-language-server"
-    end
-
-    if NEOVIM_OS_RUNNING == "MACOS"
-    then
-      lua_language_server_path = lua_language_server_path .. "/macos-arm/bin/lua-language-server"
-    end
-
-    local lua_ls_options = {
-      cmd = { lua_language_server_path },
-      root_dir = default_root_dir,
-      settings = {
-        Lua = {
-          runtime = {
-            version = 'LuaJIT'
-          },
-          diagnostics = {
-            globals = { "vim" },
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false,
-            ignoreDir = {
-              "/lsp"
-            },
-          },
-        },
-      },
-    }
+    
 
     -- Rust
-    local rust_language_server_path = NEOVIM_HOME .. "/lsp/rust-analyzer"
-
-    if NEOVIM_OS_RUNNING == "WINDOWS"
-    then
-      rust_language_server_path = rust_language_server_path .. "/windows"
-    end
-
-    if NEOVIM_OS_RUNNING == "LINUX"
-    then
-      rust_language_server_path = rust_language_server_path .. "/linux-x64"
-    end
-
-    if NEOVIM_OS_RUNNING == "MACOS"
-    then
-      rust_language_server_path = rust_language_server_path .. "/macos-arm"
-    end
-
-    local rust_analyzer_options = {
-      cmd = { rust_language_server_path },
-      root_dir = default_root_dir,
-      filetypes = {
-        "rust"
-      },
-      settings = {
-        ["rust-analyzer"] = {}
-      },
-    }
+    
 
     -- .NET
     local dotnet_language_server_path = NEOVIM_HOME .. "/lsp/omnisharp"
@@ -415,13 +379,9 @@ return {
       -- dartls = {},
       eslint = eslint_options, -- Eslint
       html = html_options, -- Html
-      jsonls = jsonls_options, -- JSON
-      jdtls = jdtls_options, -- Java
       tsserver = tsserver_options, -- Typescript
       tailwindcss = tailwindcss_options, -- Tailwind
-      lua_ls = lua_ls_options, -- Lua
       -- pyright = {}, -- Python
-      rust_analyzer = rust_analyzer_options, -- Rust
       -- sqlls = {}, -- SQL
       vuels = vuels_options, -- VueJs
     }

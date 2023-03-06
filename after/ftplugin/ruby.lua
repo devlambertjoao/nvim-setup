@@ -16,4 +16,4 @@ Add_lsp_server('solargraph', {
   },
 })
 
-vim.cmd [[LspStart]]
+Start_lsp()
