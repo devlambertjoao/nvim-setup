@@ -17,11 +17,14 @@ require("lazy").setup('plugins', {
     lazy = true,
   },
   change_detection = {
-    enabled = true,
+    enabled = false,
     notify = false,
   },
   checker = {
     enabled = false,
+  },
+  install = {
+    colorscheme = { "nightfox" }
   },
   ui = {
     icons = {

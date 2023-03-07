@@ -137,7 +137,6 @@ return {
     })
     ------------------------------- solargraph
 
-
     ------------------------------- clangd
     local clangd_path = NEOVIM_HOME .. "/lsp/clangd"
 
@@ -292,7 +291,6 @@ return {
     })
     ------------------------------- jdtls
 
-
     ------------------------------- omnisharp
     local omnisharp_path = NEOVIM_HOME .. "/lsp/omnisharp"
 
@@ -331,213 +329,145 @@ return {
     })
     ------------------------------- omnisharp
 
-    -- ------ LSP Servers
-    -- ---- Custom Servers
-    -- -- Angular
-    -- local angular_language_server_path = NEOVIM_HOME .. "/lsp/angularls"
+    ------------------------------- angularls
+    local angularls_path = NEOVIM_HOME .. "/lsp/angularls"
 
-    -- local cmd = {
-    --   "node",
-    --   angular_language_server_path .. "/node_modules/@angular/language-server/index.js",
-    --   "--stdio",
-    --   "--tsProbeLocations",
-    --   angular_language_server_path,
-    --   "--ngProbeLocations",
-    --   angular_language_server_path,
-    -- }
+    local cmd = {
+      "node",
+      angularls_path .. "/node_modules/@angular/language-server/index.js",
+      "--stdio",
+      "--tsProbeLocations",
+      angularls_path,
+      "--ngProbeLocations",
+      angularls_path,
+    }
 
-    -- local angularls_options = {
-    --   filetypes = { "typescript", "html" },
-    --   root_dir = default_root_dir,
-    --   cmd = cmd,
-    --   on_new_config = function(new_config)
-    --     new_config.cmd = cmd
-    --   end,
-    -- }
+    add_lsp_server('angularls', {
+      filetypes = { "typescript", "html" },
+      root_dir = get_root_dir("angular.json"),
+      cmd = cmd,
+      on_new_config = function(new_config)
+        new_config.cmd = cmd
+      end,
+    })
+    ------------------------------- angularls
 
-    -- -- HTML
-    -- local html_language_server_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-html-language-server"
+    ------------------------------- html
+    local html_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-html-language-server"
 
-    -- if NEOVIM_OS_RUNNING == "WINDOWS"
-    -- then
-    --   html_language_server_path = html_language_server_path .. ".cmd"
-    -- end
+    if NEOVIM_OS_RUNNING == "WINDOWS"
+    then
+      html_path = html_path .. ".cmd"
+    end
 
-    -- local html_options = {
-    --   cmd = { html_language_server_path, "--stdio" },
-    --   init_options = {
-    --     configurationSection = { "html", "css", "javascript" },
-    --     embeddedLanguages = {
-    --       css = true,
-    --       javascript = true
-    --     },
-    --     provideFormatter = true
-    --   },
-    --   single_file_support = true,
-    --   root_dir = default_root_dir
-    -- }
+    add_lsp_server('html', {
+      cmd = { html_path, "--stdio" },
+      init_options = {
+        configurationSection = { "html", "css", "javascript" },
+        embeddedLanguages = {
+          css = true,
+          javascript = true
+        },
+        provideFormatter = true
+      },
+      single_file_support = true,
+      root_dir = default_root_dir
+    })
+    ------------------------------- html
 
-    -- -- VUELS
-    -- local vuels_language_server_path = NEOVIM_HOME .. "/lsp/vuels/node_modules/.bin/vls"
+    ------------------------------- vuels
+    local vuels_path = NEOVIM_HOME .. "/lsp/vuels/node_modules/.bin/vls"
 
-    -- local vuels_options = {
-    --   cmd = { vuels_language_server_path, "--stdio" },
-    --   root_dir = default_root_dir
-    -- }
+    add_lsp_server('vuels', {
+      cmd = { vuels_path, "--stdio" },
+      root_dir = get_root_dir("package.json", "vue.config.js")
+    })
+    ------------------------------- vuels
 
-    -- -- CSS
-    -- local css_language_server_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-css-language-server"
+    ------------------------------- cssls
+    local cssls_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-css-language-server"
 
-    -- if NEOVIM_OS_RUNNING == "WINDOWS"
-    -- then
-    --   css_language_server_path = css_language_server_path .. ".cmd"
-    -- end
+    if NEOVIM_OS_RUNNING == "WINDOWS"
+    then
+      cssls_path = cssls_path .. ".cmd"
+    end
 
-    -- local cssls_options = {
-    --   cmd = { css_language_server_path, "--stdio" },
-    --   init_options = {
-    --     provideFormatter = true
-    --   },
-    --   filetypes = { "css", "scss", "less" },
-    --   single_file_support = true,
-    --   root_dir = default_root_dir
-    -- }
+    add_lsp_server('cssls', {
+      cmd = { cssls_path, "--stdio" },
+      init_options = {
+        provideFormatter = true
+      },
+      filetypes = { "css", "scss", "less" },
+      single_file_support = true,
+      root_dir = default_root_dir
+    })
+    ------------------------------- cssls
 
-    -- -- Eslint
-    -- local eslint_language_server_path = NEOVIM_HOME .. "/lsp/vscode/node_modules/.bin/vscode-eslint-language-server"
+    ------------------------------- tsserver
+    local tsserver_path = NEOVIM_HOME .. "/lsp/typescript/node_modules/.bin/typescript-language-server"
 
-    -- if NEOVIM_OS_RUNNING == "WINDOWS"
-    -- then
-    --   eslint_language_server_path = eslint_language_server_path .. ".cmd"
-    -- end
+    if NEOVIM_OS_RUNNING == "WINDOWS"
+    then
+      tsserver_path = tsserver_path .. ".cmd"
+    end
 
-    -- local eslint_options = {
-    --   cmd = { eslint_language_server_path, "--stdio" },
-    --   init_options = {
-    --     provideFormatter = true
-    --   },
-    --   filetypes = {
-    --     "javascript",
-    --     "javascriptreact",
-    --     "javascript.jsx",
-    --     "typescript",
-    --     "typescriptreact",
-    --     "typescript.tsx",
-    --     "vue",
-    --     "svelte",
-    --     "astro"
-    --   },
-    --   settings = {
-    --     codeAction = {
-    --       disableRuleComment = {
-    --         enable = true,
-    --         location = "separateLine"
-    --       },
-    --       showDocumentation = {
-    --         enable = true
-    --       }
-    --     },
-    --     codeActionOnSave = {
-    --       enable = false,
-    --       mode = "all"
-    --     },
-    --     experimental = {
-    --       useFlatConfig = false
-    --     },
-    --     format = true,
-    --     nodePath = "",
-    --     onIgnoredFiles = "off",
-    --     packageManager = "npm",
-    --     problems = {
-    --       shortenToSingleLine = false
-    --     },
-    --     quiet = false,
-    --     rulesCustomizations = {},
-    --     run = "onType",
-    --     useESLintClass = false,
-    --     validate = "on",
-    --     workingDirectory = {
-    --       mode = "location"
-    --     }
-    --   },
-    --   single_file_support = true,
-    --   root_dir = default_root_dir
-    -- }
+    add_lsp_server('tsserver', {
+      cmd = { tsserver_path, "--stdio" },
+      init_options = {
+        provideFormatter = true
+      },
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx"
+      },
+      single_file_support = true,
+      root_dir = get_root_dir("package.json", "tsconfig.json", "jsconfig.json", ".git")
+    })
+    ------------------------------- tsserver
 
-    -- -- Typescript
-    -- local ts_language_server_path = NEOVIM_HOME .. "/lsp/typescript/node_modules/.bin/typescript-language-server"
+    ------------------------------- tailwindcss
+    local tailwindcss_path = NEOVIM_HOME ..
+        "/lsp/tailwindcss/node_modules/.bin/tailwindcss-language-server"
 
-    -- if NEOVIM_OS_RUNNING == "WINDOWS"
-    -- then
-    --   ts_language_server_path = ts_language_server_path .. ".cmd"
-    -- end
+    add_lsp_server('tailwindcss', {
+      cmd = { tailwindcss_path, "--stdio" },
+      init_options = {
+        provideFormatter = true
+      },
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "eruby",
+        "erb",
+        "html",
+        "css",
+        "scss",
+        "less",
+        "sass",
+      },
+      single_file_support = true,
+      root_dir = get_root_dir('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json', 'node_modules', '.git')
+    })
+    ------------------------------- tailwindcss
 
-    -- local tsserver_options = {
-    --   cmd = { ts_language_server_path, "--stdio" },
-    --   init_options = {
-    --     provideFormatter = true
-    --   },
-    --   filetypes = {
-    --     "javascript",
-    --     "javascriptreact",
-    --     "javascript.jsx",
-    --     "typescript",
-    --     "typescriptreact",
-    --     "typescript.tsx"
-    --   },
-    --   single_file_support = true,
-    --   root_dir = default_root_dir
-    -- }
+    -- TODO: Add this servers
+    ------------------------------- pyright
+    ------------------------------- pyright
 
-    -- -- Tailwind Css
-    -- local tailwindcss_language_server_path = NEOVIM_HOME ..
-    --     "/lsp/tailwindcss/node_modules/.bin/tailwindcss-language-server"
+    ------------------------------- eslint
+    ------------------------------- eslint
 
-    -- local tailwindcss_options = {
-    --   cmd = { tailwindcss_language_server_path, "--stdio" },
-    --   init_options = {
-    --     provideFormatter = true
-    --   },
-    --   filetypes = {
-    --     "javascript",
-    --     "javascriptreact",
-    --     "typescript",
-    --     "typescriptreact",
-    --     "vue",
-    --     "eruby",
-    --     "erb",
-    --     "html",
-    --     "css",
-    --     "scss",
-    --     "less",
-    --     "sass",
-    --   },
-    --   single_file_support = true,
-    --   root_dir = default_root_dir
-    -- }
+    ------------------------------- sqlls
+    ------------------------------- sqlls
 
-    -- local lsp_server_list = {
-    --   angularls = angularls_options, -- Angular
-    --   cssls = cssls_options, -- CSS, SCSS, LESS
-    --   -- dartls = {},
-    --   eslint = eslint_options, -- Eslint
-    --   html = html_options, -- Html
-    --   tsserver = tsserver_options, -- Typescript
-    --   tailwindcss = tailwindcss_options, -- Tailwind
-    --   -- pyright = {}, -- Python
-    --   -- sqlls = {}, -- SQL
-    --   vuels = vuels_options, -- VueJs
-    -- }
-
-    -- for server_name, server_options in pairs(lsp_server_list) do
-    --   local default_server_options = {
-    --     capabilities = capabilities,
-    --     on_attach = on_attach,
-    --   }
-
-    --   default_server_options = vim.tbl_deep_extend("force", server_options, default_server_options)
-
-    --   nvim_lsp[server_name].setup(default_server_options)
-    -- end
+    ------------------------------- dartls
+    ------------------------------- dartls
   end
 }
