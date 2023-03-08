@@ -6,7 +6,10 @@ return {
     local nvim_transparent = require('transparent')
     nvim_transparent.setup({
       enable = true,
-      ignore_linked_group = true
+      ignore_linked_group = true,
+      extra_groups = {
+        "NvimTreeNormal"
+      }
     })
   end
 }

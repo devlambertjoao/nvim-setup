@@ -19,6 +19,8 @@ return {
             file = false,
             folder = true,
             folder_arrow = false,
+            git = true,
+            modified = true
           },
           glyphs = {
             git = {
@@ -33,8 +35,24 @@ return {
             folder = {
               default = ">",
               open = "v",
-            }
+              empty = "[]",
+              empty_open = "v",
+            },
+            modified = "*",
+            default = ""
           }
+        },
+        indent_width = 2,
+        indent_markers = {
+          enable = true,
+          inline_arrows = false,
+          icons = {
+            corner = "└",
+            edge = "│",
+            item = "│",
+            bottom = "─",
+            none = " ",
+          },
         },
       },
       filters = {
