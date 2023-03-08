@@ -1,6 +1,7 @@
 return {
   'xiyaowong/nvim-transparent',
-  event = 'BufRead',
+  lazy = false,
+  priority = 900,
   config = function()
     local nvim_transparent = require('transparent')
     nvim_transparent.setup({
