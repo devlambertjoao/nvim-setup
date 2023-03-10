@@ -43,7 +43,6 @@ return {
   event = { 'BufRead' },
   config = function()
     require('mini.cursorword').setup()
-    require('mini.completion').setup()
     require('mini.pairs').setup()
     require('mini.tabline').setup()
     require('mini.splitjoin').setup()
