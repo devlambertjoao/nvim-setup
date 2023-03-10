@@ -7,7 +7,7 @@ return {
     'RishabhRD/popfix',
     'RishabhRD/nvim-lsputils',
   },
-  event = { '' },
+  event = { 'BufRead' },
   config = function()
     vim.diagnostic.config({
       virtual_text = {
@@ -27,7 +27,6 @@ return {
     end
 
     local nvim_lsp = require("lspconfig")
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     local on_attach = function(_, bufnr)
       local function buf_set_option(...)
@@ -45,6 +44,8 @@ return {
       vim.lsp.handlers['textDocument/documentSymbol'] = require 'lsputil.symbols'.document_handler
       vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
     end
+
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     require("mason").setup({
       ui = {
@@ -75,31 +76,32 @@ return {
       },
     })
 
-    local custom_server_options = {
-      lua_ls = {
-        runtime = {
-          version = "LuaJIT"
-        },
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-          checkThirdParty = false,
-        },
-      }
+    local default_server_options = {
+      on_attach = on_attach,
+      capabilities = capabilities
     }
 
     mason_lspconfig.setup_handlers({
       function(server_name)
-        local default_server_options = {
-          on_attach = on_attach,
-          capabilities = capabilities
-        }
-
-        local merged_options = vim.tbl_deep_extend("force", custom_server_options[server_name], default_server_options)
-
-        nvim_lsp[server_name].setup(merged_options)
+        nvim_lsp[server_name].setup(default_server_options)
+      end,
+      ["lua_ls"] = function()
+        nvim_lsp["lua_ls"].setup(vim.tbl_deep_extend("force", {
+          settings = {
+            Lua = {
+              runtime = {
+                version = "LuaJIT"
+              },
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+              },
+            }
+          }
+        }, default_server_options))
       end
     })
   end
