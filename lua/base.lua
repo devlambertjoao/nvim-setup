@@ -79,4 +79,4 @@ vim.opt.pumblend = 5
 vim.opt.background = 'dark'
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
-vim.cmd [[ colorscheme habamax ]]
+vim.cmd [[ colorscheme slate ]]
