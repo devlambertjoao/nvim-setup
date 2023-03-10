@@ -1,10 +1,7 @@
 # My setup for neovim
 
-# Create folder
+# Clone this repo to folder
 C:\Users\XXXXXXX\AppData\Local\nvim
-
-# Install Packer
-git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
 
 # Install ripgrep for Telescope
 choco install ripgrep

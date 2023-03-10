@@ -12,7 +12,7 @@ return {
     'RishabhRD/popfix',
     'RishabhRD/nvim-lsputils',
   },
-  event = 'InsertEnter',
+  event = { 'BufRead' },
   config = function()
     local cmp = require('cmp')
     cmp.setup({

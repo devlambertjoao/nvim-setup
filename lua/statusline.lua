@@ -1,23 +1,42 @@
 local setup_highlights = function()
---   local palette = require('nightfox.palette').load("nightfox")
---   local spec = require('nightfox.spec').load("nightfox")
--- 
---   vim.api.nvim_set_hl(0, 'StatusLineNormalMode', { ctermbg = 0, fg = palette.fg2, bg = palette.blue.dim })
---   vim.api.nvim_set_hl(0, 'StatusLineInsertMode', { ctermbg = 0, fg = palette.fg2, bg = palette.orange.dim })
---   vim.api.nvim_set_hl(0, 'StatusLineVisualMode', { ctermbg = 0, fg = palette.fg2, bg = palette.magenta.dim })
---   vim.api.nvim_set_hl(0, 'StatusLineReplaceMode', { ctermbg = 0, fg = palette.fg2, bg = palette.green.dim })
---   vim.api.nvim_set_hl(0, 'StatusLineCmdlineMode', { ctermbg = 0, fg = palette.fg2, bg = palette.pink.dim })
---   vim.api.nvim_set_hl(0, 'StatusLineTerminalMode', { ctermbg = 0, fg = palette.fg2, bg = palette.red.dim })
--- 
---   vim.api.nvim_set_hl(0, 'StatusLineLspError', { ctermbg = 0, fg = palette.red.bright, bg = palette.bg0 })
---   vim.api.nvim_set_hl(0, 'StatusLineLspWarning', { ctermbg = 0, fg = palette.orange.bright, bg = palette.bg0 })
---   vim.api.nvim_set_hl(0, 'StatusLineLspHint', { ctermbg = 0, fg = palette.green.bright, bg = palette.bg0 })
---   vim.api.nvim_set_hl(0, 'StatusLineLspInfo', { ctermbg = 0, fg = palette.blue.bright, bg = palette.bg0 })
--- 
---   vim.api.nvim_set_hl(0, 'StatusLineGitSignsAdd', { ctermbg = 0, fg = spec.git.add, bg = palette.bg2 })
---   vim.api.nvim_set_hl(0, 'StatusLineGitSignsChange', { ctermbg = 0, fg = spec.git.changed, bg = palette.bg2 })
---   vim.api.nvim_set_hl(0, 'StatusLineGitSignsDelete', { ctermbg = 0, fg = spec.git.removed, bg = palette.bg2 })
---   vim.api.nvim_set_hl(0, 'StatusLineGitSignsOnMain', { ctermbg = 0, fg = palette.fg2, bg = palette.bg2 })
+  local palette = {
+    base00 = '#1e1e2e',
+    base01 = '#181825',
+    base02 = '#313244',
+    base03 = '#45475a',
+    base04 = '#585b70',
+    base05 = '#cdd6f4',
+    base06 = '#f5e0dc',
+    base07 = '#b4befe',
+    base08 = '#f38ba8',
+    base09 = '#fab387',
+    base0A = '#f9e2af',
+    base0B = '#a6e3a1',
+    base0C = '#94e2d5',
+    base0D = '#89b4fa',
+    base0E = '#cba6f7',
+    base0F = '#f2cdcd'
+  }
+  vim.api.nvim_set_hl(0, 'StatusLineNormalMode', { ctermbg = 0, fg = palette.base01, bg = palette.base07 })
+  vim.api.nvim_set_hl(0, 'StatusLineInsertMode', { ctermbg = 0, fg = palette.base01, bg = palette.base0A })
+  vim.api.nvim_set_hl(0, 'StatusLineVisualMode', { ctermbg = 0, fg = palette.base01, bg = palette.base0E })
+  vim.api.nvim_set_hl(0, 'StatusLineReplaceMode', { ctermbg = 0, fg = palette.base01, bg = palette.base0B })
+  vim.api.nvim_set_hl(0, 'StatusLineCmdlineMode', { ctermbg = 0, fg = palette.base01, bg = palette.base0F })
+  vim.api.nvim_set_hl(0, 'StatusLineTerminalMode', { ctermbg = 0, fg = palette.base01, bg = palette.base08 })
+
+  vim.api.nvim_set_hl(0, 'StatusLineGitSignsAdd', { ctermbg = 0, fg = palette.base0B, bg = palette.base01 })
+  vim.api.nvim_set_hl(0, 'StatusLineGitSignsChange', { ctermbg = 0, fg = palette.base0E, bg = palette.base01 })
+  vim.api.nvim_set_hl(0, 'StatusLineGitSignsDelete', { ctermbg = 0, fg = palette.base08, bg = palette.base01 })
+  vim.api.nvim_set_hl(0, 'StatusLineGitSignsOnMain', { ctermbg = 0, fg = palette.base05, bg = palette.base01 })
+
+  vim.api.nvim_set_hl(0, 'StatusLineLspError', { ctermbg = 0, fg = palette.base08, bg = palette.base01 })
+  vim.api.nvim_set_hl(0, 'StatusLineLspWarning', { ctermbg = 0, fg = palette.base0A, bg = palette.base01 })
+  vim.api.nvim_set_hl(0, 'StatusLineLspHint', { ctermbg = 0, fg = palette.base0B, bg = palette.base01 })
+  vim.api.nvim_set_hl(0, 'StatusLineLspInfo', { ctermbg = 0, fg = palette.base0D, bg = palette.base01 })
+
+  vim.api.nvim_set_hl(0, 'StatusLineNormal', { ctermbg = 0, fg = palette.base09, bg = palette.base02 })
+  vim.api.nvim_set_hl(0, 'StatuslineNC', { ctermbg = 0, fg = palette.base05, bg = palette.base01 })
+  vim.api.nvim_set_hl(0, 'StatuslineInactive', { ctermbg = 0, fg = palette.base05, bg = palette.base01 })
 end
 
 local modes = {
@@ -50,7 +69,7 @@ end
 
 local function update_mode_colors()
   local current_mode = vim.api.nvim_get_mode().mode
-  local mode_color = "%#Normal#"
+  local mode_color = "%#StatusLineNormal#"
 
   if current_mode == "n" then
     mode_color = "%#StatusLineNormalMode#"
@@ -149,15 +168,28 @@ local function lsp()
     info = "%#StatusLineLspInfo# i" .. count["info"]
   end
 
-  return errors .. warnings .. hints .. info
+  local lsp_label = errors .. warnings .. hints .. info
+  if lsp_label == '' then
+    return ''
+  end
+
+  return lsp_label .. "%#StatuslineNC# |"
 end
 
 local function filetype()
-  return string.format(" %s ", vim.bo.filetype):upper()
+  if vim.bo.filetype == '' then
+    return ''
+  end
+
+  return string.format(" %s |", vim.bo.filetype)
 end
 
 local function lineinfo()
-  return " %P %l:%c "
+  if vim.bo.filetype == '' then
+    return ''
+  end
+
+  return " %p%% %l:%c "
 end
 
 Statusline = {}
@@ -166,34 +198,32 @@ Statusline.active = function()
   if vim.bo.filetype == 'NvimTree' or
       vim.bo.filetype == 'Telescope' or
       vim.bo.filetype == "alpha" then
-    return "%#Normal#"
+    return "%#StatusLineNormal#"
   end
 
   setup_highlights()
 
   return table.concat {
-    "%#Statusline#",
     update_mode_colors(),
     mode(),
     versioncontrol(),
-    "%#Statusline# ",
+    "%#StatusLineNormal# ",
     filepath(),
     filename(),
+    "%#StatuslineNormal#%=",
     lsp(),
-    "%#Statusline#%=",
     "%#StatuslineNC#",
     filetype(),
-    "|",
     lineinfo(),
   }
 end
 
 function Statusline.inactive()
-  return "%F"
+  return "%#StatusLineNormal# %F"
 end
 
 function Statusline.short()
-  return ""
+  return "%#StatusLineInactive#"
 end
 
 vim.api.nvim_exec([[

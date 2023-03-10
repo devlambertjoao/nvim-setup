@@ -90,6 +90,7 @@ return {
         r = { vim.lsp.buf.rename, "Rename" },
         c = { vim.lsp.buf.code_action, "Fix and Suggestions" },
         f = { vim.lsp.buf.format, "Format" },
+        j = {'<cmd>lua MiniSplitjoin.toggle()', "Split Join"},
       },
       f = {
         name = "File Navigation",
