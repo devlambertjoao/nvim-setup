@@ -2,6 +2,7 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     'neovim/nvim-lsp',
+    'hrsh7th/nvim-cmp',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'RishabhRD/popfix',
