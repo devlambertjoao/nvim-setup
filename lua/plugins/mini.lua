@@ -47,8 +47,8 @@ return {
     require('mini.tabline').setup()
     require('mini.splitjoin').setup()
     require('mini.indentscope').setup()
-    require('mini.base16').setup({
-      palette = catppuccin_base16
-    })
+    -- require('mini.base16').setup({
+    --   palette = catppuccin_base16
+    -- })
   end
 }
