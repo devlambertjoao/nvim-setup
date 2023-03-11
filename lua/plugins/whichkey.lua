@@ -90,7 +90,7 @@ return {
         r = { vim.lsp.buf.rename, "Rename" },
         c = { vim.lsp.buf.code_action, "Fix and Suggestions" },
         f = { vim.lsp.buf.format, "Format" },
-        j = {'<cmd>lua MiniSplitjoin.toggle()', "Split Join"},
+        j = {'<cmd>lua MiniSplitjoin.toggle()<CR>', "Split Join"},
       },
       f = {
         name = "File Navigation",
@@ -104,12 +104,19 @@ return {
         s = { "<cmd>Telescope git_status<CR>", "Git Status" },
         c = { "<cmd>Telescope git_commits<CR>", "Git Commits" },
         b = { "<cmd>Telescope git_branches<CR>", "Git Branches" },
+        l = { "<cmd>lua Lazygit_toggle()<CR>", "Lazy Git" },
       },
       b = {
         name = "Buffers",
         b = { "<cmd>Telescope buffers<CR>", "All Buffers" },
         n = { "", "Next buffer" },
         p = { "", "Previous buffer" },
+      },
+      t = {
+        name = "Terminal (Or <C-\\>)",
+        s = { "<cmd>ToggleTerm direction=horizontal size=10<CR>", "Bottom" },
+        v = { "<cmd>ToggleTerm direction=vertical size=60<CR>", "Vertical" },
+        t = { "<cmd>ToggleTerm direction=float<CR>", "Floating terminal" }
       }
     }, { prefix = "<leader>" })
 
