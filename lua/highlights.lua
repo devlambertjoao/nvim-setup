@@ -42,6 +42,11 @@ vim.api.nvim_set_hl(0, 'StatuslineInactive', { ctermbg = 0, fg = palette.base05,
 -- UI
 vim.api.nvim_set_hl(0, 'Normal', { ctermbg = 0, fg = palette.base05, bg = palette.base00 })
 vim.api.nvim_set_hl(0, 'NormalNC', { ctermbg = 0, fg = palette.base04, bg = palette.base00 })
+vim.api.nvim_set_hl(0, 'SignColumn', { ctermbg = 0, fg = palette.base00, bg = palette.base00 })
+
+-- Pmenu
+vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg = 0, fg = palette.base05, bg = palette.base01 })
+vim.api.nvim_set_hl(0, 'PmenuThumb', { ctermbg = 0, fg = palette.base0E, bg = palette.base0E })
 
 -- NvimTree
 vim.api.nvim_set_hl(0, 'NvimTreeNormal', { ctermbg = 0, fg = palette.base05, bg = palette.base01 })
@@ -50,3 +55,6 @@ vim.api.nvim_set_hl(0, 'VertSplit', { ctermbg = 0, fg = palette.base00, bg = pal
 
 -- GitSigns
 vim.api.nvim_set_hl(0, 'DiffAdd', { ctermbg = 0, fg = palette.base0B, bg = palette.base00 })
+vim.api.nvim_set_hl(0, 'DiffChange', { ctermbg = 0, fg = palette.base0E, bg = palette.base00 })
+vim.api.nvim_set_hl(0, 'DiffDelete', { ctermbg = 0, fg = palette.base08, bg = palette.base00 })
+
