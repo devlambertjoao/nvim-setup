@@ -1,43 +1,28 @@
--- Vim_enter = function()
---   vim.cmd [[ enew ]]
---
---   vim.cmd [[
---       set local
---         \ bufhidden=wipe
---         \ buftype=nofile
---         \ nobuflisted
---         \ nocursorcolumn
---         \ nocursorline
---         \ nolist
---         \ nonumber
---         \ noswapfile
---         \ norelativenumber
---     ]]
---
---   -- vim.cmd [[ call append('$', "") ]]
---
---   -- vim.cmd [[ for line in split(system('fortune -a'), '\n')
---   --     call append('$', '        ' . l:line)
---   -- endfor ]]
---
---   -- vim.cmd[[setlocal nomodifiable nomodified]]
---
---   -- nnoremap <buffer><silent> e :enew<CR>
---   -- nnoremap <buffer><silent> i :enew <bar> startinsert<CR>
---   -- nnoremap <buffer><silent> o :enew <bar> startinsert<CR>
--- end
---
--- vim.api.nvim_exec(
---   [[ autocmd VimEnter * ++nested ++once Vim_enter() ]],
---   false
--- )
---
--- return { Vim_enter() }
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  pattern = "*",
-  nested = true,
-  callback = function()
-    vim.api.nvim_buf_set_keymap(0, "n", "b", "<cmd>NvimTreeFindFileToggle<CR>", {})
-  end,
-})
+-- local palette = {
+--   base00 = '#1e1e2e',
+--   base01 = '#181825',
+--   base02 = '#313244',
+--   base03 = '#45475a',
+--   base04 = '#585b70',
+--   base05 = '#cdd6f4',
+--   base06 = '#f5e0dc',
+--   base07 = '#b4befe',
+--   base08 = '#f38ba8',
+--   base09 = '#fab387',
+--   base0A = '#f9e2af',
+--   base0B = '#a6e3a1',
+--   base0C = '#94e2d5',
+--   base0D = '#89b4fa',
+--   base0E = '#cba6f7',
+--   base0F = '#f2cdcd',
+-- }
+-- 
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   pattern = "*",
+--   nested = true,
+--   callback = function()
+--     vim.api.nvim_set_hl(0, 'Normal', { ctermbg = 0, fg = palette.base05, bg = palette.base00 })
+-- 
+--     -- vim.api.nvim_buf_set_keymap(0, "n", "b", "<cmd>NvimTreeFindFileToggle<CR>", {})
+--   end,
+-- })

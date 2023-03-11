@@ -1,3 +1,7 @@
+if os.getenv("NEOVIM_OS_RUNNING") == 'WINDOWS' then
+  return { }
+end
+
 return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
