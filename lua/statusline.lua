@@ -127,12 +127,7 @@ local function lsp()
     info = "%#StatusLineLspInfo# i" .. count["info"]
   end
 
-  local lsp_label = errors .. warnings .. hints .. info
-  if lsp_label == '' then
-    return ''
-  end
-
-  return lsp_label .. "%#StatuslineNC# |"
+  return errors .. warnings .. hints .. info .. " "
 end
 
 local function filetype()
@@ -169,7 +164,7 @@ Statusline.active = function()
     filename(),
     "%#StatuslineNormal#%=",
     lsp(),
-    "%#StatuslineNC#",
+    "%#StatuslineFileinfo#",
     filetype(),
     lineinfo(),
   }

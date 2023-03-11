@@ -105,6 +105,12 @@ return {
         c = { "<cmd>Telescope git_commits<CR>", "Git Commits" },
         b = { "<cmd>Telescope git_branches<CR>", "Git Branches" },
       },
+      b = {
+        name = "Buffers",
+        b = { "<cmd>Telescope buffers<CR>", "All Buffers" },
+        n = { "", "Next buffer" },
+        p = { "", "Previous buffer" },
+      }
     }, { prefix = "<leader>" })
 
     -- Windows
