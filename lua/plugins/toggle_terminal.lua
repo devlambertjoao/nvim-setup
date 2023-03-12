@@ -16,8 +16,8 @@ return {
 
     function _G.set_terminal_keymaps()
       local opts = { buffer = 0 }
-      vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-      vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+      vim.keymap.set('t', '<esc>', [[ <C-\><C-n>:q!<CR> ]], opts)
+      vim.keymap.set('t', '<C-w>', [[ <C-\><C-n><C-w> ]], opts)
     end
 
     vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
@@ -37,7 +37,7 @@ return {
       terminal_mappings = true,
       persist_size = true,
       persist_mode = true,
-      direction = 'vertical',
+      direction = 'float',
       close_on_exit = true,
       auto_scroll = true,
     })
