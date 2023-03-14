@@ -117,7 +117,8 @@ return {
         s = { "<cmd>ToggleTerm direction=horizontal size=10<CR>", "Bottom" },
         v = { "<cmd>ToggleTerm direction=vertical size=60<CR>", "Vertical" },
         t = { "<cmd>ToggleTerm direction=float<CR>", "Floating terminal" }
-      }
+      },
+      z = { '<cmd>ZenMode<CR>', "ZenMode"}
     }, { prefix = "<leader>" })
 
     -- Windows
