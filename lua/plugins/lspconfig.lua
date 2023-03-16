@@ -82,6 +82,11 @@ return {
       capabilities = capabilities
     }
 
+    local server_options_ignoring_root_dir = vim.tbl_deep_extend("force", {
+      root_dir = nvim_lsp.util.root_pattern("*")
+    }, default_server_options)
+
+
     mason_lspconfig.setup_handlers({
       function(server_name)
         nvim_lsp[server_name].setup(default_server_options)
@@ -103,6 +108,17 @@ return {
             }
           }
         }, default_server_options))
+      end,
+      ["tsserver"] = function()
+        nvim_lsp["tsserver"].setup(server_options_ignoring_root_dir)
+      end,
+      ["html"] = function()
+        nvim_lsp["html"].setup(server_options_ignoring_root_dir)
+      end,
+      ["cssls"] = function()
+        nvim_lsp["cssls"].setup(vim.tbl_deep_extend("force", {
+          filetypes = { "css", "scss", "less", "sass" }
+        }, server_options_ignoring_root_dir))
       end
     })
   end
