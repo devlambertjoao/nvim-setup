@@ -109,6 +109,9 @@ return {
           }
         }, default_server_options))
       end,
+      ["jdtls"] = function()
+        nvim_lsp["jdtls"].setup(server_options_ignoring_root_dir)
+      end,
       ["tsserver"] = function()
         nvim_lsp["tsserver"].setup(server_options_ignoring_root_dir)
       end,
@@ -119,7 +122,7 @@ return {
         nvim_lsp["cssls"].setup(vim.tbl_deep_extend("force", {
           filetypes = { "css", "scss", "less", "sass" }
         }, server_options_ignoring_root_dir))
-      end
+      end,
     })
   end
 }
