@@ -30,12 +30,12 @@ return {
       }),
       window = {
         completion = {
-          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-          padding = 2,
+          -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+          padding = 3,
         },
         documentation = {
-          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-          padding = 2,
+          -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+          padding = 3,
         }
       }
     })
