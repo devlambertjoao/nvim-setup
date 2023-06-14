@@ -35,6 +35,6 @@ return {
         'NormalFloat',
       },
     })
-    vim.cmd [[ TransparentEnable ]]
+    -- vim.cmd [[ TransparentEnable ]]
   end
 }
