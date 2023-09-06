@@ -21,23 +21,43 @@
 -- }
 
 -- Twilight
+-- local palette = {
+--   base00 = '#1e1e1e',
+--   base01 = '#323537',
+--   base02 = '#464b50',
+--   base03 = '#5f5a60',
+--   base04 = '#838184',
+--   base05 = '#a7a7a7',
+--   base06 = '#c3c3c3',
+--   base07 = '#ffffff',
+--   base08 = '#cf6a4c',
+--   base09 = '#cda869',
+--   base0A = '#f9ee98',
+--   base0B = '#8f9d6a',
+--   base0C = '#afc4db',
+--   base0D = '#7587a6',
+--   base0E = '#9b859d',
+--   base0F = '#9b703f',
+-- }
+
+-- Rose Pine
 local palette = {
-  base00 = '#1e1e1e',
-  base01 = '#323537',
-  base02 = '#464b50',
-  base03 = '#5f5a60',
-  base04 = '#838184',
-  base05 = '#a7a7a7',
-  base06 = '#c3c3c3',
-  base07 = '#ffffff',
-  base08 = '#cf6a4c',
-  base09 = '#cda869',
-  base0A = '#f9ee98',
-  base0B = '#8f9d6a',
-  base0C = '#afc4db',
-  base0D = '#7587a6',
-  base0E = '#9b859d',
-  base0F = '#9b703f',
+  base00 = '#191724',
+  base01 = '#1f1d2e',
+  base02 = '#26233a',
+  base03 = '#6e6a86',
+  base04 = '#908caa',
+  base05 = '#e0def4',
+  base06 = '#e0def4',
+  base07 = '#524f67',
+  base08 = '#eb6f92',
+  base09 = '#f6c177',
+  base0A = '#ebbcba',
+  base0B = '#31748f',
+  base0C = '#9ccfd8',
+  base0D = '#c4a7e7',
+  base0E = '#f6c177',
+  base0F = '#524f67'
 }
 
 return {

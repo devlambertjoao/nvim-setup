@@ -115,6 +115,11 @@ return {
       ["tsserver"] = function()
         nvim_lsp["tsserver"].setup(server_options_ignoring_root_dir)
       end,
+      ["solargraph"] = function()
+        nvim_lsp["solargraph"].setup(vim.tbl_deep_extend("force", {
+          filetypes = { "ruby, eruby" }
+        }, server_options_ignoring_root_dir))
+      end,
       ["html"] = function()
         nvim_lsp["html"].setup(server_options_ignoring_root_dir)
       end,
