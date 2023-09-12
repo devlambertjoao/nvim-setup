@@ -13,9 +13,13 @@ choco install lazygit
 Set-ExecutionPolicy Unrestricted
 
 # Create environments variables
-Variable Name = NEOVIM_HOME
-Variable Value = C:\Users\jodt\AppData\Local\nvim
-
 Variable Name = NEOVIM_OS_RUNNING
 Variable Value = WINDOWS || MACOS || LINUX
 
+# If you want to open in windows using nv alias on explorer
+# Inside Neovim bin folder (same directory of nvim.exe)
+1. Create nvim-alacritty.cmd
+  "C:\Program Files\Alacritty\alacritty.exe" --command "C:\Development\tools\nvim\bin\nvim.exe"
+
+2. Create nv.bat
+  start /min cmd /c "C:\Development\tools\nvim\bin\nvim-alacritty.cmd"
