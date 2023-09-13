@@ -22,7 +22,7 @@ local palette = {
 
 return {
   'echasnovski/mini.nvim',
-  event = { 'BufRead' },
+  event = { 'VeryLazy' },
   config = function()
     require('mini.cursorword').setup()
     require('mini.pairs').setup()

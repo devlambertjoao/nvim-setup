@@ -8,7 +8,7 @@ return {
     'windwp/nvim-ts-autotag',
     'RRethy/nvim-treesitter-endwise',
   },
-  event = { 'BufRead' },
+  event = { 'VeryLazy' },
   config = function()
     require('nvim-treesitter.configs').setup({
       ensure_installed = {

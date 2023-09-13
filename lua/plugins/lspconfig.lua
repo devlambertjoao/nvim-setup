@@ -8,7 +8,7 @@ return {
     'RishabhRD/popfix',
     'RishabhRD/nvim-lsputils',
   },
-  event = { 'BufRead' },
+  event = { 'VeryLazy' },
   config = function()
     vim.diagnostic.config({
       virtual_text = {

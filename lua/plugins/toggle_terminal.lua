@@ -45,7 +45,11 @@ return {
     ---- Custom Terminals
     -- Create a global function and register with whichkey
     -- Lazygit
-    local lazygit = require('toggleterm.terminal').Terminal:new({ cmd = "lazygit", hidden = true, direction = 'float' })
+    local lazygit = require('toggleterm.terminal').Terminal:new({
+      cmd = "lazygit",
+      hidden = true,
+      direction = 'float'
+    })
     function Lazygit_toggle()
       lazygit:toggle()
     end
