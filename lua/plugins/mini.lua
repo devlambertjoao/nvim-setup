@@ -64,7 +64,7 @@ return {
   'echasnovski/mini.nvim',
   event = { 'VeryLazy' },
   config = function()
-    require('mini.cursorword').setup()
+    -- require('mini.cursorword').setup()
     require('mini.pairs').setup()
     require('mini.tabline').setup()
     require('mini.splitjoin').setup()
