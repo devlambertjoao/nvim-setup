@@ -1,64 +1,44 @@
 -- Find base16 themes: https://github.com/chriskempson/base16-schemes-source
 
----- Rose Pine
---local palette = {
---  base00 = '#191724',
---  base01 = '#1f1d2e',
---  base02 = '#26233a',
---  base03 = '#6e6a86',
---  base04 = '#908caa',
---  base05 = '#e0def4',
---  base06 = '#e0def4',
---  base07 = '#524f67',
---  base08 = '#eb6f92',
---  base09 = '#f6c177',
---  base0A = '#ebbcba',
---  base0B = '#31748f',
---  base0C = '#9ccfd8',
---  base0D = '#c4a7e7',
---  base0E = '#f6c177',
---  base0F = '#524f67'
---}
-
----- Rose Pine Dawn
---local palette = {
---  base00 = '#faf4ed',
---  base01 = '#fffaf3',
---  base02 = '#f2e9de',
---  base03 = '#9893a5',
---  base04 = '#797593',
---  base05 = '#575279',
---  base06 = '#575279',
---  base07 = '#cecacd',
---  base08 = '#b4637a',
---  base09 = '#ea9d34',
---  base0A = '#d7827e',
---  base0B = '#286983',
---  base0C = '#56949f',
---  base0D = '#907aa9',
---  base0E = '#ea9d34',
---  base0F = '#cecacd'
---}
-
--- Rose Pine Moon
 local palette = {
-  base00 = '#232136',
-  base01 = '#2a273f',
-  base02 = '#393552',
-  base03 = '#6e6a86',
-  base04 = '#908caa',
-  base05 = '#e0def4',
-  base06 = '#e0def4',
-  base07 = '#56526e',
-  base08 = '#eb6f92',
-  base09 = '#f6c177',
-  base0A = '#ea9a97',
-  base0B = '#3e8fb0',
-  base0C = '#9ccfd8',
-  base0D = '#c4a7e7',
-  base0E = '#f6c177',
-  base0F = '#56526e'
+  base00 = '#1e1e1e',
+  base01 = '#323537',
+  base02 = '#464b50',
+  base03 = '#5f5a60',
+  base04 = '#838184',
+  base05 = '#a7a7a7',
+  base06 = '#c3c3c3',
+  base07 = '#ffffff',
+  base08 = '#cf6a4c',
+  base09 = '#cda869',
+  base0A = '#f9ee98',
+  base0B = '#8f9d6a',
+  base0C = '#afc4db',
+  base0D = '#7587a6',
+  base0E = '#9b859d',
+  base0F = '#9b703f'
 }
+
+
+
+-- local palette = {
+--   base00 = '#32302f',
+--   base01 = '#3c3836',
+--   base02 = '#504945',
+--   base03 = '#665c54',
+--   base04 = '#bdae93',
+--   base05 = '#d5c4a1',
+--   base06 = '#ebdbb2',
+--   base07 = '#fbf1c7',
+--   base08 = '#fb4934',
+--   base09 = '#fe8019',
+--   base0A = '#fabd2f',
+--   base0B = '#b8bb26',
+--   base0C = '#8ec07c',
+--   base0D = '#83a598',
+--   base0E = '#d3869b',
+--   base0F = '#d65d0e'
+-- }
 
 return {
   'echasnovski/mini.nvim',

@@ -11,9 +11,10 @@ return {
   event = { 'VeryLazy' },
   config = function()
     vim.diagnostic.config({
-      virtual_text = {
-        prefix = "#",
-      },
+      -- virtual_text = {
+      --   prefix = "#",
+      -- },
+      virtual_text = false,
       severity_sort = true,
       update_in_insert = true,
       float = {

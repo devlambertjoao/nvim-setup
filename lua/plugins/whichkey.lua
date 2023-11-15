@@ -41,8 +41,8 @@ return {
       },
       window = {
         border = "none", -- none, single, double, shadow
-        position = "top", -- bottom, top
-        margin = { 16, 12, 2, 12 }, -- extra window margin [top, right, bottom, left]
+        position = "bottom", -- bottom, top
+        margin = { 2, 2, 2, 2 }, -- extra window margin [top, right, bottom, left]
         padding = { 4, 4, 4, 4 }, -- extra window padding [top, right, bottom, left]
         winblend = 0
       },
