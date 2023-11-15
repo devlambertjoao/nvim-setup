@@ -1,5 +1,6 @@
 -- Find base16 themes: https://github.com/chriskempson/base16-schemes-source
 
+---- Twilight
 local palette = {
   base00 = '#1e1e1e',
   base01 = '#323537',
@@ -20,7 +21,7 @@ local palette = {
 }
 
 
-
+---- Gruvbox Darf Soft
 -- local palette = {
 --   base00 = '#32302f',
 --   base01 = '#3c3836',
