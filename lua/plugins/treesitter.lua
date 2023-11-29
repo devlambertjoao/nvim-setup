@@ -1,5 +1,5 @@
 if os.getenv("NEOVIM_OS_RUNNING") == 'WINDOWS' then
-  return { }
+  return {}
 end
 
 return {
