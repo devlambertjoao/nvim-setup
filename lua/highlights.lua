@@ -18,7 +18,6 @@ local palette = {
   base0F = '#9b703f'
 }
 
-
 -- StatusLine
 vim.api.nvim_set_hl(0, 'StatusLineNormalMode', { ctermbg = 0, fg = palette.base01, bg = palette.base0D })
 vim.api.nvim_set_hl(0, 'StatusLineInsertMode', { ctermbg = 0, fg = palette.base01, bg = palette.base09 })
@@ -64,6 +63,9 @@ vim.api.nvim_set_hl(0, 'Special', { ctermbg = 0, fg = palette.base0C })
 vim.api.nvim_set_hl(0, 'Type', { ctermbg = 0, fg = palette.base0A })
 vim.api.nvim_set_hl(0, 'Comment', { ctermbg = 0, fg = palette.base03 })
 
+-- Selected Text
+vim.api.nvim_set_hl(0, 'Visual', { ctermbg = 0, bg = palette.base02 })
+
 -- Pmenu
 vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg = 0, fg = palette.base05, bg = palette.base01 })
 vim.api.nvim_set_hl(0, 'PmenuThumb', { ctermbg = 0, fg = palette.base09, bg = palette.base09 })
@@ -71,7 +73,12 @@ vim.api.nvim_set_hl(0, 'PmenuThumb', { ctermbg = 0, fg = palette.base09, bg = pa
 -- NvimTree
 vim.api.nvim_set_hl(0, 'NvimTreeNormal', { ctermbg = 0, fg = palette.base05, bg = palette.base00 })
 vim.api.nvim_set_hl(0, 'NvimTreeNormalNC', { ctermbg = 0, fg = palette.base04, bg = palette.base00 })
-vim.api.nvim_set_hl(0, 'VertSplit', { ctermbg = 0, fg = palette.base01, bg = palette.base01 })
+vim.api.nvim_set_hl(0, 'NvimTreeRootFolder', { ctermbg = 0, fg = palette.base04, bg = palette.base00 })
+vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { ctermbg = 0, fg = palette.base0E })
+vim.api.nvim_set_hl(0, 'NvimTreeGitNew', { ctermbg = 0, fg = palette.base0B })
+vim.api.nvim_set_hl(0, 'NvimTreeGitDeleted', { ctermbg = 0, fg = palette.base08 })
+vim.api.nvim_set_hl(0, 'NvimTreeSpecialFile', { ctermbg = 0, fg = palette.base0A })
+vim.api.nvim_set_hl(0, 'VertSplit', { ctermbg = 0, fg = palette.base0E, bg = palette.base03 })
 
 -- GitSigns
 vim.api.nvim_set_hl(0, 'DiffAdd', { ctermbg = 0, fg = palette.base0B, bg = palette.base01 })
@@ -79,7 +86,10 @@ vim.api.nvim_set_hl(0, 'DiffChange', { ctermbg = 0, fg = palette.base0E, bg = pa
 vim.api.nvim_set_hl(0, 'DiffDelete', { ctermbg = 0, fg = palette.base08, bg = palette.base01 })
 
 -- Diagnostics
-vim.api.nvim_set_hl(0, 'DiagnosticError', { ctermbg = 0, fg = palette.base08 })
-vim.api.nvim_set_hl(0, 'DiagnosticWarn', { ctermbg = 0, fg = palette.base0A })
-vim.api.nvim_set_hl(0, 'DiagnosticHint', { ctermbg = 0, fg = palette.base0B })
-vim.api.nvim_set_hl(0, 'DiagnosticInfo', { ctermbg = 0, fg = palette.base0D })
+vim.api.nvim_set_hl(0, 'DiagnosticError', { ctermbg = 0, fg = palette.base08, bg = palette.base01 })
+vim.api.nvim_set_hl(0, 'DiagnosticWarn', { ctermbg = 0, fg = palette.base0A, bg = palette.base01 })
+vim.api.nvim_set_hl(0, 'DiagnosticHint', { ctermbg = 0, fg = palette.base0B, bg = palette.base01 })
+vim.api.nvim_set_hl(0, 'DiagnosticInfo', { ctermbg = 0, fg = palette.base0D, bg = palette.base01 })
+
+-- Directory
+vim.api.nvim_set_hl(0, 'Directory', { ctermbg = 0, fg = palette.base0D })
