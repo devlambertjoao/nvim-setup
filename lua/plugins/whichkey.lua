@@ -99,6 +99,7 @@ return {
         f = { "<cmd>Telescope live_grep<CR>", "Grep Files" },
         r = { "<cmd>Telescope oldfiles<CR>", "Recently Closed" },
         b = { "<cmd>NvimTreeFindFileToggle<CR>", "NvimTree" },
+        t = { "<cmd>AerialToggle!<CR>", "Tags" },
       },
       G = {
         name = "Git",
