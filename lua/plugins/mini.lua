@@ -85,7 +85,8 @@ return {
     vim.api.nvim_set_hl(0, 'Normal', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'NormalNC', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'NormalFloat', { ctermbg = 'none', bg = 'none' })
-    vim.api.nvim_set_hl(0, 'EndOfBuffer', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'EndOfBuffer', { ctermbg = 'none', bg = 'none', fg = 'none' })
+    vim.api.nvim_set_hl(0, 'NoiceMini', { ctermbg = 'none', bg = palette.base01 })
 
     vim.api.nvim_set_hl(0, 'TelescopeNormal', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'TelescopePrompt', { ctermbg = 'none', bg = 'none' })
@@ -101,7 +102,7 @@ return {
     vim.api.nvim_set_hl(0, 'SignColumn', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'CursorLine', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'CursorLineSign', { ctermbg = 'none', bg = 'none' })
-    vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg = 'none', bg = 'none', fg = palette.base06 })
     vim.api.nvim_set_hl(0, 'LineNr', { ctermbg = 'none', bg = 'none', fg = palette.base03 })
     vim.api.nvim_set_hl(0, 'LineNrAbove', { ctermbg = 'none', bg = 'none', fg = palette.base03 })
     vim.api.nvim_set_hl(0, 'LineNrBelow', { ctermbg = 'none', bg = 'none', fg = palette.base03 })
