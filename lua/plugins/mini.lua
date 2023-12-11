@@ -74,11 +74,60 @@ return {
 
     vim.api.nvim_set_hl(0, 'StatusLineFileinfo', { ctermbg = 0, fg = palette.base05, bg = palette.base01 })
 
-    vim.api.nvim_set_hl(0, 'StatusLineNormal', { ctermbg = 0, fg = palette.base09, bg = palette.base02 })
+    vim.api.nvim_set_hl(0, 'StatusLineNormal', { ctermbg = 'none', fg = palette.base09, bg = 'none' })
     vim.api.nvim_set_hl(0, 'StatuslineNC', { ctermbg = 0, fg = palette.base05, bg = palette.base03 })
     vim.api.nvim_set_hl(0, 'StatuslineInactive', { ctermbg = 0, fg = palette.base05, bg = palette.base03 })
 
     -- IndentLine
     vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { ctermbg = 0, fg = palette.base03 })
+
+    -- Transparent
+    vim.api.nvim_set_hl(0, 'Normal', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'NormalNC', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'NormalFloat', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'EndOfBuffer', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'CursorLine', { ctermbg = 'none', bg = 'none' })
+
+    vim.api.nvim_set_hl(0, 'TelescopeNormal', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'TelescopePrompt', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'TelescopePreview', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'TelescopeResults', { ctermbg = 'none', bg = 'none' })
+
+    vim.api.nvim_set_hl(0, 'WhichKeyFloat', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'WhichKeySeparator', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'WhichKeyBorder', { ctermbg = 'none', bg = 'none', fg = palette.base08 })
+
+    vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg = 'none', bg = palette.base01 })
+
+    vim.api.nvim_set_hl(0, 'SignColumn', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg = 'none', bg = 'none' })
+
+    vim.api.nvim_set_hl(0, 'DiffChange', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'DiffAdd', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'DiffDelete', { ctermbg = 'none', bg = 'none' })
+
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingError', { fg = palette.base08, ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingWarn', { fg = palette.base0E, ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingHint', { fg = palette.base0D, ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingInfo', { fg = palette.base0C, ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingOk', { fg = palette.base0B, ctermbg = 'none', bg = 'none' })
+
+    vim.api.nvim_set_hl(0, 'DiagnosticSignError', { link = 'DiagnosticFloatingError' })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { link = 'DiagnosticFloatingHint' })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { link = 'DiagnosticFloatingInfo' })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignOk', { link = 'DiagnosticFloatingOk' })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { link = 'DiagnosticFloatingWarn' })
+
+    vim.api.nvim_set_hl(0, 'DiagnosticError', { link = 'DiagnosticFloatingError' })
+    vim.api.nvim_set_hl(0, 'DiagnosticWarn', { link = 'DiagnosticFloatingWarn' })
+    vim.api.nvim_set_hl(0, 'DiagnosticHint', { link = 'DiagnosticFloatingHint' })
+    vim.api.nvim_set_hl(0, 'DiagnosticInfo', { link = 'DiagnosticFloatingInfo' })
+    vim.api.nvim_set_hl(0, 'DiagnosticOk', { link = 'DiagnosticFloatingOk' })
+
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { fg = nil, bg = nil, underline = true, sp = palette.base08 })
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', { fg = nil, bg = nil, underline = true, sp = palette.base0D })
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', { fg = nil, bg = nil, underline = true, sp = palette.base0C })
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineOk', { fg = nil, bg = nil, underline = true, sp = palette.base0B })
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', { fg = nil, bg = nil, underline = true, sp = palette.base0E })
   end
 }
