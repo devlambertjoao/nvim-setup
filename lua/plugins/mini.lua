@@ -86,7 +86,6 @@ return {
     vim.api.nvim_set_hl(0, 'NormalNC', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'NormalFloat', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'EndOfBuffer', { ctermbg = 'none', bg = 'none' })
-    vim.api.nvim_set_hl(0, 'CursorLine', { ctermbg = 'none', bg = 'none' })
 
     vim.api.nvim_set_hl(0, 'TelescopeNormal', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'TelescopePrompt', { ctermbg = 'none', bg = 'none' })
@@ -100,11 +99,22 @@ return {
     vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg = 'none', bg = palette.base01 })
 
     vim.api.nvim_set_hl(0, 'SignColumn', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'CursorLine', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'CursorLineSign', { ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'LineNr', { ctermbg = 'none', bg = 'none', fg = palette.base03 })
+    vim.api.nvim_set_hl(0, 'LineNrAbove', { ctermbg = 'none', bg = 'none', fg = palette.base03 })
+    vim.api.nvim_set_hl(0, 'LineNrBelow', { ctermbg = 'none', bg = 'none', fg = palette.base03 })
 
-    vim.api.nvim_set_hl(0, 'DiffChange', { ctermbg = 'none', bg = 'none' })
-    vim.api.nvim_set_hl(0, 'DiffAdd', { ctermbg = 'none', bg = 'none' })
-    vim.api.nvim_set_hl(0, 'DiffDelete', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'DiffChange', { ctermbg = 'none', bg = 'none', fg = palette.base0D })
+    vim.api.nvim_set_hl(0, 'DiffAdd', { ctermbg = 'none', bg = 'none', fg = palette.base0B })
+    vim.api.nvim_set_hl(0, 'DiffAdded', { ctermbg = 'none', bg = 'none', fg = palette.base0B })
+    vim.api.nvim_set_hl(0, 'DiffDelete', { ctermbg = 'none', bg = 'none', fg = palette.base08 })
+    vim.api.nvim_set_hl(0, 'DiffRemoved', { ctermbg = 'none', bg = 'none', fg = palette.base08 })
+
+    vim.api.nvim_set_hl(0, 'GitSignsAdd', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'GitSignsChange', { ctermbg = 'none', bg = 'none' })
+    vim.api.nvim_set_hl(0, 'GitSignsDelete', { ctermbg = 'none', bg = 'none' })
 
     vim.api.nvim_set_hl(0, 'DiagnosticFloatingError', { fg = palette.base08, ctermbg = 'none', bg = 'none' })
     vim.api.nvim_set_hl(0, 'DiagnosticFloatingWarn', { fg = palette.base0E, ctermbg = 'none', bg = 'none' })
