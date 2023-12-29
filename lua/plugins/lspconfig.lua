@@ -11,6 +11,7 @@ return {
     },
     event = { 'VeryLazy' },
     config = function()
+      -- Virtual Text Config
       vim.diagnostic.config({
         virtual_text = {
           prefix = "#",
@@ -23,14 +24,15 @@ return {
         },
       })
 
+
+      -- Signs Config
       local signs = { Error = "e", Warn = "w", Hint = "h", Info = "i" }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
 
-      local lspconfig = require("lspconfig")
-
+      -- Mason Config
       require("mason").setup({
         ui = {
           icons = {
@@ -60,28 +62,41 @@ return {
         },
       })
 
+      local lspconfig = require("lspconfig")
+
+      -- Setup cmp integration
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local default_server_options = {
+        capabilities = capabilities
+      }
+
+      -- Setup All Avaible Servers
       mason_lspconfig.setup_handlers({
         function(server_name)
-          lspconfig[server_name].setup({})
+          lspconfig[server_name].setup(default_server_options)
         end,
         -- Custom Servers Configuration
         ["lua_ls"] = function()
-          lspconfig["lua_ls"].setup({
-            settings = {
-              Lua = {
-                runtime = {
-                  version = "LuaJIT"
-                },
-                diagnostics = {
-                  globals = { "vim" },
-                },
-                workspace = {
-                  library = vim.api.nvim_get_runtime_file("", true),
-                  checkThirdParty = false,
-                },
-              }
-            }
-          })
+          lspconfig["lua_ls"].setup(
+            vim.tbl_deep_extend('force', {
+                settings = {
+                  Lua = {
+                    runtime = {
+                      version = "LuaJIT"
+                    },
+                    diagnostics = {
+                      globals = { "vim" },
+                    },
+                    workspace = {
+                      library = vim.api.nvim_get_runtime_file("", true),
+                      checkThirdParty = false,
+                    },
+                  }
+                }
+              },
+              default_server_options
+            )
+          )
         end,
       })
     end
@@ -105,6 +120,9 @@ return {
             vim.fn["vsnip#anonymous"](args.body)
           end,
         },
+        completion = {
+          autocomplete = false -- Trigger completion manually
+        },
         mapping = cmp.mapping.preset.insert({
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -120,11 +138,11 @@ return {
         }),
         window = {
           completion = {
-            -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             padding = 3,
           },
           documentation = {
-            -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             padding = 3,
           }
         }
