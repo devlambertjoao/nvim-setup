@@ -32,7 +32,8 @@ return {
     whichkey.register({
       f = {
         name = 'File Navigation',
-        o = { '<cmd>Oil<CR>', 'Oil' }
+        o = { '<cmd>Oil<CR>', 'Oil' },
+        b = { '<cmd>NvimTreeFindFileToggle<CR>', 'Nvim Tree' }
       }
     }, { prefix = '<leader>' })
 
