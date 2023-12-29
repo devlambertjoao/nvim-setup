@@ -1,0 +1,150 @@
+return {
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'neovim/nvim-lsp',
+      'hrsh7th/nvim-cmp',
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'RishabhRD/popfix',
+      'RishabhRD/nvim-lsputils',
+    },
+    event = { 'VeryLazy' },
+    config = function()
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "#",
+        },
+        -- virtual_text = false,
+        severity_sort = true,
+        update_in_insert = true,
+        float = {
+          source = "always",
+        },
+      })
+
+      local signs = { Error = "e", Warn = "w", Hint = "h", Info = "i" }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+
+      local lspconfig = require("lspconfig")
+
+      require("mason").setup({
+        ui = {
+          icons = {
+            package_installed = "+",
+            package_pending = "~",
+            package_uninstalled = "-"
+          }
+        }
+      })
+
+      local mason_lspconfig = require("mason-lspconfig")
+      mason_lspconfig.setup({
+        ensure_installed = {
+          "lua_ls",
+          -- "solargraph",
+          -- "rust_analyzer",
+          -- "clangd",
+          -- "jsonls",
+          -- "jdtls",
+          -- "omnisharp",
+          "angularls",
+          -- "html",
+          -- "vuels",
+          -- "cssls",
+          "tsserver",
+          -- "tailwindcss"
+        },
+      })
+
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          lspconfig[server_name].setup({})
+        end,
+        -- Custom Servers Configuration
+        ["lua_ls"] = function()
+          lspconfig["lua_ls"].setup({
+            settings = {
+              Lua = {
+                runtime = {
+                  version = "LuaJIT"
+                },
+                diagnostics = {
+                  globals = { "vim" },
+                },
+                workspace = {
+                  library = vim.api.nvim_get_runtime_file("", true),
+                  checkThirdParty = false,
+                },
+              }
+            }
+          })
+        end,
+      })
+    end
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/vim-vsnip',
+    },
+    event = { 'VeryLazy' },
+    config = function()
+      local cmp = require('cmp')
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<C-c>'] = cmp.mapping.complete(),
+          ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'vsnip' },
+        }, {
+          { name = 'buffer' },
+        }),
+        window = {
+          completion = {
+            -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            padding = 3,
+          },
+          documentation = {
+            -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            padding = 3,
+          }
+        }
+      })
+
+      cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' }
+        }
+      })
+
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
+      })
+    end
+  }
+}
