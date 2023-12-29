@@ -39,10 +39,15 @@ return {
         b = { '<cmd>NvimTreeFindFileToggle<CR>', 'Nvim Tree' },
         p = { '<cmd>Telescope find_files<CR>', 'Find Files' },
         f = { '<cmd>Telescope live_grep<CR>', 'Grep Files' }
+      },
+      g = {
+        name = 'Git',
+        s = { '<cmd>Telescope git_status<CR>', 'Git Status' },
+        c = { '<cmd>Telescope git_commits<CR>', 'Git Commits' },
+        b = { '<cmd>Telescope git_branches<CR>', 'Git Branches' },
       }
     }, { prefix = '<leader>' })
 
     whichkey.register({ prefix = "<C-w>" })
   end
-
 }
