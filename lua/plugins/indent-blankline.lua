@@ -3,10 +3,6 @@ return {
   main = "ibl",
   event = { 'VeryLazy' },
   config = function()
-    require('ibl').setup({
-      scope = {
-        enabled = true
-      }
-    })
+    require('ibl').setup({})
   end
 }
