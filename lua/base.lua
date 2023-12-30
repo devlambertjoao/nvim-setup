@@ -1,9 +1,9 @@
-vim.cmd("autocmd!")
+vim.cmd('autocmd!')
 
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+vim.cmd('set expandtab')
+vim.cmd('set tabstop=2')
+vim.cmd('set softtabstop=2')
+vim.cmd('set shiftwidth=2')
 
 vim.cmd("set mouse=a")
 
@@ -19,6 +19,6 @@ vim.cmd('let g:mapleader = ";"')
 vim.cmd('set encoding=utf-8')
 vim.cmd('set fileencoding=utf-8')
 
-vim.cmd("set pumheight=7")
+vim.cmd('set pumheight=7')
 
-vim.cmd("colorscheme default")
+vim.cmd('set cursorline')
