@@ -47,18 +47,18 @@ return {
       mason_lspconfig.setup({
         ensure_installed = {
           "lua_ls",
-          -- "solargraph",
+          "solargraph",
           -- "rust_analyzer",
           -- "clangd",
-          -- "jsonls",
+          "jsonls",
           -- "jdtls",
           -- "omnisharp",
           "angularls",
-          -- "html",
+          "html",
           -- "vuels",
           -- "cssls",
           "tsserver",
-          -- "tailwindcss"
+          "tailwindcss"
         },
       })
 
@@ -120,9 +120,6 @@ return {
             vim.fn["vsnip#anonymous"](args.body)
           end,
         },
-        completion = {
-          autocomplete = false -- Trigger completion manually
-        },
         mapping = cmp.mapping.preset.insert({
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -163,6 +160,12 @@ return {
           { name = 'cmdline' }
         })
       })
+
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
     end
   }
 }

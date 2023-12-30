@@ -38,7 +38,8 @@ return {
         o = { '<cmd>Oil<CR>', 'Oil' },
         b = { '<cmd>NvimTreeFindFileToggle<CR>', 'Nvim Tree' },
         p = { '<cmd>Telescope find_files<CR>', 'Find Files' },
-        f = { '<cmd>Telescope live_grep<CR>', 'Grep Files' }
+        f = { '<cmd>Telescope live_grep<CR>', 'Grep Files' },
+        t = { "<cmd>AerialToggle!<CR>", "Tags" },
       },
       c = {
         name = 'Code Actions',

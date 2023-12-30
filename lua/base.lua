@@ -7,17 +7,18 @@ vim.cmd("set shiftwidth=2")
 
 vim.cmd("set mouse=a")
 
-vim.opt.showmode = false
-vim.opt.showcmd = false
+vim.cmd('set noshowmode')
+vim.cmd('set noshowcmd')
 
-vim.opt.relativenumber = true
-vim.wo.number = false
-vim.opt.signcolumn = 'yes:1'
+vim.cmd('set relativenumber')
+vim.cmd('set number')
+vim.cmd('set signcolumn=yes:1')
 
-vim.g.mapleader = ";"
+vim.cmd('let g:mapleader = ";"')
 
-vim.scriptencoding = 'utf-8'
-vim.opt.encoding = 'utf-8'
-vim.opt.fileencoding = 'utf-8'
+vim.cmd('set encoding=utf-8')
+vim.cmd('set fileencoding=utf-8')
+
+vim.cmd("set pumheight=7")
 
 vim.cmd("colorscheme default")
