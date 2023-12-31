@@ -1,3 +1,3 @@
-require('base')
-require('statusline')
-require('plugins')
+require("base")
+require("statusline")
+require("plugins")
