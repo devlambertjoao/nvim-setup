@@ -96,10 +96,10 @@ return {
 				end,
 				["solargraph"] = function()
 					lspconfig["solargraph"].setup(vim.tbl_deep_extend("force", {
-            settings = {
-              diagnostics = false
-            }
-          }, default_server_options))
+						settings = {
+							diagnostics = false,
+						},
+					}, default_server_options))
 				end,
 			})
 		end,
@@ -111,16 +111,22 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-vsnip",
-			"hrsh7th/vim-vsnip",
+			-- "hrsh7th/cmp-vsnip",
+			-- "hrsh7th/vim-vsnip",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
 		},
 		event = { "VeryLazy" },
 		config = function()
 			local cmp = require("cmp")
+			require("luasnip.loaders.from_vscode").lazy_load()
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
+						-- vim.fn["vsnip#anonymous"](args.body)
+						require("luasnip").lsp_expand(args.body)
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
@@ -132,7 +138,8 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "vsnip" },
+					-- { name = "vsnip" },
+					{ name = "luasnip" },
 				}, {
 					{ name = "buffer" },
 				}),
