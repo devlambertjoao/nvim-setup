@@ -47,6 +47,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"solargraph",
+          "htmx",
 					-- "stimulus_ls",
 					-- "rust_analyzer",
 					-- "clangd",
