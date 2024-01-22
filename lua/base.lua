@@ -22,3 +22,10 @@ vim.cmd('set fileencoding=utf-8')
 vim.cmd('set pumheight=7')
 
 vim.cmd('set cursorline')
+
+vim.cmd('set noswapfile')
+
+vim.cmd('set updatetime=100')
+
+vim.cmd('set nowrap')
+
