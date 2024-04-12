@@ -24,7 +24,7 @@ require("lazy").setup('plugins', {
     enabled = false,
   },
   install = {
-    colorscheme = { 'catppuccin' }
+    -- colorscheme = { 'catppuccin' }
   },
   ui = {
     icons = {

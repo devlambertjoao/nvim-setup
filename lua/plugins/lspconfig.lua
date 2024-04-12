@@ -6,8 +6,6 @@ return {
 			"hrsh7th/nvim-cmp",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"RishabhRD/popfix",
-			"RishabhRD/nvim-lsputils",
 		},
 		event = { "VeryLazy" },
 		config = function()
@@ -47,17 +45,10 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"solargraph",
-          "htmx",
-					-- "stimulus_ls",
-					-- "rust_analyzer",
-					-- "clangd",
+					"rust_analyzer",
+					"clangd",
 					"jsonls",
-					-- "jdtls",
-					-- "omnisharp",
-					"angularls",
 					"html",
-					-- "vuels",
-					-- "cssls",
 					"tsserver",
 					"tailwindcss",
 				},
@@ -112,22 +103,17 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
-			-- "hrsh7th/cmp-vsnip",
-			-- "hrsh7th/vim-vsnip",
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
+			"hrsh7th/cmp-vsnip",
+			"hrsh7th/vim-vsnip",
 		},
 		event = { "VeryLazy" },
 		config = function()
 			local cmp = require("cmp")
-			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						-- vim.fn["vsnip#anonymous"](args.body)
-						require("luasnip").lsp_expand(args.body)
+						vim.fn["vsnip#anonymous"](args.body)
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
@@ -139,8 +125,7 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					-- { name = "vsnip" },
-					{ name = "luasnip" },
+					{ name = "vsnip" },
 				}, {
 					{ name = "buffer" },
 				}),
@@ -172,8 +157,8 @@ return {
 				}),
 			})
 
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+			-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 }
