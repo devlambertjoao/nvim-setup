@@ -30,9 +30,6 @@ vim.cmd([[
   
   set nowrap
 
-
-  set t_Co=256
   set background=dark
-
-  colorscheme slate
+  set termguicolors
 ]])
