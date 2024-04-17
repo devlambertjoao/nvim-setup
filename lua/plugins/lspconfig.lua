@@ -7,12 +7,12 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
-		event = { "VeryLazy" },
+    event = { 'VeryLazy' },
 		config = function()
 			-- Virtual Text Config
 			vim.diagnostic.config({
 				virtual_text = {
-					prefix = "#",
+					prefix = "●",
 				},
 				-- virtual_text = false,
 				severity_sort = true,
@@ -106,7 +106,7 @@ return {
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/vim-vsnip",
 		},
-		event = { "VeryLazy" },
+    event = { 'VeryLazy' },
 		config = function()
 			local cmp = require("cmp")
 
