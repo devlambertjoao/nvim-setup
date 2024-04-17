@@ -72,7 +72,7 @@ local versioncontrol = function()
     added,
     changed,
     removed,
-    "%#StatusLineGitSignsOnBranch#on ",
+    "%#StatusLineGitSignsOnBranch#· ",
     git_info.head,
     " "
   }
