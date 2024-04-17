@@ -72,7 +72,7 @@ local versioncontrol = function()
     added,
     changed,
     removed,
-    "%#StatusLineGitSignsOnMain#on ",
+    "%#StatusLineGitSignsOnBranch#on ",
     git_info.head,
     " "
   }
@@ -143,7 +143,7 @@ local function lineinfo()
     return ''
   end
 
-  return " %p%%"
+  return " %l:%c %p%% "
 end
 
 Statusline = {}
