@@ -44,6 +44,8 @@ return {
 			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 			local on_attach = function(client, bufnr)
+				local opts = { buffer = bufnr }
+
 				if client.supports_method("textDocument/formatting") then
 					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 					vim.api.nvim_create_autocmd("BufWritePre", {
@@ -54,6 +56,22 @@ return {
 						end,
 					})
 				end
+
+				-- Important: Add these mappings in which key config
+				-- Code navigation
+				vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, opts)
+				vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+				vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, opts)
+				vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
+				vim.keymap.set("n", "<leader>gk", vim.lsp.buf.hover, opts)
+				vim.keymap.set("n", "<leader>gK", vim.lsp.buf.signature_help, opts)
+
+				-- Code actions
+				vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
+				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+				vim.keymap.set("n", "<leader>cf", function()
+					lsp_formatting(bufnr)
+				end, opts)
 			end
 
 			local null_ls = require("null-ls")
