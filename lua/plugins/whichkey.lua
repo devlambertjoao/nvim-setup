@@ -40,6 +40,14 @@ return {
 				p = { "<cmd>Telescope find_files<CR>", "Find Files" },
 				f = { "<cmd>Telescope live_grep<CR>", "Grep Files" },
 			},
+			b = {
+				name = "Buffers",
+				n = { "<cmd>BufferLineCycleNext<CR>", "Next" },
+				p = { "<cmd>BufferLineTogglePin<CR>", "Pin" },
+				P = { "<cmd>BufferLineCyclePrev<CR>", "Previous" },
+				d = { "<cmd>bdelete!<CR>", "Delete Current" },
+				D = { "<cmd>BufferLineCloseOthers<CR>", "Delete Others" },
+			},
 			c = {
 				name = "Code Actions",
 				r = { "Rename" },
