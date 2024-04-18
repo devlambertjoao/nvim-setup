@@ -6,6 +6,8 @@ return {
 			"hrsh7th/nvim-cmp",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"nvimtools/none-ls.nvim",
+			"jay-babu/mason-null-ls.nvim",
 		},
 		event = { "VeryLazy" },
 		config = function()
@@ -28,6 +30,53 @@ return {
 				local hl = "DiagnosticSign" .. type
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
+
+			-- Formatting with none-ls
+			local lsp_formatting = function(bufnr)
+				vim.lsp.buf.format({
+					filter = function(client)
+						return client.name == "null-ls"
+					end,
+					bufnr = bufnr,
+				})
+			end
+
+			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+			local on_attach = function(client, bufnr)
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							lsp_formatting(bufnr)
+						end,
+					})
+				end
+			end
+
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					-- Lua
+					null_ls.builtins.formatting.stylua,
+					-- Ruby
+					null_ls.builtins.formatting.rubocop,
+					-- JS
+					null_ls.builtins.formatting.prettierd,
+				},
+				on_attach = on_attach,
+			})
+
+			require("mason-null-ls").setup({
+				automatic_installation = false,
+				ensure_installed = {
+					"stylua",
+					"rubocop",
+					"prettierd",
+				},
+			})
 
 			-- Mason Config
 			require("mason").setup({
@@ -53,30 +102,6 @@ return {
 					"tailwindcss",
 				},
 			})
-
-			local lsp_formatting = function(bufnr)
-				vim.lsp.buf.format({
-					filter = function(client)
-						return client.name == "null-ls"
-					end,
-					bufnr = bufnr,
-				})
-			end
-
-			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-			local on_attach = function(client, bufnr)
-				if client.supports_method("textDocument/formatting") then
-					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = augroup,
-						buffer = bufnr,
-						callback = function()
-							lsp_formatting(bufnr)
-						end,
-					})
-				end
-			end
 
 			-- Setup cmp integration
 			local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
