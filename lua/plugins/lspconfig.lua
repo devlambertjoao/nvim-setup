@@ -191,6 +191,24 @@ return {
 					["<C-e>"] = cmp.mapping.close(),
 					["<C-c>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif vim.fn["vsnip#expandable"]() then
+							vim.fn["vsnip#expand"]()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif vim.fn["vsnip#jumpable"](-1) then
+							vim.fn["vsnip#jump"](-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
@@ -200,12 +218,10 @@ return {
 				}),
 				window = {
 					completion = {
-						-- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-						padding = 3,
+						padding = 1,
 					},
 					documentation = {
-						-- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-						padding = 3,
+						padding = 1,
 					},
 				},
 			})
@@ -226,6 +242,7 @@ return {
 				}),
 			})
 
+			-- Autopairs
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
