@@ -191,7 +191,7 @@ return {
 					["<C-e>"] = cmp.mapping.close(),
 					["<C-c>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-					["<Tab>"] = cmp.mapping(function(fallback)
+					["<C-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
 						elseif vim.fn["vsnip#expandable"]() then
