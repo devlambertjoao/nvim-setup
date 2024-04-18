@@ -17,7 +17,7 @@ return {
       window = {
         border = 'none',
         position = 'top',
-        margin = { 1, 1, 1, 1 },
+        margin = { 2, 16, 2, 16 },
         padding = { 1, 1, 1, 1 },
         winbled = 80
       },
@@ -37,10 +37,8 @@ return {
       f = {
         name = 'File Navigation',
         o = { '<cmd>Oil<CR>', 'Oil' },
-        -- b = { '<cmd>NvimTreeFindFileToggle<CR>', 'Nvim Tree' },
         p = { '<cmd>Telescope find_files<CR>', 'Find Files' },
         f = { '<cmd>Telescope live_grep<CR>', 'Grep Files' },
-        -- t = { "<cmd>AerialToggle!<CR>", "Tags" },
       },
       c = {
         name = 'Code Actions',
@@ -71,7 +69,5 @@ return {
         b = { '<cmd>Telescope git_branches<CR>', 'Git Branches' },
       },
     }, { prefix = '<leader>' })
-
-    -- whichkey.register({ prefix = '<C-w>' })
   end
 }

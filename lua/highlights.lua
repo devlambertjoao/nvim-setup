@@ -6,41 +6,43 @@ vim.cmd([[
 ]])
 
 local palette = {
-  base00 = "#1b1818",
-  base01 = "#292424",
-  base02 = "#585050",
-  base03 = "#655d5d",
-  base04 = "#7e7777",
-  base05 = "#8a8585",
-  base06 = "#e7dfdf",
-  base07 = "#f4ecec",
-  base08 = "#ca4949",
-  base09 = "#b45a3c",
-  base0A = "#a06e3b",
-  base0B = "#4b8b8b",
-  base0C = "#5485b6",
-  base0D = "#7272ca",
-  base0E = "#8464c4",
-  base0F = "#bd5187",
+	base00 = "#1b1818",
+	base01 = "#292424",
+	base02 = "#585050",
+	base03 = "#655d5d",
+	base04 = "#7e7777",
+	base05 = "#8a8585",
+	base06 = "#e7dfdf",
+	base07 = "#f4ecec",
+	base08 = "#ca4949",
+	base09 = "#b45a3c",
+	base0A = "#a06e3b",
+	base0B = "#4b8b8b",
+	base0C = "#5485b6",
+	base0D = "#7272ca",
+	base0E = "#8464c4",
+	base0F = "#bd5187",
 }
 
 local hi = function(group, args)
-  local command
-  if args.link ~= nil then
-    command = string.format('highlight! link %s %s', group, args.link)
-  else
-    command = string.format(
-      'highlight %s guifg=%s guibg=%s gui=%s guisp=%s',
-      group,
-      args.fg or 'NONE',
-      args.bg or 'NONE',
-      args.attr or 'NONE',
-      args.sp or 'NONE'
-    )
-  end
+	local command
+	if args.link ~= nil then
+		command = string.format("highlight! link %s %s", group, args.link)
+	else
+		command = string.format(
+			"highlight %s guifg=%s guibg=%s gui=%s guisp=%s",
+			group,
+			args.fg or "NONE",
+			args.bg or "NONE",
+			args.attr or "NONE",
+			args.sp or "NONE"
+		)
+	end
 
-  vim.cmd(command)
+	vim.cmd(command)
 end
+
+-- stylua: ignore start
 
 -- StatusLine
 hi('StatusLineNormalMode',        {fg=palette.base01, bg=palette.base0D,  attr='bold',      sp=nil})
@@ -247,6 +249,8 @@ hi('TelescopeBorder',             {fg=palette.base0F, bg=nil,            attr=ni
 hi('TelescopeMatching',           {fg=palette.base0A, bg=nil,            attr=nil,           sp=nil})
 hi('TelescopeMultiSelection',     {fg=nil,            bg=palette.base01, attr='bold',        sp=nil})
 hi('TelescopeSelection',          {fg=nil,            bg=palette.base01, attr='bold',        sp=nil})
+
+-- stylua: ignore end
 
 -- Set terminal colors
 vim.g.terminal_color_0 = palette.base00

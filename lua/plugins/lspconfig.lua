@@ -7,7 +7,7 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
-    event = { 'VeryLazy' },
+		event = { "VeryLazy" },
 		config = function()
 			-- Virtual Text Config
 			vim.diagnostic.config({
@@ -54,13 +54,39 @@ return {
 				},
 			})
 
-			local lspconfig = require("lspconfig")
+			local lsp_formatting = function(bufnr)
+				vim.lsp.buf.format({
+					filter = function(client)
+						return client.name == "null-ls"
+					end,
+					bufnr = bufnr,
+				})
+			end
+
+			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+			local on_attach = function(client, bufnr)
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							lsp_formatting(bufnr)
+						end,
+					})
+				end
+			end
 
 			-- Setup cmp integration
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			local default_server_options = {
-				capabilities = capabilities,
+				capabilities = default_capabilities,
+				on_attach = on_attach,
 			}
+
+			local lspconfig = require("lspconfig")
 
 			-- Setup All Avaible Servers
 			mason_lspconfig.setup_handlers({
@@ -106,7 +132,7 @@ return {
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/vim-vsnip",
 		},
-    event = { 'VeryLazy' },
+		event = { "VeryLazy" },
 		config = function()
 			local cmp = require("cmp")
 
@@ -157,8 +183,8 @@ return {
 				}),
 			})
 
-			-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 }
