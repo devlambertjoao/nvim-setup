@@ -16,7 +16,7 @@ return {
 				left_mouse_command = "buffer %d", -- Select Buffer
 				middle_mouse_command = "bdelete! %d", -- Delete Buffer
 				buffer_close_icon = "x",
-				-- tab_size = 24,
+				max_name_length = 50,
 				always_show_bufferline = true,
 				diagnostics_update_in_insert = true,
 				-- numbers = function(opts)
