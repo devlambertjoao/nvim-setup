@@ -8,6 +8,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"nvimtools/none-ls.nvim",
 			"jay-babu/mason-null-ls.nvim",
+			"SmiteshP/nvim-navic",
 		},
 		event = { "VeryLazy" },
 		config = function()
@@ -43,6 +44,41 @@ return {
 
 			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+			local navic = require("nvim-navic")
+			navic.setup({
+				lsp = {
+					auto_attach = true,
+				},
+				icons = {
+					File = "",
+					Module = "",
+					Namespace = "",
+					Package = "",
+					Class = "",
+					Method = "",
+					Property = "",
+					Field = "",
+					Constructor = "",
+					Enum = "",
+					Interface = "",
+					Function = "",
+					Variable = "",
+					Constant = "",
+					String = "",
+					Number = "",
+					Boolean = "",
+					Array = "",
+					Object = "",
+					Key = "",
+					Null = "",
+					EnumMember = "",
+					Struct = "",
+					Event = "",
+					Operator = "",
+					TypeParameter = "",
+				},
+			})
+
 			local on_attach = function(client, bufnr)
 				local opts = { buffer = bufnr }
 
@@ -55,6 +91,10 @@ return {
 							lsp_formatting(bufnr)
 						end,
 					})
+				end
+
+				if client.server_capabilities.documentSymbolProvider then
+					navic.attach(client, bufnr)
 				end
 
 				-- Important: Add these mappings in which key config
@@ -241,10 +281,6 @@ return {
 					{ name = "cmdline" },
 				}),
 			})
-
-			-- Autopairs
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 }

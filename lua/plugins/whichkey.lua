@@ -6,7 +6,7 @@ return {
 		local whichkey = require("which-key")
 
 		vim.o.timeout = true
-		vim.o.timeoutlen = 1000
+		vim.o.timeoutlen = 150
 
 		whichkey.setup({
 			icons = {
@@ -37,6 +37,8 @@ return {
 			f = {
 				name = "File Navigation",
 				o = { "<cmd>Oil<CR>", "Oil" },
+				O = { "<cmd>Oil .<CR>", "Oil root" },
+				b = { "<cmd>NvimTreeFindFileToggle<CR>", "Nvim Tree" },
 				p = { "<cmd>Telescope find_files<CR>", "Find Files" },
 				f = { "<cmd>Telescope live_grep<CR>", "Grep Files" },
 			},
@@ -53,6 +55,7 @@ return {
 				r = { "Rename" },
 				a = { "Code Actions" },
 				f = { "Format" },
+				l = { "Comment line" },
 			},
 			d = {
 				name = "Diagnostics",
