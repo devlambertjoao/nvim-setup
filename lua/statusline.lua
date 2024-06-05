@@ -153,13 +153,18 @@ Statusline.active = function()
 		return "%#StatusLineNormal#"
 	end
 
+	local breadcrumb = "%{%v:lua.require'nvim-navic'.get_location()%}"
+	local winbar = "%#StatusLineNormal#" .. filepath() .. filename()
+
+	vim.o.winbar = winbar .. "> " .. breadcrumb
+
 	return table.concat({
 		update_mode_colors(),
 		mode(),
 		versioncontrol(),
 		"%#StatusLineNormal# ",
-		filepath(),
-		filename(),
+		-- filepath(),
+		-- filename(),
 		"%#StatuslineNormal#%=",
 		lsp(),
 		"%#StatuslineFileinfo#",
@@ -187,5 +192,3 @@ vim.api.nvim_exec(
 ]],
 	false
 )
-
-vim.o.winbar = "%#StatusLineNormal#%{%v:lua.require'nvim-navic'.get_location()%}"
