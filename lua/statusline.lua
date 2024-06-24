@@ -154,17 +154,16 @@ Statusline.active = function()
 	end
 
 	local breadcrumb = "%{%v:lua.require'nvim-navic'.get_location()%}"
-	local winbar = "%#StatusLineNormal#" .. filepath() .. filename()
 
-	vim.o.winbar = winbar .. "> " .. breadcrumb
+	vim.o.winbar = "%#StatusLineNormal#" .. breadcrumb
 
 	return table.concat({
 		update_mode_colors(),
 		mode(),
 		versioncontrol(),
 		"%#StatusLineNormal# ",
-		-- filepath(),
-		-- filename(),
+		filepath(),
+		filename(),
 		"%#StatuslineNormal#%=",
 		lsp(),
 		"%#StatuslineFileinfo#",
