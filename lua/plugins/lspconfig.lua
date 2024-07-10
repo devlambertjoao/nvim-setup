@@ -35,10 +35,8 @@ return {
 			-- Formatting with none-ls
 			local lsp_formatting = function(bufnr)
 				vim.lsp.buf.format({
-					filter = function(client)
-						return client.name == "null-ls"
-					end,
 					bufnr = bufnr,
+					timeout_ms = 5000,
 				})
 			end
 
@@ -82,16 +80,16 @@ return {
 			local on_attach = function(client, bufnr)
 				local opts = { buffer = bufnr }
 
-				if client.supports_method("textDocument/formatting") then
-					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = augroup,
-						buffer = bufnr,
-						callback = function()
-							lsp_formatting(bufnr)
-						end,
-					})
-				end
+				-- if client.supports_method("textDocument/formatting") then
+				-- 	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+				-- 	vim.api.nvim_create_autocmd("BufWritePre", {
+				-- 		group = augroup,
+				-- 		buffer = bufnr,
+				-- 		callback = function()
+				-- 			lsp_formatting(bufnr)
+				-- 		end,
+				-- 	})
+				-- end
 
 				if client.server_capabilities.documentSymbolProvider then
 					navic.attach(client, bufnr)
@@ -130,9 +128,11 @@ return {
 			require("mason-null-ls").setup({
 				automatic_installation = false,
 				ensure_installed = {
-					"stylua",
-					"rubocop",
-					"prettierd",
+					"stylua", -- Lua Formatting
+					"rubocop", -- Ruby Formatting
+					"prettierd", -- Javascript Formatting
+					"ruff", -- Python Linter
+					-- "black", -- Python Formatting
 				},
 			})
 
@@ -150,14 +150,15 @@ return {
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup({
 				ensure_installed = {
-					"lua_ls",
-					"solargraph",
-					"rust_analyzer",
-					"clangd",
-					"jsonls",
-					"html",
-					"tsserver",
-					"tailwindcss",
+					"lua_ls", -- Lua
+					"solargraph", -- Ruby
+					"rust_analyzer", -- Rust
+					"clangd", -- C
+					"jsonls", -- JSON
+					"html", -- HTML
+					"tsserver", -- Typescript
+					"tailwindcss", -- Tailwindcss
+					"pyright", -- Python
 				},
 			})
 
@@ -231,24 +232,6 @@ return {
 					["<C-e>"] = cmp.mapping.close(),
 					["<C-c>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-					["<C-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif vim.fn["vsnip#expandable"]() then
-							vim.fn["vsnip#expand"]()
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif vim.fn["vsnip#jumpable"](-1) then
-							vim.fn["vsnip#jump"](-1)
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
