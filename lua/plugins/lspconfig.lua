@@ -4,14 +4,54 @@ return {
 		dependencies = {
 			"neovim/nvim-lsp",
 			"hrsh7th/nvim-cmp",
+			"SmiteshP/nvim-navic", -- Topwinbar
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"nvimtools/none-ls.nvim",
 			"jay-babu/mason-null-ls.nvim",
-			"SmiteshP/nvim-navic",
 		},
 		event = { "VeryLazy" },
 		config = function()
+			-- None LS for Formatting and linting
+			require("mason-null-ls").setup({
+				automatic_installation = true,
+				ensure_installed = {
+					"stylua", -- Lua Formatting
+					"rubocop", -- Ruby Formatting
+					"prettier", -- Javascript Formatting
+					"prettierd", -- Javascript Formatting
+					"isort", -- Python Linter / diagnostics
+					"black", -- Python Formatting
+				},
+			})
+
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					-- Lua
+					null_ls.builtins.formatting.stylua,
+					-- Ruby
+					null_ls.builtins.diagnostics.rubocop,
+					null_ls.builtins.formatting.rubocop,
+					-- JS
+					null_ls.builtins.formatting.prettier,
+					null_ls.builtins.formatting.prettierd,
+					-- Python
+					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.isort,
+				},
+			})
+
+			-- Formatting with none-ls
+			local lsp_formatting = function()
+				vim.lsp.buf.format({
+					filter = function(client)
+						return client.name == "null-ls"
+					end,
+					timeout_ms = 5000,
+				})
+			end
+
 			-- Virtual Text Config
 			vim.diagnostic.config({
 				virtual_text = {
@@ -32,64 +72,43 @@ return {
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
 
-			-- Formatting with none-ls
-			local lsp_formatting = function(bufnr)
-				vim.lsp.buf.format({
-					bufnr = bufnr,
-					timeout_ms = 5000,
-				})
-			end
-
-			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 			local navic = require("nvim-navic")
 			navic.setup({
 				lsp = {
 					auto_attach = true,
 				},
-				icons = {
-					File = "",
-					Module = "",
-					Namespace = "",
-					Package = "",
-					Class = "",
-					Method = "",
-					Property = "",
-					Field = "",
-					Constructor = "",
-					Enum = "",
-					Interface = "",
-					Function = "",
-					Variable = "",
-					Constant = "",
-					String = "",
-					Number = "",
-					Boolean = "",
-					Array = "",
-					Object = "",
-					Key = "",
-					Null = "",
-					EnumMember = "",
-					Struct = "",
-					Event = "",
-					Operator = "",
-					TypeParameter = "",
-				},
+				-- icons = {
+				--   File = "f:",
+				--   Module = "m:",
+				--   Namespace = "ns:",
+				--   Package = "package:",
+				--   Class = "c:",
+				--   Method = "()",
+				--   Property = "p",
+				--   Field = "f",
+				--   Constructor = "ctor",
+				--   Enum = "enum",
+				--   Interface = "I",
+				--   Function = "()",
+				--   Variable = "v",
+				--   Constant = "C",
+				--   String = "String",
+				--   Number = "Number",
+				--   Boolean = "Boolean",
+				--   Array = "Array",
+				--   Object = "",
+				--   Key = "",
+				--   Null = "",
+				--   EnumMember = "",
+				--   Struct = "",
+				--   Event = "",
+				--   Operator = "",
+				--   TypeParameter = "",
+				-- },
 			})
 
 			local on_attach = function(client, bufnr)
 				local opts = { buffer = bufnr }
-
-				-- if client.supports_method("textDocument/formatting") then
-				-- 	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-				-- 	vim.api.nvim_create_autocmd("BufWritePre", {
-				-- 		group = augroup,
-				-- 		buffer = bufnr,
-				-- 		callback = function()
-				-- 			lsp_formatting(bufnr)
-				-- 		end,
-				-- 	})
-				-- end
 
 				if client.server_capabilities.documentSymbolProvider then
 					navic.attach(client, bufnr)
@@ -107,34 +126,8 @@ return {
 				-- Code actions
 				vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-				vim.keymap.set("n", "<leader>cf", function()
-					lsp_formatting(bufnr)
-				end, opts)
+			  vim.keymap.set("n", "<leader>cf", lsp_formatting, opts)
 			end
-
-			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					-- Lua
-					null_ls.builtins.formatting.stylua,
-					-- Ruby
-					null_ls.builtins.formatting.rubocop,
-					-- JS
-					null_ls.builtins.formatting.prettierd,
-				},
-				on_attach = on_attach,
-			})
-
-			require("mason-null-ls").setup({
-				automatic_installation = false,
-				ensure_installed = {
-					"stylua", -- Lua Formatting
-					"rubocop", -- Ruby Formatting
-					"prettierd", -- Javascript Formatting
-					"ruff", -- Python Linter
-					-- "black", -- Python Formatting
-				},
-			})
 
 			-- Mason Config
 			require("mason").setup({
