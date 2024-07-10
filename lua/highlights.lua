@@ -6,22 +6,22 @@ vim.cmd([[
 ]])
 
 local palette = {
-	base00 = "#292D3E",
-	base01 = "#444267",
-	base02 = "#32374D",
-	base03 = "#676E95",
-	base04 = "#8796B0",
-	base05 = "#959DCB",
-	base06 = "#959DCB",
-	base07 = "#FFFFFF",
-	base08 = "#F07178",
-	base09 = "#F78C6C",
-	base0A = "#FFCB6B",
-	base0B = "#C3E88D",
-	base0C = "#89DDFF",
-	base0D = "#82AAFF",
-	base0E = "#C792EA",
-	base0F = "#FF5370",
+	base00 = "#16161E",
+	base01 = "#1A1B26",
+	base02 = "#2F3549",
+	base03 = "#444B6A",
+	base04 = "#787C99",
+	base05 = "#787C99",
+	base06 = "#CBCCD1",
+	base07 = "#D5D6DB",
+	base08 = "#F7768E",
+	base09 = "#FF9E64",
+	base0A = "#E0AF68",
+	base0B = "#41A6B5",
+	base0C = "#7DCFFF",
+	base0D = "#7AA2F7",
+	base0E = "#BB9AF7",
+	base0F = "#D18616",
 }
 
 local hi = function(group, args)
