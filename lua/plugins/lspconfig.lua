@@ -22,6 +22,7 @@ return {
 					"prettierd", -- Javascript Formatting
 					"isort", -- Python Linter / diagnostics
 					"black", -- Python Formatting
+          "shfmt", -- Bash
 				},
 			})
 
@@ -39,6 +40,8 @@ return {
 					-- Python
 					null_ls.builtins.formatting.black,
 					null_ls.builtins.formatting.isort,
+          -- Bash
+          null_ls.builtins.formatting.shfmt,
 				},
 			})
 
@@ -152,6 +155,7 @@ return {
 					"tsserver", -- Typescript
 					"tailwindcss", -- Tailwindcss
 					"pyright", -- Python
+          "bashls" -- Bash
 				},
 			})
 
