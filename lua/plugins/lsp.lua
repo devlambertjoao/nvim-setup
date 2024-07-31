@@ -55,7 +55,6 @@ return {
 				})
 			end
 
-
 			-- Virtual Text Config
 			vim.diagnostic.config({
 				virtual_text = {
@@ -92,6 +91,13 @@ return {
 				vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 				vim.keymap.set("n", "<leader>cf", lsp_formatting, opts)
+
+				-- Diagnostics
+				vim.keymap.set("n", "<leader>da", "<cmd>Telescope diagnostics<CR>", { noremap = true, silent = true })
+				vim.keymap.set("n", "<leader>dl", vim.diagnostic.setqflist, opts)
+				vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, opts)
+				vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
+				vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
 			end
 
 			-- Mason Config
