@@ -20,8 +20,8 @@ return {
 					"rubocop", -- Ruby Formatting
 					"prettier", -- Javascript Formatting
 					"prettierd", -- Javascript Formatting
-					"isort", -- Python Linter / diagnostics
-					"black", -- Python Formatting
+					-- "isort", -- Python Linter / diagnostics
+					-- "black", -- Python Formatting
 					"shfmt", -- Bash
 				},
 			})
@@ -38,8 +38,8 @@ return {
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.prettierd,
 					-- Python
-					null_ls.builtins.formatting.black,
-					null_ls.builtins.formatting.isort,
+					-- null_ls.builtins.formatting.black,
+					-- null_ls.builtins.formatting.isort,
 					-- Bash
 					null_ls.builtins.formatting.shfmt,
 				},
@@ -116,13 +116,13 @@ return {
 				ensure_installed = {
 					"lua_ls", -- Lua
 					"solargraph", -- Ruby
-					"rust_analyzer", -- Rust
-					"clangd", -- C
+					-- "rust_analyzer", -- Rust
+					-- "clangd", -- C
 					"jsonls", -- JSON
 					"html", -- HTML
-					"tsserver", -- Typescript
+					"ts_ls", -- Typescript
 					"tailwindcss", -- Tailwindcss
-					"pyright", -- Python
+					-- "pyright", -- Python
 					"bashls", -- Bash
 				},
 			})
@@ -229,6 +229,14 @@ return {
 					{ name = "cmdline" },
 				}),
 			})
+		end,
+	},
+	{
+		"m4xshen/autoclose.nvim",
+		event = { "VeryLazy" },
+		config = function()
+			local autoclose = require("autoclose")
+			autoclose.setup()
 		end,
 	},
 }

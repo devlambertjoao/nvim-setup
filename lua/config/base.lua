@@ -15,7 +15,7 @@ vim.cmd([[
   set signcolumn=yes:1
   
   set encoding=utf-8
-  set fileencoding=utf-8
+  "set fileencoding=utf-8
   
   set pumheight=7
   
