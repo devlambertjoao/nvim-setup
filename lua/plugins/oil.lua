@@ -1,7 +1,7 @@
 return {
   'stevearc/oil.nvim',
   opts = {},
-  cmd = 'Oil',
+  event = { "VeryLazy" },
   config = function ()
     require('oil').setup({})
 

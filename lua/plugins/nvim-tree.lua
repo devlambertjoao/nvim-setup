@@ -1,6 +1,6 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen" },
+	event = { "VeryLazy" },
 	config = function()
 		require("nvim-tree").setup({
 			sort_by = "case_sensitive",
